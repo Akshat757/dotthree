@@ -1,0 +1,299 @@
+import type { Finish, Material, MaterialCategory, SurfaceType, Tier, Tonality } from '@/types/content';
+
+import { img } from './images';
+
+type Unit = 'sqft' | 'rft' | 'litre' | 'piece';
+
+interface Row {
+  slug: string;
+  name: string;
+  cat: MaterialCategory;
+  tier: Tier;
+  hex?: string;
+  family?: string;
+  tone?: Tonality;
+  finish?: Finish;
+  price: [number, number, Unit];
+  surfaces: SurfaceType[];
+  rooms: string[];
+  water?: boolean;
+  heat?: boolean;
+  dur?: 1 | 2 | 3 | 4 | 5;
+  maint?: 'LOW' | 'MEDIUM' | 'HIGH';
+  avail?: Material['availability'];
+  sub?: string;
+  pattern?: Material['pattern'];
+  /** CC0/procedural texture set under /public/textures/<set> */
+  tex?: { set: string; scaleCm: number; normal?: boolean };
+  desc: string;
+  brand?: string;
+  warranty?: string;
+  sust?: string;
+}
+
+const BRANDS: Partial<Record<MaterialCategory, string>> = {
+  PAINT: 'Aangan Shades',
+  LAMINATE: 'Malwa Laminates',
+  VENEER: 'Narmada Veneers',
+  ACRYLIC: 'Malwa Laminates',
+  PU_FINISH: 'Studio Finish',
+  WALLPAPER: 'Paperwalla',
+  WALL_TEXTURE: 'Studio Finish',
+  GLASS: 'Clearline Glass',
+  MARBLE: 'Rajwada Stone',
+  GRANITE: 'Rajwada Stone',
+  QUARTZ: 'Stonecraft Quartz',
+  CERAMIC_TILE: 'Terra Tiles',
+  VITRIFIED_TILE: 'Terra Tiles',
+  WOOD_FLOORING: 'Timberline Floors',
+  VINYL_FLOORING: 'Timberline Floors',
+  UPHOLSTERY: 'Khadi Loom',
+  CURTAIN: 'Khadi Loom',
+  METAL_FINISH: 'Studio Finish',
+  KITCHEN_HARDWARE: 'Precision Hardware',
+  WARDROBE_HARDWARE: 'Precision Hardware',
+  LIGHTING: 'Lumen Studio',
+  SANITARYWARE: 'Aquaform',
+  COUNTERTOP: 'Stonecraft Quartz',
+  HANDLES: 'Precision Hardware',
+};
+
+function m(r: Row): Material {
+  const sub = r.cat.toLowerCase().replace(/_/g, '-');
+  return {
+    slug: r.slug,
+    name: r.name,
+    brand: r.brand ?? BRANDS[r.cat],
+    productCode: `${r.cat.slice(0, 2)}-${r.slug.split('-').map((s) => s[0]?.toUpperCase()).join('')}${String(r.slug.length * 7 + r.name.length).padStart(3, '0')}`,
+    category: r.cat,
+    subCategory: sub,
+    swatch: img(`mat-${r.slug}`),
+    texture: r.tex
+      ? {
+          albedo: `/textures/${r.tex.set}/albedo`,
+          normal: r.tex.normal ? `/textures/${r.tex.set}/normal` : undefined,
+          roughness: r.tex.normal ? `/textures/${r.tex.set}/roughness` : undefined,
+          scaleCm: r.tex.scaleCm,
+          credit: { source: 'original', licence: 'cc0' },
+          procedural: true,
+        }
+      : undefined,
+    hex: r.hex,
+    colorFamily: r.family,
+    tonality: r.tone,
+    finish: r.finish,
+    tier: r.tier,
+    price: { min: r.price[0], max: r.price[1], unit: r.price[2] },
+    durability: r.dur ?? (r.tier === 'LUXURY' ? 5 : r.tier === 'PREMIUM' ? 4 : 3),
+    maintenance: r.maint ?? 'MEDIUM',
+    waterResistant: r.water ?? false,
+    heatResistant: r.heat ?? false,
+    warranty: r.warranty ?? (r.tier === 'ESSENTIAL' ? '1 year' : r.tier === 'STANDARD' ? '3 years' : r.tier === 'PREMIUM' ? '5 years' : '10 years'),
+    availability: r.avail ?? (r.tier === 'LUXURY' ? 'ON_ORDER' : 'IN_STOCK_INDORE'),
+    usageSurfaces: r.surfaces,
+    usageRooms: r.rooms,
+    sustainability: r.sust,
+    substituteForSlug: r.sub,
+    description: r.desc,
+    pattern: r.pattern,
+  };
+}
+
+const ALL_ROOMS = ['living', 'bedroom', 'kitchen', 'dining', 'study', 'kids-room', 'foyer'];
+const WET = ['kitchen', 'bathroom', 'utility', 'balcony'];
+
+export const materials: Material[] = [
+  // ───────────── PAINT (12) ─────────────
+  m({ slug: 'paint-ivory-mist', name: 'Ivory Mist', cat: 'PAINT', tier: 'ESSENTIAL', hex: '#F4EFE6', family: 'off-white', tone: 'warm', finish: 'matte', price: [22, 28, 'sqft'], surfaces: ['WALL', 'CEILING'], rooms: ALL_ROOMS, maint: 'LOW', desc: 'Our most-specified wall colour. A warm off-white that stays soft under Indore\'s hard afternoon light and never turns yellow at night.', sust: 'Low-VOC water-based emulsion.' }),
+  m({ slug: 'paint-monsoon-grey', name: 'Monsoon Grey', cat: 'PAINT', tier: 'STANDARD', hex: '#B9BDC1', family: 'cool-neutral', tone: 'cool', finish: 'eggshell', price: [30, 36, 'sqft'], surfaces: ['WALL', 'ACCENT_WALL'], rooms: ['living', 'study', 'bedroom', 'office'], maint: 'LOW', desc: 'A quiet blue-grey that reads as pure grey in daylight and gains a hint of blue under warm lamps.' }),
+  m({ slug: 'paint-sage-whisper', name: 'Sage Whisper', cat: 'PAINT', tier: 'STANDARD', hex: '#B9C4B1', family: 'green', tone: 'pastel', finish: 'matte', price: [30, 36, 'sqft'], surfaces: ['WALL', 'ACCENT_WALL'], rooms: ['bedroom', 'living', 'study', 'pooja'], maint: 'LOW', desc: 'A dusty sage that pairs with almost any wood tone. Our go-to for bedrooms that need to feel restful without being cold.' }),
+  m({ slug: 'paint-malwa-clay', name: 'Malwa Clay', cat: 'PAINT', tier: 'PREMIUM', hex: '#B9705B', family: 'terracotta', tone: 'earthy', finish: 'matte', price: [44, 52, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL_PANEL'], rooms: ['living', 'dining', 'foyer'], maint: 'MEDIUM', desc: 'A burnt terracotta inspired by the soil around Mandu. Best on a single accent wall facing the light.' }),
+  m({ slug: 'paint-turmeric-light', name: 'Turmeric Light', cat: 'PAINT', tier: 'STANDARD', hex: '#E3B85B', family: 'ochre', tone: 'bold', finish: 'matte', price: [32, 38, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['kitchen', 'pooja', 'kids-room'], desc: 'A confident haldi yellow that brings morning light into a north-facing kitchen or pooja room.' }),
+  m({ slug: 'paint-indigo-night', name: 'Indigo Night', cat: 'PAINT', tier: 'PREMIUM', hex: '#2F3A5C', family: 'blue', tone: 'jewel', finish: 'eggshell', price: [46, 54, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL_PANEL'], rooms: ['bedroom', 'study', 'living'], desc: 'A deep, inky blue for a headboard wall or a study. Pairs beautifully with brass and cane.' }),
+  m({ slug: 'paint-rajwada-rose', name: 'Rajwada Rose', cat: 'PAINT', tier: 'STANDARD', hex: '#D9B2AD', family: 'pink', tone: 'pastel', finish: 'matte', price: [32, 38, 'sqft'], surfaces: ['WALL', 'ACCENT_WALL'], rooms: ['bedroom', 'kids-room', 'pooja'], desc: 'A muted, grown-up blush that reads almost neutral. Lovely in evening light.' }),
+  m({ slug: 'paint-neem-leaf', name: 'Neem Leaf', cat: 'PAINT', tier: 'PREMIUM', hex: '#5E7A5A', family: 'green', tone: 'earthy', finish: 'matte', price: [44, 52, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL_PANEL', 'DOOR'], rooms: ['living', 'study', 'balcony'], desc: 'A deep botanical green. Excellent on doors and a living-room feature wall with cane furniture.' }),
+  m({ slug: 'paint-cotton-white', name: 'Cotton White', cat: 'PAINT', tier: 'ESSENTIAL', hex: '#FAF8F3', family: 'off-white', tone: 'neutral', finish: 'matte', price: [20, 26, 'sqft'], surfaces: ['CEILING', 'WALL'], rooms: ALL_ROOMS, maint: 'LOW', desc: 'A clean, barely-warm white specified for ceilings across all our projects.' }),
+  m({ slug: 'paint-basalt-grey', name: 'Basalt Grey', cat: 'PAINT', tier: 'PREMIUM', hex: '#5A5B5D', family: 'grey', tone: 'neutral', finish: 'eggshell', price: [44, 52, 'sqft'], surfaces: ['ACCENT_WALL', 'DOOR', 'WALL_PANEL'], rooms: ['living', 'study', 'office'], desc: 'A deep charcoal grey that makes wood and brass sing. Best in rooms with generous daylight.' }),
+  m({ slug: 'paint-sand-stone', name: 'Sand Stone', cat: 'PAINT', tier: 'ESSENTIAL', hex: '#DCCFB8', family: 'warm-neutral', tone: 'warm', finish: 'matte', price: [22, 28, 'sqft'], surfaces: ['WALL'], rooms: ALL_ROOMS, maint: 'LOW', desc: 'A warm beige that flatters skin tones and furniture alike. Unfussy and forgiving.' }),
+  m({ slug: 'paint-satin-luxe-white', name: 'Satin Luxe White', cat: 'PAINT', tier: 'LUXURY', hex: '#F7F5F0', family: 'off-white', tone: 'neutral', finish: 'satin', price: [70, 82, 'sqft'], surfaces: ['WALL', 'CEILING', 'WALL_PANEL'], rooms: ALL_ROOMS, maint: 'LOW', water: true, desc: 'A washable satin-finish white with exceptional depth. Specified in our luxury tier for its light-catching sheen.', warranty: '10 years' }),
+
+  // ───────────── WALLPAPER (6) ─────────────
+  m({ slug: 'wallpaper-jaali-geometric', name: 'Jaali Geometric', cat: 'WALLPAPER', tier: 'STANDARD', hex: '#E8DFD0', tone: 'warm', finish: 'matte', pattern: 'geometric', price: [65, 85, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['living', 'foyer', 'dining'], tex: { set: 'wallpaper-jaali', scaleCm: 60 }, desc: 'A lattice motif drawn from Mughal jaali screens, printed tone-on-tone on a non-woven base.' }),
+  m({ slug: 'wallpaper-banyan-botanical', name: 'Banyan Botanical', cat: 'WALLPAPER', tier: 'PREMIUM', hex: '#C9D4C4', tone: 'earthy', finish: 'matte', pattern: 'floral', price: [110, 140, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['bedroom', 'living', 'dining'], tex: { set: 'wallpaper-botanical', scaleCm: 90 }, desc: 'Oversized banyan leaves in soft greens. A statement wall for a large living room.' }),
+  m({ slug: 'wallpaper-linen-weave', name: 'Linen Weave', cat: 'WALLPAPER', tier: 'STANDARD', hex: '#D9D2C5', tone: 'neutral', finish: 'textured', pattern: 'textured', price: [55, 70, 'sqft'], surfaces: ['WALL', 'ACCENT_WALL'], rooms: ['bedroom', 'living', 'study'], tex: { set: 'fabric-linen', scaleCm: 20, normal: true }, desc: 'A textured vinyl that mimics woven linen. Hides imperfect walls in renovations.' }),
+  m({ slug: 'wallpaper-indigo-block-print', name: 'Indigo Block Print', cat: 'WALLPAPER', tier: 'PREMIUM', hex: '#3A4A6B', tone: 'jewel', finish: 'matte', pattern: 'damask', price: [120, 150, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['bedroom', 'dining', 'foyer'], tex: { set: 'wallpaper-blockprint', scaleCm: 45 }, desc: 'Inspired by Bagh block prints from Dhar district. A deep indigo ground with a cream repeat.' }),
+  m({ slug: 'wallpaper-kids-clouds', name: 'Cloud Drift', cat: 'WALLPAPER', tier: 'ESSENTIAL', hex: '#DCE6EE', tone: 'pastel', finish: 'matte', pattern: 'floral', price: [40, 55, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['kids-room'], tex: { set: 'wallpaper-clouds', scaleCm: 50 }, desc: 'Soft clouds on a pale sky-blue ground. Washable — designed for kids\' rooms.' }),
+  m({ slug: 'wallpaper-grasscloth-gold', name: 'Grasscloth Gold', cat: 'WALLPAPER', tier: 'LUXURY', hex: '#C9A86A', tone: 'warm', finish: 'textured', pattern: 'textured', price: [260, 340, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL_PANEL'], rooms: ['living', 'dining', 'bedroom'], tex: { set: 'wallpaper-grasscloth', scaleCm: 30, normal: true }, desc: 'Natural woven grasscloth with a metallic ground. Hand-applied; every seam is a feature.', avail: 'IMPORT' }),
+
+  // ───────────── WALL TEXTURE (4) ─────────────
+  m({ slug: 'texture-lime-plaster', name: 'Lime Plaster', cat: 'WALL_TEXTURE', tier: 'PREMIUM', hex: '#E2DAD0', tone: 'warm', finish: 'textured', pattern: 'textured', price: [140, 180, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL'], rooms: ['living', 'dining', 'foyer', 'bedroom'], tex: { set: 'plaster-lime', scaleCm: 40, normal: true }, desc: 'Hand-troweled lime plaster with a soft, cloudy movement. Breathable and naturally antibacterial.', sust: 'Lime-based, low embodied carbon.' }),
+  m({ slug: 'texture-concrete-effect', name: 'Concrete Effect', cat: 'WALL_TEXTURE', tier: 'STANDARD', hex: '#A9A6A1', tone: 'neutral', finish: 'matte', pattern: 'textured', price: [90, 120, 'sqft'], surfaces: ['ACCENT_WALL', 'WALL_PANEL'], rooms: ['living', 'study', 'office'], tex: { set: 'concrete-smooth', scaleCm: 60, normal: true }, desc: 'A micro-cement look without the weight. Popular for industrial-style living rooms and cafés.' }),
+  m({ slug: 'texture-rustic-sand', name: 'Rustic Sand', cat: 'WALL_TEXTURE', tier: 'STANDARD', hex: '#D4BFA3', tone: 'earthy', finish: 'textured', pattern: 'textured', price: [70, 95, 'sqft'], surfaces: ['ACCENT_WALL'], rooms: ['living', 'foyer', 'balcony'], tex: { set: 'plaster-rough', scaleCm: 40, normal: true }, desc: 'A coarse sand-finish texture that catches raking light beautifully.' }),
+  m({ slug: 'texture-metallic-wash', name: 'Metallic Wash', cat: 'WALL_TEXTURE', tier: 'LUXURY', hex: '#B59A72', tone: 'warm', finish: 'satin', pattern: 'textured', price: [220, 290, 'sqft'], surfaces: ['ACCENT_WALL', 'CEILING'], rooms: ['living', 'dining', 'bedroom'], tex: { set: 'plaster-metallic', scaleCm: 50, normal: true }, desc: 'A layered metallic glaze over textured plaster. Reserved for ceilings and headboard walls in our luxury tier.' }),
+
+  // ───────────── VENEER (6) ─────────────
+  m({ slug: 'veneer-natural-teak', name: 'Natural Teak', cat: 'VENEER', tier: 'PREMIUM', hex: '#9A6A3F', tone: 'warm', finish: 'satin', price: [180, 240, 'sqft'], surfaces: ['WALL_PANEL', 'WARDROBE', 'CABINET_LOWER', 'DOOR'], rooms: ['living', 'bedroom', 'foyer'], tex: { set: 'wood-teak', scaleCm: 120, normal: true }, desc: 'Crown-cut natural teak veneer with PU polish. The classic Indian luxury finish, done properly.', sust: 'FSC-certified sources.' }),
+  m({ slug: 'veneer-smoked-oak', name: 'Smoked Oak', cat: 'VENEER', tier: 'PREMIUM', hex: '#6B5240', tone: 'earthy', finish: 'matte', price: [190, 250, 'sqft'], surfaces: ['WALL_PANEL', 'WARDROBE', 'CABINET_UPPER', 'CABINET_LOWER'], rooms: ['living', 'kitchen', 'bedroom'], tex: { set: 'wood-oak-dark', scaleCm: 120, normal: true }, desc: 'European oak veneer, fumed to a deep grey-brown. Our most contemporary wood.' }),
+  m({ slug: 'veneer-white-ash', name: 'White Ash', cat: 'VENEER', tier: 'PREMIUM', hex: '#D8C9B0', tone: 'neutral', finish: 'matte', price: [170, 230, 'sqft'], surfaces: ['WALL_PANEL', 'WARDROBE', 'CABINET_UPPER'], rooms: ['bedroom', 'living', 'study', 'kids-room'], tex: { set: 'wood-ash', scaleCm: 120, normal: true }, desc: 'A pale, open-grained veneer for Scandinavian and Japandi briefs.' }),
+  m({ slug: 'veneer-walnut-burl', name: 'Walnut Burl', cat: 'VENEER', tier: 'LUXURY', hex: '#5C4030', tone: 'earthy', finish: 'high-gloss', price: [380, 480, 'sqft'], surfaces: ['WALL_PANEL', 'WARDROBE'], rooms: ['living', 'bedroom', 'dining'], tex: { set: 'wood-walnut', scaleCm: 90, normal: true }, desc: 'Book-matched walnut burl under a mirror-gloss PU. A single wall of this is a room\'s entire story.', avail: 'IMPORT' }),
+  m({ slug: 'veneer-recon-wenge', name: 'Recon Wengé', cat: 'VENEER', tier: 'STANDARD', hex: '#4A3A30', tone: 'earthy', finish: 'matte', price: [110, 140, 'sqft'], surfaces: ['WARDROBE', 'CABINET_LOWER', 'WALL_PANEL'], rooms: ['living', 'bedroom'], tex: { set: 'wood-wenge', scaleCm: 120, normal: true }, sub: 'veneer-smoked-oak', desc: 'Reconstituted veneer with consistent, dark straight grain. Predictable and cost-effective.' }),
+  m({ slug: 'veneer-fluted-oak-panel', name: 'Fluted Oak Panel', cat: 'VENEER', tier: 'PREMIUM', hex: '#B08A5E', tone: 'warm', finish: 'matte', price: [260, 330, 'sqft'], surfaces: ['WALL_PANEL', 'ACCENT_WALL'], rooms: ['living', 'bedroom', 'foyer'], tex: { set: 'wood-fluted', scaleCm: 30, normal: true }, pattern: 'stripe', desc: 'Half-round oak flutes on a plywood backer. Adds rhythm and acoustic softness to a TV or headboard wall.' }),
+
+  // ───────────── LAMINATE (10) ─────────────
+  m({ slug: 'laminate-frosty-white', name: 'Frosty White', cat: 'LAMINATE', tier: 'ESSENTIAL', hex: '#F3F2EE', tone: 'neutral', finish: 'matte', price: [55, 70, 'sqft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom', 'utility'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, maint: 'LOW', desc: 'The workhorse white laminate. Suede-matte, fingerprint-resistant, and available everywhere.' }),
+  m({ slug: 'laminate-oak-linear', name: 'Oak Linear', cat: 'LAMINATE', tier: 'ESSENTIAL', hex: '#C7A67A', tone: 'warm', finish: 'textured', price: [60, 78, 'sqft'], surfaces: ['WARDROBE', 'CABINET_LOWER', 'WALL_PANEL'], rooms: ['bedroom', 'living', 'kitchen'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, sub: 'veneer-white-ash', water: true, desc: 'A straight-grain oak with a synchronised texture you can feel. Hard to tell from veneer at arm\'s length.' }),
+  m({ slug: 'laminate-walnut-classic', name: 'Walnut Classic', cat: 'LAMINATE', tier: 'STANDARD', hex: '#6E4E3A', tone: 'earthy', finish: 'textured', price: [70, 90, 'sqft'], surfaces: ['WARDROBE', 'CABINET_LOWER', 'WALL_PANEL', 'DOOR'], rooms: ['living', 'bedroom', 'study'], tex: { set: 'wood-walnut', scaleCm: 120, normal: true }, sub: 'veneer-walnut-burl', water: true, desc: 'A rich mid-brown walnut for wardrobes and TV units. Our most popular wood laminate.' }),
+  m({ slug: 'laminate-slate-grey', name: 'Slate Grey', cat: 'LAMINATE', tier: 'STANDARD', hex: '#7A7D80', tone: 'cool', finish: 'matte', price: [65, 82, 'sqft'], surfaces: ['CABINET_LOWER', 'CABINET_UPPER', 'WARDROBE'], rooms: ['kitchen', 'study', 'office'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, maint: 'LOW', desc: 'A cool mid-grey matte for contemporary kitchens. Pairs with white uppers and black hardware.' }),
+  m({ slug: 'laminate-sage-matte', name: 'Sage Matte', cat: 'LAMINATE', tier: 'STANDARD', hex: '#9EAA97', tone: 'earthy', finish: 'matte', price: [70, 88, 'sqft'], surfaces: ['CABINET_LOWER', 'CABINET_UPPER', 'WARDROBE'], rooms: ['kitchen', 'kids-room', 'bedroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, maint: 'LOW', desc: 'A muted green laminate that has quietly become our most requested kitchen colour.' }),
+  m({ slug: 'laminate-terracotta-matte', name: 'Terracotta Matte', cat: 'LAMINATE', tier: 'STANDARD', hex: '#B87360', tone: 'earthy', finish: 'matte', price: [70, 88, 'sqft'], surfaces: ['CABINET_LOWER', 'WARDROBE', 'WALL_PANEL'], rooms: ['kitchen', 'living', 'foyer'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'Warm terracotta for kitchen lowers. Grounds a white kitchen instantly.' }),
+  m({ slug: 'laminate-charcoal-woodgrain', name: 'Charcoal Woodgrain', cat: 'LAMINATE', tier: 'STANDARD', hex: '#3E3A37', tone: 'neutral', finish: 'textured', price: [75, 95, 'sqft'], surfaces: ['WARDROBE', 'WALL_PANEL', 'CABINET_LOWER'], rooms: ['living', 'bedroom', 'office'], tex: { set: 'wood-oak-dark', scaleCm: 120, normal: true }, water: true, desc: 'A near-black wood texture for dramatic wardrobes and feature walls.' }),
+  m({ slug: 'laminate-marble-white-gloss', name: 'Marble White Gloss', cat: 'LAMINATE', tier: 'STANDARD', hex: '#EDEBE6', tone: 'cool', finish: 'high-gloss', price: [80, 100, 'sqft'], surfaces: ['CABINET_UPPER', 'WALL_PANEL', 'BACKSPLASH'], rooms: ['kitchen', 'bathroom'], tex: { set: 'marble-white', scaleCm: 120, normal: true }, sub: 'vitrified-carrara-look', water: true, desc: 'A high-gloss marble-print laminate — the last link in the marble substitute chain.' }),
+  m({ slug: 'laminate-cane-print', name: 'Cane Print', cat: 'LAMINATE', tier: 'STANDARD', hex: '#D2B48C', tone: 'warm', finish: 'textured', pattern: 'geometric', price: [85, 110, 'sqft'], surfaces: ['WARDROBE', 'CABINET_UPPER', 'WALL_PANEL'], rooms: ['bedroom', 'living', 'dining'], tex: { set: 'cane-weave', scaleCm: 20, normal: true }, desc: 'A rattan-cane texture laminate for a bohemian or coastal shutter without the fragility of real cane.' }),
+  m({ slug: 'laminate-anti-fingerprint-black', name: 'Anti-Fingerprint Black', cat: 'LAMINATE', tier: 'PREMIUM', hex: '#1F1F21', tone: 'neutral', finish: 'matte', price: [130, 165, 'sqft'], surfaces: ['CABINET_LOWER', 'CABINET_UPPER', 'WARDROBE'], rooms: ['kitchen', 'bedroom', 'office'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, heat: true, maint: 'LOW', desc: 'A soft-touch super-matte black that resists fingerprints and heals micro-scratches with heat.' }),
+
+  // ───────────── ACRYLIC (4) ─────────────
+  m({ slug: 'acrylic-pearl-white', name: 'Pearl White Acrylic', cat: 'ACRYLIC', tier: 'PREMIUM', hex: '#F5F3EE', tone: 'neutral', finish: 'high-gloss', price: [220, 280, 'sqft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, maint: 'MEDIUM', sub: 'laminate-frosty-white', desc: 'Mirror-gloss acrylic sheet with a pearlescent depth. Bounces light around a small kitchen.' }),
+  m({ slug: 'acrylic-champagne', name: 'Champagne Acrylic', cat: 'ACRYLIC', tier: 'PREMIUM', hex: '#D9C7A8', tone: 'warm', finish: 'high-gloss', price: [230, 290, 'sqft'], surfaces: ['CABINET_UPPER', 'WARDROBE'], rooms: ['kitchen', 'bedroom', 'living'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'A warm metallic champagne for upper cabinets and wardrobe shutters in a premium kitchen.' }),
+  m({ slug: 'acrylic-graphite', name: 'Graphite Acrylic', cat: 'ACRYLIC', tier: 'PREMIUM', hex: '#4B4C50', tone: 'neutral', finish: 'high-gloss', price: [230, 290, 'sqft'], surfaces: ['CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'Deep grey high-gloss for lower cabinets. Pairs with pearl white uppers for a classic two-tone kitchen.' }),
+  m({ slug: 'acrylic-forest-green', name: 'Forest Acrylic', cat: 'ACRYLIC', tier: 'PREMIUM', hex: '#2F4A3E', tone: 'jewel', finish: 'high-gloss', price: [240, 300, 'sqft'], surfaces: ['CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'A deep bottle-green gloss. Bold, and stunning with brass handles.' }),
+
+  // ───────────── PU FINISH (4) ─────────────
+  m({ slug: 'pu-matte-white', name: 'PU Matte White', cat: 'PU_FINISH', tier: 'PREMIUM', hex: '#F6F5F1', tone: 'neutral', finish: 'matte', price: [260, 330, 'sqft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE', 'DOOR'], rooms: ['kitchen', 'bedroom', 'living'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, maint: 'LOW', sub: 'acrylic-pearl-white', desc: 'Sprayed polyurethane in a soft matte white. Seamless edges, no visible joints — the finish luxury kitchens are made of.' }),
+  m({ slug: 'pu-satin-sage', name: 'PU Satin Sage', cat: 'PU_FINISH', tier: 'PREMIUM', hex: '#A5B39C', tone: 'earthy', finish: 'satin', price: [270, 340, 'sqft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'A satin sage PU for shaker-style kitchen shutters and wardrobes.' }),
+  m({ slug: 'pu-gloss-ivory', name: 'PU Gloss Ivory', cat: 'PU_FINISH', tier: 'LUXURY', hex: '#F2EBDD', tone: 'warm', finish: 'high-gloss', price: [380, 460, 'sqft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE', 'WALL_PANEL'], rooms: ['kitchen', 'bedroom', 'living'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'A piano-gloss ivory built up in twelve coats. The reference finish in our luxury tier.' }),
+  m({ slug: 'pu-matte-charcoal', name: 'PU Matte Charcoal', cat: 'PU_FINISH', tier: 'PREMIUM', hex: '#3B3B3D', tone: 'neutral', finish: 'matte', price: [270, 340, 'sqft'], surfaces: ['CABINET_LOWER', 'WARDROBE', 'DOOR'], rooms: ['kitchen', 'bedroom', 'study'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, desc: 'Deep matte charcoal PU for island fronts and wardrobe shutters.' }),
+
+  // ───────────── GLASS (4) ─────────────
+  m({ slug: 'glass-fluted-clear', name: 'Fluted Clear Glass', cat: 'GLASS', tier: 'PREMIUM', hex: '#DDE4E6', tone: 'cool', finish: 'polished', pattern: 'stripe', price: [320, 420, 'sqft'], surfaces: ['CABINET_UPPER', 'DOOR', 'WALL_PANEL'], rooms: ['kitchen', 'living', 'foyer'], water: true, desc: 'Reeded glass for crockery-unit shutters and partition doors. Diffuses without hiding.' }),
+  m({ slug: 'glass-back-painted-sage', name: 'Back-Painted Sage Glass', cat: 'GLASS', tier: 'PREMIUM', hex: '#B4C1AE', tone: 'earthy', finish: 'high-gloss', price: [280, 360, 'sqft'], surfaces: ['BACKSPLASH', 'WALL_PANEL'], rooms: ['kitchen'], water: true, heat: true, maint: 'LOW', desc: 'A single sheet of lacquered glass as a kitchen backsplash — no grout lines, wipes clean in seconds.' }),
+  m({ slug: 'glass-bronze-mirror', name: 'Bronze Mirror', cat: 'GLASS', tier: 'PREMIUM', hex: '#8A7357', tone: 'warm', finish: 'polished', price: [300, 380, 'sqft'], surfaces: ['WALL_PANEL', 'WARDROBE', 'ACCENT_WALL'], rooms: ['living', 'dining', 'bedroom', 'foyer'], desc: 'A warm-tinted mirror that expands a room without the coldness of silver mirror.' }),
+  m({ slug: 'glass-lacquered-white', name: 'Lacquered White Glass', cat: 'GLASS', tier: 'STANDARD', hex: '#F4F4F2', tone: 'neutral', finish: 'high-gloss', price: [220, 280, 'sqft'], surfaces: ['BACKSPLASH', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], water: true, heat: true, maint: 'LOW', desc: 'Toughened white lacquered glass — the cleanest possible backsplash.' }),
+
+  // ───────────── MARBLE (6) ─────────────
+  m({ slug: 'marble-italian-statuario', name: 'Italian Statuario', cat: 'MARBLE', tier: 'LUXURY', hex: '#EDEDEA', tone: 'cool', finish: 'polished', price: [650, 950, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL', 'COUNTERTOP', 'BATH_TILE'], rooms: ['living', 'foyer', 'bathroom', 'dining'], tex: { set: 'marble-statuario', scaleCm: 120, normal: true }, water: true, maint: 'HIGH', avail: 'IMPORT', desc: 'Bright white with bold grey veining. The most luxurious floor we specify — and the most demanding.' }),
+  m({ slug: 'marble-makrana-white', name: 'Makrana White', cat: 'MARBLE', tier: 'PREMIUM', hex: '#F0EEE8', tone: 'neutral', finish: 'polished', price: [240, 340, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL', 'BATH_TILE'], rooms: ['living', 'pooja', 'foyer', 'bathroom'], tex: { set: 'marble-white', scaleCm: 120, normal: true }, sub: 'marble-italian-statuario', water: true, maint: 'MEDIUM', desc: 'Indian white marble from Rajasthan — the stone of the Taj Mahal. Subtle veining, dependable, timeless.' }),
+  m({ slug: 'marble-green-udaipur', name: 'Udaipur Green', cat: 'MARBLE', tier: 'PREMIUM', hex: '#5F7A6A', tone: 'jewel', finish: 'polished', price: [180, 260, 'sqft'], surfaces: ['COUNTERTOP', 'WALL_PANEL', 'BATH_TILE'], rooms: ['bathroom', 'pooja', 'kitchen'], tex: { set: 'marble-green', scaleCm: 120, normal: true }, water: true, desc: 'A deep forest-green marble for vanity tops and pooja platforms.' }),
+  m({ slug: 'marble-beige-botticino', name: 'Botticino Beige', cat: 'MARBLE', tier: 'PREMIUM', hex: '#D9CBB3', tone: 'warm', finish: 'honed', price: [220, 300, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL'], rooms: ['living', 'dining', 'foyer'], tex: { set: 'marble-beige', scaleCm: 120, normal: true }, water: true, desc: 'A warm beige marble with a honed finish that forgives footprints. Ideal for busy family living rooms.' }),
+  m({ slug: 'marble-black-marquina', name: 'Black Marquina', cat: 'MARBLE', tier: 'LUXURY', hex: '#1E1E20', tone: 'bold', finish: 'polished', price: [420, 560, 'sqft'], surfaces: ['COUNTERTOP', 'WALL_PANEL', 'FLOOR'], rooms: ['kitchen', 'bathroom', 'foyer'], tex: { set: 'marble-black', scaleCm: 120, normal: true }, water: true, maint: 'HIGH', avail: 'IMPORT', desc: 'Jet black with white lightning veins. A kitchen island in Marquina is a piece of jewellery.' }),
+  m({ slug: 'marble-pink-ambaji', name: 'Ambaji Pink', cat: 'MARBLE', tier: 'STANDARD', hex: '#E3CFC7', tone: 'pastel', finish: 'polished', price: [140, 200, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL'], rooms: ['pooja', 'bedroom', 'foyer'], tex: { set: 'marble-pink', scaleCm: 120, normal: true }, water: true, desc: 'A gentle blush-toned Gujarati marble, traditionally used in temples. Beautiful in a pooja room.' }),
+
+  // ───────────── GRANITE (4) ─────────────
+  m({ slug: 'granite-black-galaxy', name: 'Black Galaxy', cat: 'GRANITE', tier: 'STANDARD', hex: '#1C1C1E', tone: 'bold', finish: 'polished', price: [140, 190, 'sqft'], surfaces: ['COUNTERTOP', 'FLOOR'], rooms: ['kitchen', 'utility'], tex: { set: 'granite-black', scaleCm: 60, normal: true }, water: true, heat: true, dur: 5, maint: 'LOW', desc: 'Black with gold flecks — the default Indian kitchen countertop for good reason. Indestructible.' }),
+  m({ slug: 'granite-steel-grey', name: 'Steel Grey', cat: 'GRANITE', tier: 'STANDARD', hex: '#6F7073', tone: 'cool', finish: 'brushed', price: [150, 200, 'sqft'], surfaces: ['COUNTERTOP', 'FLOOR'], rooms: ['kitchen', 'balcony', 'utility'], tex: { set: 'granite-grey', scaleCm: 60, normal: true }, water: true, heat: true, dur: 5, maint: 'LOW', desc: 'A fine-grained grey granite with a leathered texture that hides water marks.' }),
+  m({ slug: 'granite-kashmir-white', name: 'Kashmir White', cat: 'GRANITE', tier: 'PREMIUM', hex: '#D6D3CC', tone: 'neutral', finish: 'polished', price: [200, 270, 'sqft'], surfaces: ['COUNTERTOP', 'FLOOR', 'WALL_PANEL'], rooms: ['kitchen', 'bathroom'], tex: { set: 'granite-white', scaleCm: 60, normal: true }, water: true, heat: true, dur: 5, sub: 'marble-makrana-white', desc: 'A speckled off-white granite with garnet flecks. Marble looks with granite toughness.' }),
+  m({ slug: 'granite-tan-brown', name: 'Tan Brown', cat: 'GRANITE', tier: 'ESSENTIAL', hex: '#5A4438', tone: 'earthy', finish: 'polished', price: [95, 130, 'sqft'], surfaces: ['COUNTERTOP', 'FLOOR'], rooms: ['kitchen', 'utility', 'balcony'], tex: { set: 'granite-brown', scaleCm: 60, normal: true }, water: true, heat: true, dur: 5, maint: 'LOW', desc: 'A warm brown granite that is easy to source, easy to maintain and easy on the budget.' }),
+
+  // ───────────── QUARTZ (4) ─────────────
+  m({ slug: 'quartz-calacatta-look', name: 'Calacatta Quartz', cat: 'QUARTZ', tier: 'PREMIUM', hex: '#EFEDE8', tone: 'neutral', finish: 'polished', price: [380, 480, 'sqft'], surfaces: ['COUNTERTOP', 'BACKSPLASH'], rooms: ['kitchen', 'bathroom'], tex: { set: 'marble-statuario', scaleCm: 120, normal: true }, water: true, heat: false, dur: 5, maint: 'LOW', sub: 'marble-italian-statuario', desc: 'Engineered quartz with Calacatta veining. Non-porous, stain-proof — marble looks for a working kitchen.' }),
+  m({ slug: 'quartz-pure-white', name: 'Pure White Quartz', cat: 'QUARTZ', tier: 'PREMIUM', hex: '#F7F7F5', tone: 'neutral', finish: 'polished', price: [340, 420, 'sqft'], surfaces: ['COUNTERTOP', 'BACKSPLASH'], rooms: ['kitchen', 'bathroom'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, dur: 5, maint: 'LOW', desc: 'A perfectly uniform white quartz. The minimalist kitchen countertop.' }),
+  m({ slug: 'quartz-concrete-grey', name: 'Concrete Grey Quartz', cat: 'QUARTZ', tier: 'PREMIUM', hex: '#9A9A98', tone: 'neutral', finish: 'honed', price: [360, 450, 'sqft'], surfaces: ['COUNTERTOP', 'BACKSPLASH'], rooms: ['kitchen', 'bathroom', 'office'], tex: { set: 'concrete-smooth', scaleCm: 60, normal: true }, water: true, dur: 5, maint: 'LOW', desc: 'A honed, concrete-effect quartz for industrial-leaning kitchens.' }),
+  m({ slug: 'quartz-sparkle-black', name: 'Sparkle Black Quartz', cat: 'QUARTZ', tier: 'STANDARD', hex: '#212124', tone: 'bold', finish: 'polished', price: [260, 330, 'sqft'], surfaces: ['COUNTERTOP'], rooms: ['kitchen'], tex: { set: 'granite-black', scaleCm: 60, normal: true }, water: true, dur: 5, maint: 'LOW', desc: 'A black quartz with fine mirror flecks. A stain-proof alternative to Black Galaxy.' }),
+
+  // ───────────── CERAMIC TILE (5) ─────────────
+  m({ slug: 'ceramic-subway-white', name: 'Subway White', cat: 'CERAMIC_TILE', tier: 'ESSENTIAL', hex: '#F2F1EC', tone: 'neutral', finish: 'high-gloss', pattern: 'brick-lay', price: [55, 75, 'sqft'], surfaces: ['BACKSPLASH', 'BATH_TILE'], rooms: WET, tex: { set: 'tile-subway', scaleCm: 30, normal: true }, water: true, heat: true, maint: 'LOW', desc: 'The classic 3×6 glossy white brick tile. Cheap, cheerful and impossible to get wrong.' }),
+  m({ slug: 'ceramic-moroccan-fish-scale', name: 'Fish-Scale Teal', cat: 'CERAMIC_TILE', tier: 'STANDARD', hex: '#4E8B8A', tone: 'jewel', finish: 'high-gloss', pattern: 'geometric', price: [140, 190, 'sqft'], surfaces: ['BACKSPLASH', 'BATH_TILE'], rooms: ['kitchen', 'bathroom'], tex: { set: 'tile-fishscale', scaleCm: 30, normal: true }, water: true, heat: true, desc: 'Glazed scallop tiles in a hand-dipped teal. A jewel of a backsplash.' }),
+  m({ slug: 'ceramic-terrazzo-look', name: 'Terrazzo Look', cat: 'CERAMIC_TILE', tier: 'STANDARD', hex: '#D9D3CB', tone: 'neutral', finish: 'matte', pattern: 'textured', price: [90, 120, 'sqft'], surfaces: ['FLOOR', 'BATH_TILE', 'BACKSPLASH'], rooms: ['bathroom', 'balcony', 'kitchen', 'utility'], tex: { set: 'terrazzo', scaleCm: 60, normal: true }, water: true, desc: 'A terrazzo-print ceramic that nods to the floors of old Indore bungalows.' }),
+  m({ slug: 'ceramic-zellige-green', name: 'Zellige Green', cat: 'CERAMIC_TILE', tier: 'PREMIUM', hex: '#6B8F72', tone: 'earthy', finish: 'high-gloss', pattern: 'textured', price: [220, 300, 'sqft'], surfaces: ['BACKSPLASH', 'BATH_TILE', 'WALL_PANEL'], rooms: ['kitchen', 'bathroom'], tex: { set: 'tile-zellige', scaleCm: 10, normal: true }, water: true, heat: true, avail: 'ON_ORDER', desc: 'Hand-cut, unevenly glazed square tiles. Every piece is slightly different — that is the point.' }),
+  m({ slug: 'ceramic-athangudi-pattern', name: 'Athangudi Pattern', cat: 'CERAMIC_TILE', tier: 'PREMIUM', hex: '#B9553F', tone: 'bold', finish: 'matte', pattern: 'geometric', price: [180, 240, 'sqft'], surfaces: ['FLOOR', 'BACKSPLASH'], rooms: ['foyer', 'balcony', 'kitchen', 'pooja'], tex: { set: 'tile-athangudi', scaleCm: 25 }, water: true, desc: 'Patterned tiles in the Chettinad tradition — red, ochre and cream. A foyer floor with a story.' }),
+
+  // ───────────── VITRIFIED TILE (6) ─────────────
+  m({ slug: 'vitrified-carrara-look', name: 'Carrara-Look Vitrified', cat: 'VITRIFIED_TILE', tier: 'STANDARD', hex: '#ECEBE7', tone: 'cool', finish: 'high-gloss', price: [75, 110, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL', 'BATH_TILE'], rooms: ['living', 'bedroom', 'dining', 'bathroom'], tex: { set: 'marble-white', scaleCm: 120, normal: true }, water: true, dur: 5, maint: 'LOW', sub: 'marble-makrana-white', desc: 'Large-format 800×1600 glazed vitrified tile with a marble print. The sensible marble substitute.' }),
+  m({ slug: 'vitrified-ivory-matte', name: 'Ivory Matte Vitrified', cat: 'VITRIFIED_TILE', tier: 'ESSENTIAL', hex: '#E9E3D6', tone: 'warm', finish: 'matte', price: [55, 75, 'sqft'], surfaces: ['FLOOR'], rooms: ['living', 'bedroom', 'kitchen', 'dining'], tex: { set: 'laminate-plain', scaleCm: 80 }, water: true, dur: 5, maint: 'LOW', desc: 'A plain 600×1200 matte ivory floor tile. Warm, non-slip and forgiving of dust.' }),
+  m({ slug: 'vitrified-wood-plank-oak', name: 'Oak Plank Vitrified', cat: 'VITRIFIED_TILE', tier: 'STANDARD', hex: '#B08D66', tone: 'warm', finish: 'matte', pattern: 'herringbone', price: [85, 120, 'sqft'], surfaces: ['FLOOR', 'BATH_TILE'], rooms: ['bedroom', 'living', 'balcony', 'bathroom'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, water: true, dur: 5, maint: 'LOW', sub: 'wood-engineered-oak', desc: 'Wood-look plank tiles for bedrooms and wet balconies where real wood cannot go.' }),
+  m({ slug: 'vitrified-grey-stone', name: 'Grey Stone Vitrified', cat: 'VITRIFIED_TILE', tier: 'STANDARD', hex: '#9C9A95', tone: 'cool', finish: 'matte', price: [80, 115, 'sqft'], surfaces: ['FLOOR', 'BATH_TILE', 'WALL_PANEL'], rooms: ['living', 'bathroom', 'balcony', 'office'], tex: { set: 'stone-grey', scaleCm: 90, normal: true }, water: true, dur: 5, maint: 'LOW', desc: 'A slate-look matte vitrified in 600×1200. Contemporary, anti-skid, low fuss.' }),
+  m({ slug: 'vitrified-kota-look', name: 'Kota-Look Vitrified', cat: 'VITRIFIED_TILE', tier: 'ESSENTIAL', hex: '#8A9A8E', tone: 'earthy', finish: 'honed', price: [60, 85, 'sqft'], surfaces: ['FLOOR'], rooms: ['balcony', 'utility', 'foyer', 'kitchen'], tex: { set: 'stone-kota', scaleCm: 60, normal: true }, water: true, dur: 5, maint: 'LOW', desc: 'A blue-green Kota stone print that respects the flooring of central India.' }),
+  m({ slug: 'vitrified-large-format-travertine', name: 'Travertine Large Format', cat: 'VITRIFIED_TILE', tier: 'PREMIUM', hex: '#D8C8B0', tone: 'warm', finish: 'honed', price: [160, 220, 'sqft'], surfaces: ['FLOOR', 'WALL_PANEL'], rooms: ['living', 'dining', 'foyer', 'bathroom'], tex: { set: 'stone-travertine', scaleCm: 120, normal: true }, water: true, dur: 5, sub: 'marble-beige-botticino', desc: '1200×2400 slabs with a travertine texture. Two grout lines across a whole living room.' }),
+
+  // ───────────── WOOD FLOORING (5) ─────────────
+  m({ slug: 'wood-engineered-oak', name: 'Engineered Oak', cat: 'WOOD_FLOORING', tier: 'PREMIUM', hex: '#C09A6B', tone: 'warm', finish: 'matte', price: [280, 380, 'sqft'], surfaces: ['FLOOR'], rooms: ['bedroom', 'living', 'study'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, dur: 4, maint: 'MEDIUM', desc: 'A 4 mm oak wear layer over a stable plywood core. Warm underfoot; specified for master bedrooms.' }),
+  m({ slug: 'wood-herringbone-walnut', name: 'Herringbone Walnut', cat: 'WOOD_FLOORING', tier: 'LUXURY', hex: '#6C4B36', tone: 'earthy', finish: 'satin', pattern: 'herringbone', price: [520, 680, 'sqft'], surfaces: ['FLOOR'], rooms: ['living', 'bedroom', 'dining'], tex: { set: 'wood-walnut', scaleCm: 60, normal: true }, dur: 4, avail: 'IMPORT', desc: 'Engineered walnut laid in a herringbone pattern. The floor of a Palasia apartment with a past.' }),
+  m({ slug: 'wood-laminate-oak-grey', name: 'Grey Oak Laminate Floor', cat: 'WOOD_FLOORING', tier: 'STANDARD', hex: '#A79A8B', tone: 'cool', finish: 'matte', price: [110, 150, 'sqft'], surfaces: ['FLOOR'], rooms: ['bedroom', 'study', 'kids-room'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, dur: 3, sub: 'wood-engineered-oak', desc: 'AC4-rated laminate flooring in a grey-washed oak. Click-lock — installed in a day.' }),
+  m({ slug: 'wood-bamboo-natural', name: 'Natural Bamboo', cat: 'WOOD_FLOORING', tier: 'PREMIUM', hex: '#D3B98A', tone: 'warm', finish: 'satin', price: [240, 320, 'sqft'], surfaces: ['FLOOR'], rooms: ['bedroom', 'study', 'living'], tex: { set: 'wood-bamboo', scaleCm: 90, normal: true }, dur: 4, sust: 'Rapidly renewable; harvested in 5–7 years.', desc: 'Strand-woven bamboo, harder than oak, from a fast-growing crop.' }),
+  m({ slug: 'wood-teak-solid-deck', name: 'Solid Teak Decking', cat: 'WOOD_FLOORING', tier: 'LUXURY', hex: '#8E6540', tone: 'warm', finish: 'natural', price: [600, 800, 'sqft'], surfaces: ['FLOOR'], rooms: ['balcony', 'terrace'], tex: { set: 'wood-teak', scaleCm: 90, normal: true }, water: true, dur: 5, maint: 'HIGH', desc: 'Solid teak deck boards for terraces and covered balconies. Oiled twice a year, lasts decades.' }),
+
+  // ───────────── VINYL / SPC (3) ─────────────
+  m({ slug: 'vinyl-spc-oak-natural', name: 'SPC Natural Oak', cat: 'VINYL_FLOORING', tier: 'STANDARD', hex: '#C4A47A', tone: 'warm', finish: 'matte', price: [120, 160, 'sqft'], surfaces: ['FLOOR'], rooms: ['bedroom', 'kids-room', 'study', 'office'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, water: true, dur: 4, maint: 'LOW', sub: 'wood-engineered-oak', desc: 'Stone-plastic composite planks — 100% waterproof wood-look flooring. Ideal over existing tile.' }),
+  m({ slug: 'vinyl-spc-grey-stone', name: 'SPC Grey Stone', cat: 'VINYL_FLOORING', tier: 'STANDARD', hex: '#9E9C98', tone: 'cool', finish: 'matte', price: [125, 165, 'sqft'], surfaces: ['FLOOR'], rooms: ['office', 'kitchen', 'utility'], tex: { set: 'stone-grey', scaleCm: 60, normal: true }, water: true, dur: 4, maint: 'LOW', desc: 'Stone-effect SPC tiles for offices and kitchens. Quiet underfoot, waterproof.' }),
+  m({ slug: 'vinyl-roll-clinic-blue', name: 'Homogeneous Vinyl — Clinic Blue', cat: 'VINYL_FLOORING', tier: 'STANDARD', hex: '#9DB4C4', tone: 'cool', finish: 'matte', price: [70, 95, 'sqft'], surfaces: ['FLOOR'], rooms: ['clinic', 'office'], tex: { set: 'laminate-plain', scaleCm: 100 }, water: true, dur: 5, maint: 'LOW', desc: 'Seamless welded vinyl sheet for clinics — hygienic, cushioned and easy to disinfect.' }),
+
+  // ───────────── UPHOLSTERY (6) ─────────────
+  m({ slug: 'fabric-linen-oat', name: 'Oat Linen', cat: 'UPHOLSTERY', tier: 'STANDARD', hex: '#D6C9B2', tone: 'warm', finish: 'natural', price: [650, 900, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'bedroom'], tex: { set: 'fabric-linen', scaleCm: 20, normal: true }, dur: 3, desc: 'A washed linen-cotton blend in a warm oat. The sofa fabric for a relaxed, layered living room.' }),
+  m({ slug: 'fabric-velvet-forest', name: 'Forest Velvet', cat: 'UPHOLSTERY', tier: 'PREMIUM', hex: '#2E4A3C', tone: 'jewel', finish: 'natural', price: [1200, 1600, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'bedroom'], tex: { set: 'fabric-velvet', scaleCm: 15, normal: true }, dur: 3, desc: 'A dense cotton-blend velvet in bottle green. One armchair in this changes a whole room.' }),
+  m({ slug: 'fabric-boucle-cream', name: 'Cream Bouclé', cat: 'UPHOLSTERY', tier: 'PREMIUM', hex: '#EFE9DD', tone: 'neutral', finish: 'textured', price: [1400, 1900, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'bedroom'], tex: { set: 'fabric-boucle', scaleCm: 12, normal: true }, dur: 3, desc: 'Looped bouclé for accent chairs and headboards. Tactile, contemporary, best kept away from toddlers.' }),
+  m({ slug: 'fabric-performance-grey', name: 'Performance Weave Grey', cat: 'UPHOLSTERY', tier: 'STANDARD', hex: '#8E8E8A', tone: 'neutral', finish: 'natural', price: [700, 950, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'kids-room', 'office'], tex: { set: 'fabric-weave', scaleCm: 15, normal: true }, water: true, dur: 5, maint: 'LOW', desc: 'A stain-repellent, pet-friendly weave. Our recommendation for every family sofa.' }),
+  m({ slug: 'fabric-ikat-indigo', name: 'Ikat Indigo', cat: 'UPHOLSTERY', tier: 'PREMIUM', hex: '#3B4E73', tone: 'bold', finish: 'natural', pattern: 'geometric', price: [1100, 1500, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'bedroom', 'dining'], tex: { set: 'fabric-ikat', scaleCm: 40 }, dur: 3, desc: 'Handloom ikat in indigo and cream for dining chairs and cushions. Made in Pochampally.' }),
+  m({ slug: 'fabric-leather-tan', name: 'Tan Leather', cat: 'UPHOLSTERY', tier: 'LUXURY', hex: '#9C6B45', tone: 'warm', finish: 'natural', price: [2800, 3800, 'rft'], surfaces: ['UPHOLSTERY'], rooms: ['living', 'study', 'office'], tex: { set: 'leather-tan', scaleCm: 30, normal: true }, dur: 5, maint: 'MEDIUM', desc: 'Full-grain aniline leather that develops a patina. Buy it once.' }),
+
+  // ───────────── CURTAIN (5) ─────────────
+  m({ slug: 'curtain-sheer-white', name: 'White Sheer', cat: 'CURTAIN', tier: 'ESSENTIAL', hex: '#F7F6F2', tone: 'neutral', finish: 'natural', price: [220, 320, 'rft'], surfaces: ['CURTAIN'], rooms: ALL_ROOMS, tex: { set: 'fabric-sheer', scaleCm: 20 }, maint: 'LOW', desc: 'A soft white voile that filters harsh afternoon light without killing the view.' }),
+  m({ slug: 'curtain-linen-sand', name: 'Sand Linen Drape', cat: 'CURTAIN', tier: 'STANDARD', hex: '#D9CBB2', tone: 'warm', finish: 'natural', price: [550, 750, 'rft'], surfaces: ['CURTAIN'], rooms: ['living', 'bedroom', 'dining'], tex: { set: 'fabric-linen', scaleCm: 20, normal: true }, desc: 'A heavy linen-look drape in warm sand. Layer over the white sheer.' }),
+  m({ slug: 'curtain-blackout-charcoal', name: 'Charcoal Blackout', cat: 'CURTAIN', tier: 'STANDARD', hex: '#3F3F41', tone: 'neutral', finish: 'natural', price: [600, 820, 'rft'], surfaces: ['CURTAIN'], rooms: ['bedroom', 'kids-room'], tex: { set: 'fabric-weave', scaleCm: 15 }, maint: 'LOW', desc: 'Three-pass blackout for bedrooms. Essential for Indore\'s 5:30 am summer sunrises.' }),
+  m({ slug: 'curtain-velvet-mustard', name: 'Mustard Velvet Drape', cat: 'CURTAIN', tier: 'PREMIUM', hex: '#C69A3C', tone: 'bold', finish: 'natural', price: [1100, 1500, 'rft'], surfaces: ['CURTAIN'], rooms: ['living', 'dining', 'bedroom'], tex: { set: 'fabric-velvet', scaleCm: 15, normal: true }, desc: 'Floor-to-ceiling mustard velvet. Theatrical, warm, and unforgettable against a grey wall.' }),
+  m({ slug: 'curtain-bamboo-blind', name: 'Bamboo Roll Blind', cat: 'CURTAIN', tier: 'STANDARD', hex: '#C9A978', tone: 'warm', finish: 'natural', price: [380, 520, 'rft'], surfaces: ['CURTAIN'], rooms: ['balcony', 'study', 'kitchen', 'living'], tex: { set: 'cane-weave', scaleCm: 20, normal: true }, sust: 'Natural, biodegradable material.', desc: 'Woven bamboo blinds for balconies and kitchen windows. Casts a beautiful striped shadow.' }),
+
+  // ───────────── METAL FINISH (4) ─────────────
+  m({ slug: 'metal-brushed-brass', name: 'Brushed Brass', cat: 'METAL_FINISH', tier: 'PREMIUM', hex: '#B9975B', tone: 'warm', finish: 'brushed', price: [900, 1300, 'rft'], surfaces: ['WALL_PANEL', 'LIGHT_FIXTURE', 'DOOR'], rooms: ['living', 'dining', 'foyer', 'bathroom'], tex: { set: 'metal-brass', scaleCm: 30, normal: true }, dur: 4, desc: 'Brushed brass profiles, inlays and trims. The warm metal that ties an Indo-Modern home together.' }),
+  m({ slug: 'metal-matte-black', name: 'Matte Black', cat: 'METAL_FINISH', tier: 'STANDARD', hex: '#232325', tone: 'neutral', finish: 'matte', price: [450, 650, 'rft'], surfaces: ['WALL_PANEL', 'LIGHT_FIXTURE', 'WINDOW_FRAME', 'DOOR'], rooms: ['living', 'kitchen', 'office', 'bathroom'], tex: { set: 'metal-black', scaleCm: 30 }, dur: 4, maint: 'LOW', desc: 'Powder-coated matte black for frames, profiles and fittings. The industrial default.' }),
+  m({ slug: 'metal-antique-copper', name: 'Antique Copper', cat: 'METAL_FINISH', tier: 'PREMIUM', hex: '#8B5A3C', tone: 'earthy', finish: 'brushed', price: [1000, 1400, 'rft'], surfaces: ['LIGHT_FIXTURE', 'WALL_PANEL'], rooms: ['dining', 'pooja', 'living'], tex: { set: 'metal-copper', scaleCm: 30, normal: true }, dur: 4, maint: 'MEDIUM', desc: 'A living copper finish that darkens gracefully. Beautiful in a pooja room or over a dining table.' }),
+  m({ slug: 'metal-stainless-satin', name: 'Satin Stainless', cat: 'METAL_FINISH', tier: 'STANDARD', hex: '#B8BBBD', tone: 'cool', finish: 'brushed', price: [500, 720, 'rft'], surfaces: ['WALL_PANEL', 'BACKSPLASH', 'COUNTERTOP'], rooms: ['kitchen', 'utility', 'clinic'], tex: { set: 'metal-steel', scaleCm: 30, normal: true }, water: true, heat: true, dur: 5, maint: 'LOW', desc: 'Grade-304 satin stainless for kitchen splashbacks and clinic counters. Hygienic and heat-proof.' }),
+
+  // ───────────── KITCHEN HARDWARE (5) ─────────────
+  m({ slug: 'hw-soft-close-hinge', name: 'Soft-Close Hinge', cat: 'KITCHEN_HARDWARE', tier: 'STANDARD', price: [180, 260, 'piece'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER'], rooms: ['kitchen'], dur: 5, maint: 'LOW', warranty: '10 years', desc: 'Clip-on soft-close hinges rated for 80,000 cycles. Standard on every shutter we build.' }),
+  m({ slug: 'hw-tandem-drawer', name: 'Tandem Box Drawer', cat: 'KITCHEN_HARDWARE', tier: 'PREMIUM', price: [3200, 4800, 'piece'], surfaces: ['CABINET_LOWER'], rooms: ['kitchen'], dur: 5, maint: 'LOW', warranty: '10 years', desc: 'Full-extension double-wall drawer systems with integrated soft-close. 40 kg load per drawer.' }),
+  m({ slug: 'hw-corner-carousel', name: 'Corner Carousel', cat: 'KITCHEN_HARDWARE', tier: 'STANDARD', price: [6500, 9500, 'piece'], surfaces: ['CABINET_LOWER'], rooms: ['kitchen'], dur: 4, desc: 'A three-quarter rotating carousel that turns a dead corner into useful storage.' }),
+  m({ slug: 'hw-tall-pantry-pullout', name: 'Tall Pantry Pull-out', cat: 'KITCHEN_HARDWARE', tier: 'PREMIUM', price: [18000, 26000, 'piece'], surfaces: ['CABINET_LOWER'], rooms: ['kitchen'], dur: 5, desc: 'A full-height pull-out larder with six adjustable baskets. Every packet visible at once.' }),
+  m({ slug: 'hw-lift-up-flap', name: 'Lift-Up Flap Fitting', cat: 'KITCHEN_HARDWARE', tier: 'PREMIUM', price: [4500, 7000, 'piece'], surfaces: ['CABINET_UPPER'], rooms: ['kitchen'], dur: 5, desc: 'Gas-assisted lift-up for wide upper cabinets. No shutter in your face while you cook.' }),
+
+  // ───────────── WARDROBE HARDWARE (4) ─────────────
+  m({ slug: 'hw-sliding-channel', name: 'Sliding Wardrobe Channel', cat: 'WARDROBE_HARDWARE', tier: 'STANDARD', price: [4500, 7500, 'piece'], surfaces: ['WARDROBE'], rooms: ['bedroom', 'kids-room'], dur: 4, warranty: '5 years', desc: 'Top-hung soft-close sliding system for two or three shutters. Silent and smooth.' }),
+  m({ slug: 'hw-pull-down-hanger', name: 'Pull-Down Hanger Rail', cat: 'WARDROBE_HARDWARE', tier: 'PREMIUM', price: [5500, 8500, 'piece'], surfaces: ['WARDROBE'], rooms: ['bedroom'], dur: 4, desc: 'A spring-assisted rail that brings the top hanging section down to shoulder height.' }),
+  m({ slug: 'hw-trouser-rack', name: 'Trouser Pull-out Rack', cat: 'WARDROBE_HARDWARE', tier: 'PREMIUM', price: [3500, 5500, 'piece'], surfaces: ['WARDROBE'], rooms: ['bedroom'], dur: 4, desc: 'A soft-close pull-out with fourteen anti-slip trouser bars.' }),
+  m({ slug: 'hw-led-sensor-strip', name: 'LED Sensor Strip', cat: 'WARDROBE_HARDWARE', tier: 'STANDARD', price: [1800, 2800, 'piece'], surfaces: ['WARDROBE', 'CABINET_UPPER'], rooms: ['bedroom', 'kitchen'], dur: 4, desc: 'A motion-activated warm-white LED strip that lights the wardrobe when the shutter opens.' }),
+
+  // ───────────── LIGHTING (6) ─────────────
+  m({ slug: 'light-cove-profile-warm', name: 'Warm Cove Profile', cat: 'LIGHTING', tier: 'STANDARD', hex: '#FFE0B2', tone: 'warm', price: [350, 500, 'rft'], surfaces: ['CEILING', 'LIGHT_FIXTURE'], rooms: ALL_ROOMS, dur: 4, desc: 'Aluminium profile with a 3000 K diffused LED strip for ceiling coves. The soft glow in every photo we take.' }),
+  m({ slug: 'light-recessed-spot-black', name: 'Recessed Spot — Black', cat: 'LIGHTING', tier: 'STANDARD', hex: '#2B2B2D', tone: 'neutral', price: [900, 1400, 'piece'], surfaces: ['CEILING', 'LIGHT_FIXTURE'], rooms: ALL_ROOMS, dur: 4, desc: 'A deep-recessed 7 W adjustable spot with a black anti-glare trim. Lights the wall, not your eyes.' }),
+  m({ slug: 'light-brass-pendant', name: 'Brass Dome Pendant', cat: 'LIGHTING', tier: 'PREMIUM', hex: '#B9975B', tone: 'warm', price: [6500, 9500, 'piece'], surfaces: ['LIGHT_FIXTURE'], rooms: ['dining', 'kitchen', 'foyer'], dur: 4, desc: 'A spun-brass dome pendant for dining tables and kitchen islands. Ages beautifully.' }),
+  m({ slug: 'light-cane-pendant', name: 'Cane Drum Pendant', cat: 'LIGHTING', tier: 'STANDARD', hex: '#C9A978', tone: 'warm', price: [3200, 4800, 'piece'], surfaces: ['LIGHT_FIXTURE'], rooms: ['living', 'dining', 'bedroom', 'balcony'], dur: 3, desc: 'A hand-woven cane drum shade that throws a warm lattice of light across the ceiling.' }),
+  m({ slug: 'light-linear-magnetic-track', name: 'Magnetic Track System', cat: 'LIGHTING', tier: 'LUXURY', hex: '#1F1F21', tone: 'neutral', price: [2200, 3200, 'rft'], surfaces: ['CEILING', 'LIGHT_FIXTURE'], rooms: ['living', 'office', 'retail', 'kitchen'], dur: 5, desc: 'A recessed 48 V magnetic track with swappable spots, linear bars and pendants. Reconfigure any time.' }),
+  m({ slug: 'light-wall-sconce-plaster', name: 'Plaster Wall Sconce', cat: 'LIGHTING', tier: 'PREMIUM', hex: '#EDE7DD', tone: 'neutral', price: [4200, 6500, 'piece'], surfaces: ['LIGHT_FIXTURE', 'WALL'], rooms: ['bedroom', 'living', 'foyer'], dur: 4, desc: 'A paintable plaster up-down sconce that disappears into the wall by day.' }),
+
+  // ───────────── SANITARYWARE (4) ─────────────
+  m({ slug: 'san-wall-hung-wc', name: 'Wall-Hung WC', cat: 'SANITARYWARE', tier: 'STANDARD', hex: '#F7F7F5', tone: 'neutral', finish: 'polished', price: [18000, 28000, 'piece'], surfaces: ['BATH_TILE'], rooms: ['bathroom'], water: true, dur: 5, maint: 'LOW', warranty: '10 years', desc: 'Rimless wall-hung WC with a concealed cistern. The floor stays clear and cleanable.' }),
+  m({ slug: 'san-countertop-basin-stone', name: 'Stone Countertop Basin', cat: 'SANITARYWARE', tier: 'PREMIUM', hex: '#D9D2C7', tone: 'warm', finish: 'honed', price: [14000, 22000, 'piece'], surfaces: ['BATH_TILE', 'COUNTERTOP'], rooms: ['bathroom'], water: true, dur: 4, desc: 'A hand-finished composite stone vessel basin. Warm to the touch, forgiving of water spots.' }),
+  m({ slug: 'san-rain-shower-brass', name: 'Brass Rain Shower', cat: 'SANITARYWARE', tier: 'LUXURY', hex: '#B9975B', tone: 'warm', finish: 'brushed', price: [32000, 48000, 'piece'], surfaces: ['BATH_TILE'], rooms: ['bathroom'], water: true, dur: 5, warranty: '10 years', desc: 'A 300 mm brushed-brass rain head with a thermostatic mixer.' }),
+  m({ slug: 'san-matte-black-faucet', name: 'Matte Black Faucet', cat: 'SANITARYWARE', tier: 'STANDARD', hex: '#232325', tone: 'neutral', finish: 'matte', price: [4500, 7500, 'piece'], surfaces: ['BATH_TILE', 'COUNTERTOP'], rooms: ['bathroom', 'kitchen'], water: true, dur: 4, maint: 'LOW', desc: 'A single-lever basin mixer in PVD matte black. Fingerprint-resistant.' }),
+
+  // ───────────── COUNTERTOP (3) ─────────────
+  m({ slug: 'top-nano-white', name: 'Nano White', cat: 'COUNTERTOP', tier: 'PREMIUM', hex: '#FAFAF8', tone: 'neutral', finish: 'polished', price: [420, 520, 'sqft'], surfaces: ['COUNTERTOP', 'BACKSPLASH'], rooms: ['kitchen', 'bathroom'], water: true, heat: true, dur: 5, maint: 'LOW', desc: 'Crystallised glass-ceramic — the whitest, hardest, most stain-proof counter available.' }),
+  m({ slug: 'top-sintered-stone-marble', name: 'Sintered Stone — Marble', cat: 'COUNTERTOP', tier: 'LUXURY', hex: '#ECEAE5', tone: 'cool', finish: 'honed', price: [650, 850, 'sqft'], surfaces: ['COUNTERTOP', 'BACKSPLASH', 'WALL_PANEL'], rooms: ['kitchen', 'bathroom', 'dining'], tex: { set: 'marble-statuario', scaleCm: 120, normal: true }, water: true, heat: true, dur: 5, maint: 'LOW', avail: 'IMPORT', desc: 'Ultra-compact sintered slabs with through-body veining. Put a hot pan straight on it.' }),
+  m({ slug: 'top-butcher-block-oak', name: 'Oak Butcher Block', cat: 'COUNTERTOP', tier: 'STANDARD', hex: '#C29A67', tone: 'warm', finish: 'natural', price: [220, 320, 'sqft'], surfaces: ['COUNTERTOP'], rooms: ['kitchen', 'utility', 'study'], tex: { set: 'wood-oak-light', scaleCm: 120, normal: true }, dur: 3, maint: 'HIGH', desc: 'Solid oak staves for a breakfast bar or a study desk. Oil it, and it forgives everything.' }),
+
+  // ───────────── HANDLES & PROFILES (4) ─────────────
+  m({ slug: 'handle-brass-edge-pull', name: 'Brass Edge Pull', cat: 'HANDLES', tier: 'PREMIUM', hex: '#B9975B', tone: 'warm', finish: 'brushed', price: [650, 950, 'piece'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bedroom'], dur: 5, desc: 'A slim brushed-brass edge pull that sits flush with the shutter top.' }),
+  m({ slug: 'handle-gola-profile-black', name: 'Gola Profile — Black', cat: 'HANDLES', tier: 'PREMIUM', hex: '#232325', tone: 'neutral', finish: 'matte', price: [550, 800, 'rft'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER'], rooms: ['kitchen'], dur: 5, desc: 'A recessed aluminium channel for handleless kitchens. Continuous line, nothing to catch on.' }),
+  m({ slug: 'handle-leather-loop', name: 'Leather Loop Pull', cat: 'HANDLES', tier: 'STANDARD', hex: '#8B5E3C', tone: 'warm', finish: 'natural', price: [350, 550, 'piece'], surfaces: ['WARDROBE', 'CABINET_UPPER'], rooms: ['bedroom', 'kids-room', 'living'], dur: 3, desc: 'A vegetable-tanned leather loop on a brass stud. Soft, warm, and quietly Scandinavian.' }),
+  m({ slug: 'handle-knurled-knob-steel', name: 'Knurled Steel Knob', cat: 'HANDLES', tier: 'STANDARD', hex: '#B8BBBD', tone: 'cool', finish: 'brushed', price: [280, 420, 'piece'], surfaces: ['CABINET_UPPER', 'CABINET_LOWER', 'WARDROBE'], rooms: ['kitchen', 'bathroom', 'bedroom'], dur: 5, desc: 'A machined, knurled stainless knob. Tactile, industrial, indestructible.' }),
+];
+
+const bySlug = new Map(materials.map((mat) => [mat.slug, mat]));
+
+export function getMaterial(slug: string): Material | undefined {
+  return bySlug.get(slug);
+}
+
+/** Follow the budget-down chain — FR-E-02. */
+export function substituteChain(slug: string): Material[] {
+  const out: Material[] = [];
+  const seen = new Set<string>();
+  // Walk downward: find materials that list `slug` as what they substitute for
+  let current = slug;
+  while (current && !seen.has(current)) {
+    seen.add(current);
+    const next = materials.find((mat) => mat.substituteForSlug === current);
+    if (!next) break;
+    out.push(next);
+    current = next.slug;
+  }
+  return out;
+}

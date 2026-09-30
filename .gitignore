@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# testing
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+
+# generated binaries — rebuilt by `npm run assets:all` (SRS §11.3 rule 4).
+# The *.generated.ts manifests are deterministic text and ARE committed.
+public/demo/
+public/og/
+public/textures/
+public/masks/
+public/icons/generated/
+
+# misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+.env
+.env.local
+.env.*.local
+.vercel
+*.tsbuildinfo
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

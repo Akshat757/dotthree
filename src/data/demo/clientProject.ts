@@ -1,0 +1,137 @@
+/** Demo client project for the dashboard — SRS §11.4 / FR-I-02..04. Dates are relative to a fixed "today". */
+import type { ClientProject } from '@/types/client-project';
+
+import { img } from './images';
+
+/** Fixed reference date so the demo always looks mid-project. */
+export const DEMO_TODAY = '2026-10-14';
+
+const P = 'proj-mahalaxmi-nagar-family-3bhk';
+
+export const demoClientProject: ClientProject = {
+  id: 'AG-2609-0142',
+  name: 'Sharma Residence — 3BHK Full Home',
+  clientName: 'Anita & Rohit Sharma',
+  locality: 'Mahalaxmi Nagar',
+  propertyType: 'Apartment',
+  bhk: '3BHK',
+  carpetAreaSqft: 1450,
+  tier: 'PREMIUM',
+  designerSlug: 'meera-rathore',
+  pmName: 'Nitesh Verma',
+  startedOn: '2026-08-03',
+  originalHandover: '2026-11-15',
+  projectedHandover: '2026-11-22',
+  heroImage: img(`${P}-01`),
+  stages: [
+    { id: 's1', name: 'Design finalisation', status: 'COMPLETE', plannedStart: '2026-08-03', plannedEnd: '2026-08-17', actualStart: '2026-08-03', actualEnd: '2026-08-19', owner: 'Meera Rathore', photos: [img(`${P}-02`)], notes: 'Living TV wall revised twice; final approved 19 Aug.' },
+    { id: 's2', name: 'Site measurement & marking', status: 'COMPLETE', plannedStart: '2026-08-18', plannedEnd: '2026-08-21', actualStart: '2026-08-20', actualEnd: '2026-08-22', owner: 'Nitesh Verma', photos: [] },
+    { id: 's3', name: 'Civil & plumbing changes', status: 'COMPLETE', plannedStart: '2026-08-22', plannedEnd: '2026-09-05', actualStart: '2026-08-23', actualEnd: '2026-09-06', owner: 'Nitesh Verma', photos: [img(`${P}-03`)] },
+    { id: 's4', name: 'Electrical & false ceiling', status: 'COMPLETE', plannedStart: '2026-09-06', plannedEnd: '2026-09-24', actualStart: '2026-09-07', actualEnd: '2026-09-26', owner: 'Nitesh Verma', photos: [img(`${P}-04`)] },
+    { id: 's5', name: 'Factory production — modular units', status: 'IN_PROGRESS', plannedStart: '2026-09-15', plannedEnd: '2026-10-20', actualStart: '2026-09-15', owner: 'Factory (Palda)', photos: [], notes: 'Kitchen carcasses complete; wardrobe shutters in PU booth.', delayReason: 'PU shutter colour lot re-sprayed after QC rejected sheen mismatch (+5 days).' },
+    { id: 's6', name: 'Wall finishes — putty & primer', status: 'IN_PROGRESS', plannedStart: '2026-09-27', plannedEnd: '2026-10-15', actualStart: '2026-09-28', owner: 'Nitesh Verma', photos: [img(`${P}-05`)] },
+    { id: 's7', name: 'Flooring & tiling', status: 'PENDING', plannedStart: '2026-10-08', plannedEnd: '2026-10-18', owner: 'Nitesh Verma', photos: [], pendingClientAction: 'Approve bathroom wall tile (A-03) so material can be ordered.' },
+    { id: 's8', name: 'Modular installation', status: 'PENDING', plannedStart: '2026-10-21', plannedEnd: '2026-11-04', owner: 'Factory (Palda)', photos: [] },
+    { id: 's9', name: 'Final paint, loose furniture & styling', status: 'PENDING', plannedStart: '2026-11-05', plannedEnd: '2026-11-18', owner: 'Meera Rathore', photos: [] },
+    { id: 's10', name: 'Deep clean & handover', status: 'PENDING', plannedStart: '2026-11-19', plannedEnd: '2026-11-22', owner: 'Nitesh Verma', photos: [] },
+  ],
+  quotations: [
+    {
+      id: 'q1', version: 1, date: '2026-07-20', tier: 'PREMIUM', total: 1850000, gst: 333000, status: 'SUPERSEDED',
+      note: 'Initial proposal after first design presentation.',
+      lines: [
+        { label: 'Modular kitchen (L-shape, 11 rft)', category: 'Kitchen', amount: 420000 },
+        { label: 'Wardrobes — 3 bedrooms', category: 'Wardrobes', amount: 510000 },
+        { label: 'TV unit + crockery unit', category: 'Living', amount: 165000 },
+        { label: 'False ceiling & lighting', category: 'Ceiling', amount: 235000 },
+        { label: 'Painting & wall finishes', category: 'Finishes', amount: 160000 },
+        { label: 'Electrical & plumbing', category: 'Services', amount: 140000 },
+        { label: 'Loose furniture & soft furnishing', category: 'Decor', amount: 220000 },
+      ],
+    },
+    {
+      id: 'q2', version: 2, date: '2026-08-19', tier: 'PREMIUM', total: 1978000, gst: 356040, status: 'CURRENT',
+      note: 'Revised after design lock: pooja unit added, kitchen tall unit added, crockery unit removed.',
+      lines: [
+        { label: 'Modular kitchen (L-shape, 11 rft + tall unit)', category: 'Kitchen', amount: 468000, changed: 'CHANGED' },
+        { label: 'Wardrobes — 3 bedrooms', category: 'Wardrobes', amount: 510000 },
+        { label: 'TV unit (fluted panel)', category: 'Living', amount: 128000, changed: 'CHANGED' },
+        { label: 'Pooja unit — teak & marble', category: 'Pooja', amount: 92000, changed: 'ADDED' },
+        { label: 'False ceiling & lighting', category: 'Ceiling', amount: 235000 },
+        { label: 'Painting & wall finishes', category: 'Finishes', amount: 175000, changed: 'CHANGED' },
+        { label: 'Electrical & plumbing', category: 'Services', amount: 150000, changed: 'CHANGED' },
+        { label: 'Loose furniture & soft furnishing', category: 'Decor', amount: 220000 },
+      ],
+    },
+  ],
+  approvals: [
+    {
+      id: 'A-01', title: 'Living room TV wall', kind: 'DESIGN', status: 'APPROVED',
+      description: 'Terracotta accent with fluted oak panel and floating unit.',
+      requestedOn: '2026-08-10', dueBy: '2026-08-17', decidedOn: '2026-08-19', decidedBy: 'Rohit Sharma',
+      versions: [
+        { id: 'v1', label: 'Option A — full panel', image: img(`${P}-02`), date: '2026-08-10', changes: ['Full-height fluted panel', 'Black metal shelf'] },
+        { id: 'v2', label: 'Option B — half panel + paint', image: img(`${P}-01`), date: '2026-08-16', changes: ['Panel reduced to 2/3 width', 'Malwa Clay paint on remainder', 'Brass shelf'] },
+      ],
+      history: [
+        { at: '2026-08-10T11:20:00+05:30', by: 'Meera Rathore', action: 'Requested approval' },
+        { at: '2026-08-14T19:05:00+05:30', by: 'Anita Sharma', action: 'Requested changes', detail: 'Panel feels heavy; can we see it with paint?' },
+        { at: '2026-08-16T10:00:00+05:30', by: 'Meera Rathore', action: 'Uploaded v2' },
+        { at: '2026-08-19T21:40:00+05:30', by: 'Rohit Sharma', action: 'Approved v2' },
+      ],
+    },
+    {
+      id: 'A-02', title: 'Wardrobe shutter finish', kind: 'MATERIAL', status: 'APPROVED',
+      description: 'PU matte white vs. walnut laminate for master wardrobe.',
+      requestedOn: '2026-08-20', dueBy: '2026-08-27', decidedOn: '2026-08-24', decidedBy: 'Anita Sharma',
+      versions: [{ id: 'v1', label: 'PU matte white', image: img('mat-pu-matte-white'), date: '2026-08-20', changes: [] }],
+      history: [
+        { at: '2026-08-20T12:00:00+05:30', by: 'Meera Rathore', action: 'Requested approval' },
+        { at: '2026-08-24T09:15:00+05:30', by: 'Anita Sharma', action: 'Approved' },
+      ],
+    },
+    {
+      id: 'A-03', title: 'Bathroom wall tile', kind: 'MATERIAL', status: 'PENDING',
+      description: 'Common bathroom: Carrara-look vitrified vs. green Udaipur marble feature wall.',
+      requestedOn: '2026-10-06', dueBy: '2026-10-13',
+      versions: [
+        { id: 'v1', label: 'Carrara-look vitrified (all walls)', image: img('mat-vitrified-carrara-look'), date: '2026-10-06', changes: [] },
+        { id: 'v2', label: 'Green marble feature + Carrara elsewhere', image: img('mat-marble-green-udaipur'), date: '2026-10-06', changes: ['Adds ₹18,400'] },
+      ],
+      history: [{ at: '2026-10-06T16:30:00+05:30', by: 'Meera Rathore', action: 'Requested approval' }],
+    },
+    {
+      id: 'A-04', title: 'Quotation v2', kind: 'QUOTATION', status: 'APPROVED',
+      description: 'Revised BOQ after design lock.',
+      requestedOn: '2026-08-19', dueBy: '2026-08-26', decidedOn: '2026-08-21', decidedBy: 'Rohit Sharma',
+      versions: [{ id: 'v1', label: 'Quotation v2 — ₹19.78 L + GST', image: img(`${P}-06`), date: '2026-08-19', changes: ['Pooja unit added', 'Tall unit added', 'Crockery unit removed'] }],
+      history: [
+        { at: '2026-08-19T18:00:00+05:30', by: 'Nitesh Verma', action: 'Requested approval' },
+        { at: '2026-08-21T20:10:00+05:30', by: 'Rohit Sharma', action: 'Approved' },
+      ],
+    },
+  ],
+  payments: [
+    { id: 'p1', label: 'Booking', pct: 10, amount: 197800, dueOn: '2026-07-22', paidOn: '2026-07-22', status: 'PAID', trigger: 'On signing' },
+    { id: 'p2', label: 'Design lock', pct: 40, amount: 791200, dueOn: '2026-08-21', paidOn: '2026-08-23', status: 'PAID', trigger: 'Approval of final design & BOQ' },
+    { id: 'p3', label: 'Production start', pct: 30, amount: 593400, dueOn: '2026-09-15', paidOn: '2026-09-14', status: 'PAID', trigger: 'Factory production begins' },
+    { id: 'p4', label: 'Before installation', pct: 15, amount: 296700, dueOn: '2026-10-20', status: 'DUE', trigger: 'Modular units dispatched to site' },
+    { id: 'p5', label: 'Handover', pct: 5, amount: 98900, dueOn: '2026-11-22', status: 'UPCOMING', trigger: 'Snag list closed' },
+  ],
+  sitePhotos: [img(`${P}-03`), img(`${P}-04`), img(`${P}-05`), img(`${P}-06`)],
+  messages: [
+    { id: 'm1', from: 'PM', name: 'Nitesh Verma', at: '2026-10-07T10:12:00+05:30', text: 'Putty second coat done in all bedrooms. Living room starts tomorrow.', attachment: img(`${P}-05`) },
+    { id: 'm2', from: 'CLIENT', name: 'Anita Sharma', at: '2026-10-07T13:40:00+05:30', text: 'Looks neat. When do we need to decide the bathroom tile?' },
+    { id: 'm3', from: 'DESIGNER', name: 'Meera Rathore', at: '2026-10-07T14:05:00+05:30', text: 'By Monday the 13th please — approval A-03 has both options. The green marble is lovely but optional.' },
+    { id: 'm4', from: 'PM', name: 'Nitesh Verma', at: '2026-10-11T18:30:00+05:30', text: 'Factory update: wardrobe shutters re-sprayed after QC. Handover moves by about a week — updated timeline is on the dashboard.' },
+    { id: 'm5', from: 'CLIENT', name: 'Rohit Sharma', at: '2026-10-11T21:02:00+05:30', text: 'Thanks for telling us early. Quality over speed.' },
+  ],
+  documents: [
+    { id: 'd1', name: 'Service agreement', kind: 'AGREEMENT', date: '2026-07-22', sizeKb: 412, version: '1.0' },
+    { id: 'd2', name: 'Quotation v2 — BOQ', kind: 'BOQ', date: '2026-08-19', sizeKb: 268, version: '2.0' },
+    { id: 'd3', name: 'Working drawings — kitchen', kind: 'DRAWING', date: '2026-08-24', sizeKb: 1840, version: 'R2' },
+    { id: 'd4', name: 'Working drawings — wardrobes', kind: 'DRAWING', date: '2026-08-24', sizeKb: 2210, version: 'R1' },
+    { id: 'd5', name: 'Tax invoice — milestone 3', kind: 'INVOICE', date: '2026-09-14', sizeKb: 96, version: '1.0' },
+    { id: 'd6', name: 'Warranty terms', kind: 'WARRANTY', date: '2026-07-22', sizeKb: 120, version: '1.0' },
+  ],
+};
