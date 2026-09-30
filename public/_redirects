@@ -1,0 +1,15 @@
+# Cloudflare Pages redirects.
+# Legacy / alias paths → canonical routes (trailing slashes are canonical).
+/portfolio            /projects/               301
+/portfolio/*          /projects/:splat         301
+/work                 /projects/               301
+/gallery              /projects/               301
+/pricing              /estimate/               301
+/calculator           /estimate/               301
+/cost-calculator      /estimate/               301
+/book                 /consultation/           301
+/enquiry              /consultation/           301
+/about                /studio/                 301
+/team                 /studio/                 301
+/blog                 /journal/                301
+/blog/*               /journal/:splat          301

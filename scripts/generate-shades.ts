@@ -33,7 +33,23 @@ const FAMILIES: Family[] = [
     c: [0.004, 0.025],
     count: 30,
     rooms: ['living', 'bedroom', 'kitchen', 'pooja', 'kids-room', 'study', 'ceiling'],
-    first: ['Ivory', 'Milk', 'Cotton', 'Chalk', 'Linen', 'Rice', 'Pearl', 'Muslin', 'Salt', 'Jasmine', 'Kaolin', 'Paper', 'Bone', 'Coconut', 'Moonlit'],
+    first: [
+      'Ivory',
+      'Milk',
+      'Cotton',
+      'Chalk',
+      'Linen',
+      'Rice',
+      'Pearl',
+      'Muslin',
+      'Salt',
+      'Jasmine',
+      'Kaolin',
+      'Paper',
+      'Bone',
+      'Coconut',
+      'Moonlit',
+    ],
     second: ['Mist', 'Light', 'Whisper', 'Veil', 'Hush', 'Morning', 'Drift', 'Glow', 'Air', 'Dawn'],
   },
   {
@@ -44,8 +60,38 @@ const FAMILIES: Family[] = [
     c: [0.02, 0.06],
     count: 36,
     rooms: ['living', 'bedroom', 'dining', 'foyer', 'study'],
-    first: ['Sand', 'Oat', 'Wheat', 'Biscuit', 'Almond', 'Khadi', 'Jute', 'Malwa', 'Dune', 'Barley', 'Cane', 'Camel', 'Fawn', 'Chikki', 'Sesame', 'Toast', 'Halwa', 'Cashew'],
-    second: ['Stone', 'Clay', 'Dust', 'Weave', 'Field', 'Shade', 'Warmth', 'Loam', 'Path', 'Hearth'],
+    first: [
+      'Sand',
+      'Oat',
+      'Wheat',
+      'Biscuit',
+      'Almond',
+      'Khadi',
+      'Jute',
+      'Malwa',
+      'Dune',
+      'Barley',
+      'Cane',
+      'Camel',
+      'Fawn',
+      'Chikki',
+      'Sesame',
+      'Toast',
+      'Halwa',
+      'Cashew',
+    ],
+    second: [
+      'Stone',
+      'Clay',
+      'Dust',
+      'Weave',
+      'Field',
+      'Shade',
+      'Warmth',
+      'Loam',
+      'Path',
+      'Hearth',
+    ],
   },
   {
     key: 'cool-neutral',
@@ -55,7 +101,20 @@ const FAMILIES: Family[] = [
     c: [0.005, 0.03],
     count: 24,
     rooms: ['living', 'bedroom', 'bathroom', 'study', 'office'],
-    first: ['Monsoon', 'Slate', 'Dove', 'Pebble', 'Fog', 'Ash', 'Silver', 'Cloud', 'River', 'Steel', 'Frost', 'Quarry'],
+    first: [
+      'Monsoon',
+      'Slate',
+      'Dove',
+      'Pebble',
+      'Fog',
+      'Ash',
+      'Silver',
+      'Cloud',
+      'River',
+      'Steel',
+      'Frost',
+      'Quarry',
+    ],
     second: ['Grey', 'Veil', 'Haze', 'Stone', 'Shadow', 'Calm', 'Wash', 'Hush'],
   },
   {
@@ -66,7 +125,18 @@ const FAMILIES: Family[] = [
     c: [0.004, 0.02],
     count: 18,
     rooms: ['living', 'study', 'office', 'kitchen', 'accent'],
-    first: ['Basalt', 'Granite', 'Charcoal', 'Smoke', 'Flint', 'Graphite', 'Storm', 'Mica', 'Iron', 'Cinder'],
+    first: [
+      'Basalt',
+      'Granite',
+      'Charcoal',
+      'Smoke',
+      'Flint',
+      'Graphite',
+      'Storm',
+      'Mica',
+      'Iron',
+      'Cinder',
+    ],
     second: ['Grey', 'Dusk', 'Depth', 'Edge', 'Shade', 'Night'],
   },
   {
@@ -77,8 +147,35 @@ const FAMILIES: Family[] = [
     c: [0.03, 0.11],
     count: 30,
     rooms: ['living', 'bedroom', 'study', 'balcony', 'pooja'],
-    first: ['Sage', 'Neem', 'Tulsi', 'Fern', 'Moss', 'Olive', 'Betel', 'Pista', 'Banyan', 'Cardamom', 'Mint', 'Peepal', 'Vetiver', 'Lichen', 'Bamboo'],
-    second: ['Whisper', 'Leaf', 'Grove', 'Shade', 'Field', 'Hollow', 'Morning', 'Deep', 'Light', 'Calm'],
+    first: [
+      'Sage',
+      'Neem',
+      'Tulsi',
+      'Fern',
+      'Moss',
+      'Olive',
+      'Betel',
+      'Pista',
+      'Banyan',
+      'Cardamom',
+      'Mint',
+      'Peepal',
+      'Vetiver',
+      'Lichen',
+      'Bamboo',
+    ],
+    second: [
+      'Whisper',
+      'Leaf',
+      'Grove',
+      'Shade',
+      'Field',
+      'Hollow',
+      'Morning',
+      'Deep',
+      'Light',
+      'Calm',
+    ],
   },
   {
     key: 'terracotta',
@@ -88,7 +185,23 @@ const FAMILIES: Family[] = [
     c: [0.06, 0.15],
     count: 30,
     rooms: ['living', 'dining', 'foyer', 'accent', 'balcony'],
-    first: ['Rajwada', 'Malwa', 'Kiln', 'Sindoor', 'Brick', 'Laterite', 'Mandu', 'Kumhar', 'Ochre', 'Ember', 'Chai', 'Copper', 'Gulal', 'Kesar', 'Rust'],
+    first: [
+      'Rajwada',
+      'Malwa',
+      'Kiln',
+      'Sindoor',
+      'Brick',
+      'Laterite',
+      'Mandu',
+      'Kumhar',
+      'Ochre',
+      'Ember',
+      'Chai',
+      'Copper',
+      'Gulal',
+      'Kesar',
+      'Rust',
+    ],
     second: ['Clay', 'Rose', 'Glow', 'Earth', 'Dusk', 'Warmth', 'Kiln', 'Blush', 'Sun', 'Hearth'],
   },
   {
@@ -99,7 +212,19 @@ const FAMILIES: Family[] = [
     c: [0.05, 0.14],
     count: 22,
     rooms: ['kitchen', 'pooja', 'kids-room', 'dining', 'accent'],
-    first: ['Turmeric', 'Marigold', 'Mustard', 'Honey', 'Ghee', 'Sunlit', 'Amber', 'Haldi', 'Lantern', 'Besan', 'Straw'],
+    first: [
+      'Turmeric',
+      'Marigold',
+      'Mustard',
+      'Honey',
+      'Ghee',
+      'Sunlit',
+      'Amber',
+      'Haldi',
+      'Lantern',
+      'Besan',
+      'Straw',
+    ],
     second: ['Light', 'Glow', 'Field', 'Gold', 'Morning', 'Warmth', 'Dust', 'Haze'],
   },
   {
@@ -110,7 +235,21 @@ const FAMILIES: Family[] = [
     c: [0.04, 0.13],
     count: 26,
     rooms: ['bedroom', 'bathroom', 'kids-room', 'study', 'pooja'],
-    first: ['Indigo', 'Neel', 'Narmada', 'Peacock', 'Denim', 'Lapis', 'Harbour', 'Shipra', 'Twilight', 'Cobalt', 'Sapphire', 'Powder', 'Ink'],
+    first: [
+      'Indigo',
+      'Neel',
+      'Narmada',
+      'Peacock',
+      'Denim',
+      'Lapis',
+      'Harbour',
+      'Shipra',
+      'Twilight',
+      'Cobalt',
+      'Sapphire',
+      'Powder',
+      'Ink',
+    ],
     second: ['Blue', 'Night', 'Depth', 'Mist', 'Calm', 'Wash', 'Tide', 'Dusk', 'Hush'],
   },
   {
@@ -150,7 +289,15 @@ function rng(seed: number) {
 }
 
 // Words that must never appear (brand shade names or trademarks we know of)
-const BLOCKLIST = new Set(['royale', 'apex', 'tractor', 'weathershield', 'velvet touch', 'silk', 'easy clean']);
+const BLOCKLIST = new Set([
+  'royale',
+  'apex',
+  'tractor',
+  'weathershield',
+  'velvet touch',
+  'silk',
+  'easy clean',
+]);
 
 function tonalityOf(l: number, c: number, h: number): Tonality {
   if (c < 0.02) return 'neutral';
@@ -173,7 +320,10 @@ function tierOf(i: number, c: number): Tier {
 }
 
 function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 function main() {

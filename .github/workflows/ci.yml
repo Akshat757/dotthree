@@ -1,0 +1,138 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 22
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  quality:
+    name: Lint · Typecheck · Unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run format:check
+      - run: npm run check:contacts
+      - run: npm run test -- --coverage
+      - name: Secret scan (source)
+        run: |
+          set -e
+          if grep -rEn --include='*.{ts,tsx,js,mjs,json,md,css,yml}' --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=out \
+            '(AKIA[0-9A-Z]{16}|sk_live_[0-9a-zA-Z]{20,}|-----BEGIN (RSA|EC|OPENSSH) PRIVATE KEY-----|ghp_[0-9A-Za-z]{36})' . ; then
+            echo '::error::Possible secret committed'; exit 1; fi
+      - name: Licence allow-list
+        run: npm run check:licenses
+      - name: npm audit (high+)
+        run: npm audit --omit=dev --audit-level=high || true
+
+  build:
+    name: Static export
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Restore generated assets
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/demo
+            public/textures
+            public/og
+            public/icons
+            src/data/demo/images.generated.ts
+          key: assets-${{ hashFiles('scripts/**', 'src/data/demo/*.ts', '!src/data/demo/images.generated.ts') }}
+      - name: Generate assets (if missing)
+        run: |
+          if [ ! -f src/data/demo/images.generated.ts ] || ! grep -q 'proj-' src/data/demo/images.generated.ts; then
+            npm run assets:all
+          fi
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://atelier-demo.pages.dev
+      - name: Secret scan (export)
+        run: |
+          set -e
+          if grep -rEn '(AKIA[0-9A-Z]{16}|sk_live_|BEGIN (RSA|EC) PRIVATE KEY|ghp_[0-9A-Za-z]{36})' out/ ; then
+            echo '::error::Secret found in export'; exit 1; fi
+      - name: Bundle budget
+        run: npx size-limit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: out
+          path: out
+          retention-days: 7
+
+  e2e:
+    name: Playwright + axe
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: out
+          path: out
+      - run: npx playwright install --with-deps chromium
+      - name: Run e2e against static export (AT-00 — empty env)
+        run: npm run e2e
+        env:
+          CI: 1
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: build
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: out
+          path: out
+      - run: npm i -g @lhci/cli@0.14.x serve
+      - run: |
+          serve -s out -l 4173 &
+          sleep 2
+          lhci autorun \
+            --collect.url=http://localhost:4173/ \
+            --collect.url=http://localhost:4173/projects/ \
+            --collect.url=http://localhost:4173/estimate/ \
+            --collect.numberOfRuns=1 \
+            --assert.assertions.categories:performance=warn:0.9 \
+            --assert.assertions.categories:accessibility=error:0.98 \
+            --assert.assertions.categories:best-practices=error:1 \
+            --assert.assertions.categories:seo=error:1 \
+            --upload.target=temporary-public-storage
