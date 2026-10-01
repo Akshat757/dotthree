@@ -28,10 +28,11 @@ import {
   testimonials,
 } from '@/data/demo';
 import { relatedProjects } from '@/lib/projects/filters';
+import { surfaceLabel } from '@/lib/materials/labels';
 import { breadcrumbLd, creativeWorkLd, JsonLd } from '@/lib/seo/jsonld';
 import { pageMeta } from '@/lib/seo/metadata';
 import { messages } from '@/lib/whatsapp';
-import { formatInrCompact, formatSqft, titleCase } from '@/lib/utils';
+import { formatInrCompact, formatSqft } from '@/lib/utils';
 import type { BeforeAfterPair, SurfaceType } from '@/types/content';
 
 export function generateStaticParams() {
@@ -59,26 +60,6 @@ const BA_LABELS: Record<BeforeAfterPair['mode'], [string, string]> = {
   'day-vs-night': ['Day', 'Night'],
   'essential-vs-premium': ['Essential', 'Premium'],
   'layout-old-vs-new': ['Old layout', 'New layout'],
-};
-
-const SURFACE_LABEL: Partial<Record<SurfaceType, string>> = {
-  WALL: 'Walls',
-  ACCENT_WALL: 'Accent wall',
-  CEILING: 'Ceiling',
-  FLOOR: 'Flooring',
-  CABINET_UPPER: 'Upper cabinets',
-  CABINET_LOWER: 'Lower cabinets',
-  WARDROBE: 'Wardrobe shutters',
-  COUNTERTOP: 'Countertop',
-  BACKSPLASH: 'Backsplash',
-  CURTAIN: 'Curtains',
-  UPHOLSTERY: 'Upholstery',
-  WALL_PANEL: 'Wall panelling',
-  DOOR: 'Doors',
-  WINDOW_FRAME: 'Window frames',
-  BATH_TILE: 'Bathroom tiles',
-  RUG: 'Rug',
-  LIGHT_FIXTURE: 'Lighting',
 };
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -228,9 +209,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                         imgClassName="size-full object-cover"
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="text-caption text-ink-muted">
-                          {SURFACE_LABEL[surface] ?? titleCase(surface)}
-                        </p>
+                        <p className="text-caption text-ink-muted">{surfaceLabel(surface)}</p>
                         <Link
                           href={`/materials/${material!.slug}/`}
                           className="block truncate text-body-s font-medium text-ink hover:text-accent"
