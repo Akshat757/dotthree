@@ -25,7 +25,12 @@ export interface QuotationVersion {
   tier: Tier;
   total: number;
   gst: number;
-  lines: { label: string; category: string; amount: number; changed?: 'ADDED' | 'REMOVED' | 'CHANGED' }[];
+  lines: {
+    label: string;
+    category: string;
+    amount: number;
+    changed?: 'ADDED' | 'REMOVED' | 'CHANGED';
+  }[];
   note: string;
   status: 'SUPERSEDED' | 'CURRENT' | 'DRAFT';
 }

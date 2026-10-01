@@ -31,11 +31,13 @@ function createUserStore(): UserStore {
 
 function createAdapters(): Adapters {
   const user = createUserStore();
-  const { cfAnalyticsToken, leadSheetsWebAppUrl, leadFormRelayEndpoint, leadFormRelayKey } = runtime.integrations;
+  const { cfAnalyticsToken, leadSheetsWebAppUrl, leadFormRelayEndpoint, leadFormRelayKey } =
+    runtime.integrations;
 
   const sinks: LeadSink[] = [new LocalRecordSink(user), new WhatsAppSink(), new MailtoSink()];
   if (leadSheetsWebAppUrl) sinks.push(new GoogleSheetsSink(leadSheetsWebAppUrl));
-  if (leadFormRelayEndpoint && leadFormRelayKey) sinks.push(new FormRelaySink(leadFormRelayEndpoint, leadFormRelayKey));
+  if (leadFormRelayEndpoint && leadFormRelayKey)
+    sinks.push(new FormRelaySink(leadFormRelayEndpoint, leadFormRelayKey));
 
   return {
     content: new StaticContentRepo(),
@@ -43,7 +45,9 @@ function createAdapters(): Adapters {
     leads: new CompositeLeadSink(sinks),
     notifier: new LocalNotifier(),
     share: new FragmentShareAdapter(),
-    analytics: cfAnalyticsToken ? new CloudflareWebAnalytics(cfAnalyticsToken) : new NoopAnalytics(),
+    analytics: cfAnalyticsToken
+      ? new CloudflareWebAnalytics(cfAnalyticsToken)
+      : new NoopAnalytics(),
     botGuard: new HoneypotTimeTrapGuard(),
   };
 }

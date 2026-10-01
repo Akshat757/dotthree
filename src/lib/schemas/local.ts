@@ -23,8 +23,21 @@ const unit = () => z.number().min(0).max(1);
 
 export const surfaceTypeSchema = z.enum(SURFACE_TYPES as [SurfaceType, ...SurfaceType[]]);
 
-export const finishSchema = z.enum(['matte', 'eggshell', 'satin', 'semi-gloss', 'high-gloss', 'textured']);
-export const tileLayoutSchema = z.enum(['straight', 'staggered', 'herringbone', 'basketweave', 'diagonal']);
+export const finishSchema = z.enum([
+  'matte',
+  'eggshell',
+  'satin',
+  'semi-gloss',
+  'high-gloss',
+  'textured',
+]);
+export const tileLayoutSchema = z.enum([
+  'straight',
+  'staggered',
+  'herringbone',
+  'basketweave',
+  'diagonal',
+]);
 export const patternSchema = z.enum([
   'plain',
   'geometric',
@@ -69,7 +82,15 @@ export const lightingSchema = z
         z
           .object({
             id: id(),
-            kind: z.enum(['warm2700', 'neutral4000', 'cool6500', 'cove', 'pendant', 'spot', 'ambient']),
+            kind: z.enum([
+              'warm2700',
+              'neutral4000',
+              'cool6500',
+              'cove',
+              'pendant',
+              'spot',
+              'ambient',
+            ]),
             intensity: unit(),
             position: pt,
             enabled: z.boolean(),
@@ -205,11 +226,7 @@ export const feedbackSchema = z
       .array(z.object({ variantId: id(), vote: z.enum(['up', 'love', 'down']) }).strict())
       .max(32),
     comments: z
-      .array(
-        z
-          .object({ id: id(), variantId: id(), at: pt.optional(), text: str(600) })
-          .strict(),
-      )
+      .array(z.object({ id: id(), variantId: id(), at: pt.optional(), text: str(600) }).strict())
       .max(50),
   })
   .strict();
@@ -252,7 +269,14 @@ export const enquirySchema = z
   .object({
     reference: z.string().regex(/^IND-\d{4}-\d{4}$/),
     createdAt: ts(),
-    type: z.enum(['VIDEO', 'PHONE', 'STUDIO_VISIT', 'HOME_VISIT', 'SITE_MEASUREMENT', 'MATERIAL_SELECTION']),
+    type: z.enum([
+      'VIDEO',
+      'PHONE',
+      'STUDIO_VISIT',
+      'HOME_VISIT',
+      'SITE_MEASUREMENT',
+      'MATERIAL_SELECTION',
+    ]),
     name: str(80),
     phone: str(20),
     email: str(120).optional(),
@@ -265,8 +289,14 @@ export const enquirySchema = z
     nature: str(16).optional(),
     budgetBand: str(16).optional(),
     possessionDate: str(32).optional(),
-    preferredSlot: z.object({ date: str(16), time: str(8) }).strict().optional(),
-    alternateSlots: z.array(z.object({ date: str(16), time: str(8) }).strict()).max(4).optional(),
+    preferredSlot: z
+      .object({ date: str(16), time: str(8) })
+      .strict()
+      .optional(),
+    alternateSlots: z
+      .array(z.object({ date: str(16), time: str(8) }).strict())
+      .max(4)
+      .optional(),
     preferredContact: z.enum(['WHATSAPP', 'CALL', 'EMAIL']),
     designerSlug: str(128).optional(),
     notes: str(2000).optional(),
@@ -302,7 +332,10 @@ export const exportBundleSchema = z
         z
           .object({
             id: id(),
-            dataUrl: z.string().regex(/^data:image\/(jpeg|png|webp);base64,/).max(12_000_000),
+            dataUrl: z
+              .string()
+              .regex(/^data:image\/(jpeg|png|webp);base64,/)
+              .max(12_000_000),
             width: z.number().int().positive().max(8192),
             height: z.number().int().positive().max(8192),
             createdAt: ts(),

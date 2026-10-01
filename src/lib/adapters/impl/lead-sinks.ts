@@ -40,7 +40,8 @@ export class GoogleSheetsSink implements LeadSink {
   readonly name = 'google-sheets';
   constructor(private readonly webAppUrl: string) {}
   async submit(enquiry: Enquiry): Promise<Partial<LeadResult>> {
-    if (!this.webAppUrl) return { sinks: [{ name: this.name, ok: false, detail: 'not configured' }] };
+    if (!this.webAppUrl)
+      return { sinks: [{ name: this.name, ok: false, detail: 'not configured' }] };
     try {
       // Apps Script web apps accept simple POSTs; `no-cors` avoids preflight (response is opaque).
       await fetch(this.webAppUrl, {
@@ -71,9 +72,15 @@ export class FormRelaySink implements LeadSink {
       const res = await fetch(this.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: this.accessKey, subject: `Enquiry ${enquiry.reference}`, ...redactForRelay(enquiry) }),
+        body: JSON.stringify({
+          access_key: this.accessKey,
+          subject: `Enquiry ${enquiry.reference}`,
+          ...redactForRelay(enquiry),
+        }),
       });
-      return { sinks: [{ name: this.name, ok: res.ok, detail: res.ok ? undefined : `HTTP ${res.status}` }] };
+      return {
+        sinks: [{ name: this.name, ok: res.ok, detail: res.ok ? undefined : `HTTP ${res.status}` }],
+      };
     } catch (e) {
       return { sinks: [{ name: this.name, ok: false, detail: (e as Error).message }] };
     }
@@ -82,7 +89,13 @@ export class FormRelaySink implements LeadSink {
 
 function redactForRelay(e: Enquiry) {
   // Attachments are transcribed into summaryText; never send raw IDs or images.
-  const { attachedDesignIds: _a, attachedEstimateIds: _b, attachedMoodBoardIds: _c, attachedUploadIds: _d, ...rest } = e;
+  const {
+    attachedDesignIds: _a,
+    attachedEstimateIds: _b,
+    attachedMoodBoardIds: _c,
+    attachedUploadIds: _d,
+    ...rest
+  } = e;
   return rest;
 }
 
@@ -90,7 +103,12 @@ export class CompositeLeadSink implements LeadSink {
   readonly name = 'composite';
   constructor(private readonly sinks: LeadSink[]) {}
   async submit(enquiry: Enquiry): Promise<LeadResult> {
-    const result: LeadResult = { reference: enquiry.reference, whatsappUrl: '', mailtoUrl: '', sinks: [] };
+    const result: LeadResult = {
+      reference: enquiry.reference,
+      whatsappUrl: '',
+      mailtoUrl: '',
+      sinks: [],
+    };
     for (const sink of this.sinks) {
       try {
         const partial = await sink.submit(enquiry);

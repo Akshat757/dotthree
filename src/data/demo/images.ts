@@ -31,6 +31,10 @@ export function allImages(): ImageRef[] {
 }
 
 /** Build the derivative URL the <Img> component uses. */
-export function imgSrc(ref: ImageRef, width: 400 | 800 | 1200 | 2000, format: 'avif' | 'webp' = 'webp'): string {
+export function imgSrc(
+  ref: ImageRef,
+  width: 400 | 800 | 1200 | 2000,
+  format: 'avif' | 'webp' = 'webp',
+): string {
   return `${ref.src}-${width}.${format}`;
 }

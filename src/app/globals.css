@@ -126,44 +126,88 @@
     }
   }
   @keyframes slide-in-right {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
   @keyframes slide-out-right {
-    from { transform: translateX(0); }
-    to { transform: translateX(100%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
   }
   @keyframes slide-in-left {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
   @keyframes slide-out-left {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
   @keyframes slide-in-bottom {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
   @keyframes slide-out-bottom {
-    from { transform: translateY(0); }
-    to { transform: translateY(100%); }
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
   }
   @keyframes slide-in-top {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
   @keyframes accordion-down {
-    from { height: 0; opacity: 0; }
-    to { height: var(--radix-accordion-content-height); opacity: 1; }
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
   }
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); opacity: 1; }
-    to { height: 0; opacity: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
   }
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
 }
@@ -219,7 +263,7 @@
     text-rendering: optimizeLegibility;
   }
   body {
-    @apply bg-canvas text-ink font-sans text-body antialiased;
+    @apply bg-canvas font-sans text-body text-ink antialiased;
     font-feature-settings: 'cv11', 'ss01';
   }
   h1,
@@ -227,7 +271,9 @@
   h3,
   .font-display {
     font-family: var(--font-display);
-    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-variation-settings:
+      'opsz' 144,
+      'SOFT' 30;
     text-wrap: balance;
   }
   p {
@@ -261,14 +307,63 @@
   .prose-measure {
     max-width: 68ch;
   }
+  /* Long-form article body (journal MDX). Anything with `.not-prose` opts out. */
+  .article-prose {
+    @apply text-body-l text-ink;
+  }
+  .article-prose > :where(p, ul, ol, blockquote):not(.not-prose) {
+    @apply my-5;
+  }
+  .article-prose > :where(h2):not(.not-prose) {
+    @apply mt-12 mb-4 scroll-mt-28 font-display text-h2 text-ink;
+  }
+  .article-prose > :where(h3):not(.not-prose) {
+    @apply mt-9 mb-3 scroll-mt-28 font-display text-h3 text-ink;
+  }
+  .article-prose :where(a):not(.not-prose *) {
+    @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent;
+  }
+  .article-prose :where(ul):not(.not-prose *) {
+    @apply list-disc pl-6;
+  }
+  .article-prose :where(ol):not(.not-prose *) {
+    @apply list-decimal pl-6;
+  }
+  .article-prose :where(li):not(.not-prose *) {
+    @apply my-1.5 pl-1;
+  }
+  .article-prose :where(li > p):not(.not-prose *) {
+    @apply my-1;
+  }
+  .article-prose :where(strong):not(.not-prose *) {
+    @apply font-semibold text-ink;
+  }
+  .article-prose :where(blockquote):not(.not-prose *) {
+    @apply border-l-4 border-sand pl-5 font-display text-h3 text-ink-muted italic;
+  }
+  .article-prose :where(hr):not(.not-prose *) {
+    @apply my-10 border-line;
+  }
+  .article-prose :where(code):not(.not-prose *) {
+    @apply rounded bg-surface-sunk px-1.5 py-0.5 font-mono text-[0.9em];
+  }
+  .article-prose :where(table):not(.not-prose *) {
+    @apply my-6 w-full text-body-s;
+  }
+  .article-prose :where(th, td):not(.not-prose *) {
+    @apply border-b border-line px-3 py-2 text-left align-top;
+  }
+  .article-prose :where(h2 + p, h3 + p):not(.not-prose *) {
+    @apply mt-0;
+  }
   .overline {
-    @apply text-overline font-medium uppercase tracking-[0.14em] text-ink-muted;
+    @apply text-overline font-medium tracking-[0.14em] text-ink-muted uppercase;
   }
   .hairline {
     border-color: var(--color-line);
   }
   .skeleton {
-    @apply bg-surface-sunk animate-shimmer rounded-md;
+    @apply animate-shimmer rounded-md bg-surface-sunk;
     background-image: linear-gradient(
       90deg,
       var(--color-surface-sunk) 0%,
@@ -278,7 +373,12 @@
     background-size: 200% 100%;
   }
   .scrim-bottom {
-    background: linear-gradient(to top, rgba(22, 21, 15, 0.82) 0%, rgba(22, 21, 15, 0.35) 45%, transparent 100%);
+    background: linear-gradient(
+      to top,
+      rgba(22, 21, 15, 0.82) 0%,
+      rgba(22, 21, 15, 0.35) 45%,
+      transparent 100%
+    );
   }
   .sr-only-focusable:not(:focus):not(:focus-within) {
     @apply sr-only;

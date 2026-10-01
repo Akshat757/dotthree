@@ -76,7 +76,9 @@ export async function deleteDatabase(): Promise<void> {
 }
 
 export class StorageQuotaError extends Error {
-  constructor(message = 'Your browser storage is full. Clear old uploads or export your data to free space.') {
+  constructor(
+    message = 'Your browser storage is full. Clear old uploads or export your data to free space.',
+  ) {
     super(message);
     this.name = 'StorageQuotaError';
   }
@@ -85,6 +87,9 @@ export class StorageQuotaError extends Error {
 export function isQuotaError(e: unknown): boolean {
   return (
     (e instanceof DOMException && (e.name === 'QuotaExceededError' || e.code === 22)) ||
-    (typeof e === 'object' && e !== null && 'name' in e && (e as { name: string }).name === 'QuotaExceededError')
+    (typeof e === 'object' &&
+      e !== null &&
+      'name' in e &&
+      (e as { name: string }).name === 'QuotaExceededError')
   );
 }

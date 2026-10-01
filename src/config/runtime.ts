@@ -9,8 +9,7 @@ export const runtime = {
   dataMode: (process.env.NEXT_PUBLIC_DATA_MODE === 'db' ? 'db' : 'demo') as 'demo' | 'db',
   /** 'local' → guest key + optional local profile. 'google' → Auth.js (DB Mode only). */
   authMode: (process.env.NEXT_PUBLIC_AUTH_MODE === 'google' ? 'google' : 'local') as
-    | 'local'
-    | 'google',
+    'local' | 'google',
   /** Optional, free, no-card integrations — all absent-safe. */
   integrations: {
     cfAnalyticsToken: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN ?? '',

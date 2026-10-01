@@ -13,7 +13,7 @@ export const localities: Locality[] = [
     pincodes: ['452010'],
     propertyTypes: ['3BHK and 4BHK apartments', 'Builder floors', 'Bungalows in Scheme 74'],
     description:
-      'Indore\'s most established premium residential-commercial belt. High-rise 3BHK towers along the ring road, older independent houses in the schemes behind, and a constant supply of renovations as first owners upgrade.',
+      "Indore's most established premium residential-commercial belt. High-rise 3BHK towers along the ring road, older independent houses in the schemes behind, and a constant supply of renovations as first owners upgrade.",
     considerations: [
       'Many towers restrict work hours to 10:00–18:00 on weekdays; we plan noisy civil work in the first fortnight.',
       'Society lifts often cap plywood sheet size — 8×4 ft sheets must be cut on site or carried by stairs.',
@@ -106,7 +106,11 @@ export const localities: Locality[] = [
     lng: 75.9075,
     distanceKm: 5.0,
     pincodes: ['452016', '452018'],
-    propertyTypes: ['Mid-rise 2BHK and 3BHK apartments', 'Older independent houses', 'Clinics and small offices'],
+    propertyTypes: [
+      'Mid-rise 2BHK and 3BHK apartments',
+      'Older independent houses',
+      'Clinics and small offices',
+    ],
     description:
       'A dense, well-connected residential hub with a strong professional community. Home-office nooks and clinic fit-outs are frequent asks.',
     considerations: [
@@ -144,7 +148,12 @@ export const localities: Locality[] = [
     lng: 75.8846,
     distanceKm: 3.2,
     pincodes: ['452001', '452008', '452010'],
-    propertyTypes: ['Commercial offices', 'Clinics and diagnostic centres', 'Showrooms', 'Premium apartments'],
+    propertyTypes: [
+      'Commercial offices',
+      'Clinics and diagnostic centres',
+      'Showrooms',
+      'Premium apartments',
+    ],
     description:
       'The commercial spine of Indore. Our AB Road work is mostly clinics, offices, and showrooms where timeline certainty and GST-inclusive costing matter as much as design.',
     considerations: [
@@ -260,7 +269,7 @@ export const localities: Locality[] = [
     pincodes: ['452016', '452020'],
     propertyTypes: ['Large gated-community apartments', 'Villas', 'Restaurants and banquet halls'],
     description:
-      'The eastern bypass has become Indore\'s newest premium corridor: large gated communities, villas with gardens, and a lively restaurant strip.',
+      "The eastern bypass has become Indore's newest premium corridor: large gated communities, villas with gardens, and a lively restaurant strip.",
     considerations: [
       'Gated communities have strict material-entry windows; we coordinate with the estate office.',
       'Villas with gardens want indoor–outdoor continuity — flooring and door choices reflect that.',
@@ -279,7 +288,7 @@ export const localities: Locality[] = [
     pincodes: ['452009'],
     propertyTypes: ['Independent houses', '1BHK and 2BHK apartments', 'Home clinics'],
     description:
-      'One of Indore\'s largest residential colonies, with a strong tradition of independent homes being extended and renovated floor by floor.',
+      "One of Indore's largest residential colonies, with a strong tradition of independent homes being extended and renovated floor by floor.",
     considerations: [
       'Extensions often mean matching new flooring to old — we source or approximate carefully.',
       'Budgets are practical; we prioritise the kitchen and one wardrobe set first.',
@@ -334,7 +343,7 @@ export const localities: Locality[] = [
     lng: 75.8917,
     distanceKm: 4.1,
     pincodes: ['452018'],
-    propertyTypes: ['Independent houses', '3BHK apartments', 'Doctor\'s clinics'],
+    propertyTypes: ['Independent houses', '3BHK apartments', "Doctor's clinics"],
     description:
       'Well-established residential area near the hospital belt. Many clients are medical professionals wanting a calm home and a compact clinic.',
     considerations: [
@@ -355,9 +364,9 @@ export const localities: Locality[] = [
     pincodes: ['452010'],
     propertyTypes: ['New 2BHK and 3BHK apartments', 'Builder floors', 'Duplexes'],
     description:
-      'A young, family-focused neighbourhood next to Vijay Nagar. Compact 3BHKs with a kids\' room and a study nook are the typical brief.',
+      "A young, family-focused neighbourhood next to Vijay Nagar. Compact 3BHKs with a kids' room and a study nook are the typical brief.",
     considerations: [
-      'Kids\' rooms designed to grow — bunk beds convertible to single beds, adjustable desks.',
+      "Kids' rooms designed to grow — bunk beds convertible to single beds, adjustable desks.",
       'Compact kitchens (7–9 ft runs) get tall units and pull-outs to maximise storage.',
       'Many flats are north-facing with soft light — warm neutrals work well.',
     ],
@@ -392,7 +401,11 @@ export const localities: Locality[] = [
     lng: 77.4126,
     distanceKm: 195,
     pincodes: ['462001', '462003', '462016', '462039'],
-    propertyTypes: ['Premium apartments in Arera Colony and Kolar', 'Independent bungalows', 'Government-quarter renovations'],
+    propertyTypes: [
+      'Premium apartments in Arera Colony and Kolar',
+      'Independent bungalows',
+      'Government-quarter renovations',
+    ],
     description:
       'We take on selected full-home and villa projects in Bhopal, typically Premium tier and above, with a dedicated site supervisor stationed for the duration.',
     considerations: [
@@ -411,7 +424,11 @@ export const localities: Locality[] = [
     lng: 75.7885,
     distanceKm: 56,
     pincodes: ['456001', '456006', '456010'],
-    propertyTypes: ['Traditional family homes', 'New apartments near Freeganj', 'Hotels and guest houses'],
+    propertyTypes: [
+      'Traditional family homes',
+      'New apartments near Freeganj',
+      'Hotels and guest houses',
+    ],
     description:
       'An hour from Indore, Ujjain briefs lean traditional — temple-town clients want pooja rooms, courtyards, and warm materials done with contemporary precision.',
     considerations: [
@@ -470,11 +487,18 @@ export function getLocality(slug: string): Locality | undefined {
 
 export function localityMultiplier(nameOrSlug: string): number {
   const s = nameOrSlug.toLowerCase().replace(/\s+/g, '-');
-  return localities.find((l) => l.slug === s || l.name.toLowerCase() === nameOrSlug.toLowerCase())?.multiplier ?? 1.0;
+  return (
+    localities.find((l) => l.slug === s || l.name.toLowerCase() === nameOrSlug.toLowerCase())
+      ?.multiplier ?? 1.0
+  );
 }
 
 /** Serviceable for home visits: Indore district PINs. Others get a video-call alternative. */
-export function isServiceablePin(pin: string): { serviceable: boolean; nearby: boolean; locality?: Locality } {
+export function isServiceablePin(pin: string): {
+  serviceable: boolean;
+  nearby: boolean;
+  locality?: Locality;
+} {
   const p = pin.trim();
   if (!/^\d{6}$/.test(p)) return { serviceable: false, nearby: false };
   const match = localities.find((l) => l.pincodes.includes(p));

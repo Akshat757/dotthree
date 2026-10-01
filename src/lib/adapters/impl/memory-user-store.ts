@@ -44,7 +44,12 @@ export class MemoryUserStore implements UserStore {
     return this.profile;
   }
   async setProfile(p: Partial<Profile>) {
-    this.profile = { ...this.profile, ...p, guestKey: this.profile.guestKey, prefs: { ...this.profile.prefs, ...(p.prefs ?? {}) } };
+    this.profile = {
+      ...this.profile,
+      ...p,
+      guestKey: this.profile.guestKey,
+      prefs: { ...this.profile.prefs, ...(p.prefs ?? {}) },
+    };
     return this.profile;
   }
   async listDesigns() {
@@ -62,7 +67,9 @@ export class MemoryUserStore implements UserStore {
     for (const [k, v] of this.feedback) if (v.designId === id) this.feedback.delete(k);
   }
   async listVariants(designId: string) {
-    return [...this.variants.values()].filter((v) => v.designId === designId).sort((a, b) => a.createdAt - b.createdAt);
+    return [...this.variants.values()]
+      .filter((v) => v.designId === designId)
+      .sort((a, b) => a.createdAt - b.createdAt);
   }
   async getVariant(id: string) {
     return this.variants.get(id) ?? null;
@@ -185,9 +192,11 @@ export class MemoryUserStore implements UserStore {
     } catch {
       return { ok: false, counts: {}, errors: ['File is not valid JSON.'] };
     }
-    if (hasDangerousKeys(raw)) return { ok: false, counts: {}, errors: ['File contains disallowed keys.'] };
+    if (hasDangerousKeys(raw))
+      return { ok: false, counts: {}, errors: ['File contains disallowed keys.'] };
     const parsed = exportBundleSchema.safeParse(raw);
-    if (!parsed.success) return { ok: false, counts: {}, errors: ['File does not match the expected format.'] };
+    if (!parsed.success)
+      return { ok: false, counts: {}, errors: ['File does not match the expected format.'] };
     const b = parsed.data;
     b.designs.forEach((d) => this.designs.set(d.id, d));
     b.variants.forEach((v) => this.variants.set(v.id, v));

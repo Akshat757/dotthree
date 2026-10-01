@@ -32,8 +32,10 @@ export class HoneypotTimeTrapGuard implements BotGuard {
   ) {}
   async verify(state: FormState): Promise<{ ok: boolean; reason?: string }> {
     if (state.honeypot && state.honeypot.trim() !== '') return { ok: false, reason: 'honeypot' };
-    if (state.submittedAt - state.startedAt < this.minDwellMs) return { ok: false, reason: 'too_fast' };
-    if (state.submittedAt - this.lastSubmit < this.throttleMs) return { ok: false, reason: 'throttled' };
+    if (state.submittedAt - state.startedAt < this.minDwellMs)
+      return { ok: false, reason: 'too_fast' };
+    if (state.submittedAt - this.lastSubmit < this.throttleMs)
+      return { ok: false, reason: 'throttled' };
     this.lastSubmit = state.submittedAt;
     return { ok: true };
   }

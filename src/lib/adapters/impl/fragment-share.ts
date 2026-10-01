@@ -2,12 +2,21 @@ import { site } from '@/config/site';
 import type { ShareAdapter } from '@/lib/adapters/contracts';
 import { feedbackSchema, sharedDesignSchema, sharedMoodBoardSchema } from '@/lib/schemas/local';
 import { decodePayload, encodePayload } from '@/lib/share/codec';
-import type { Design, DesignVariant, Feedback, MoodBoard, SharedDesign, SharedMoodBoard } from '@/types/local';
+import type {
+  Design,
+  DesignVariant,
+  Feedback,
+  MoodBoard,
+  SharedDesign,
+  SharedMoodBoard,
+} from '@/types/local';
 
 export class FragmentShareAdapter implements ShareAdapter {
   encode(design: Design, variants: DesignVariant[], senderName?: string): string {
     if (!design.templateSlug) {
-      throw new Error('Only demo-room designs can be shared as a link. Uploads are shared as an image.');
+      throw new Error(
+        'Only demo-room designs can be shared as a link. Uploads are shared as an image.',
+      );
     }
     const payload: SharedDesign = {
       v: 1,

@@ -14,14 +14,7 @@ export type Localised<T> = T;
 export type BudgetBand = 'UNDER_3L' | 'L3_7' | 'L7_15' | 'L15_30' | 'ABOVE_30L';
 export type Tier = 'ESSENTIAL' | 'STANDARD' | 'PREMIUM' | 'LUXURY';
 export type PropertyType =
-  | 'APARTMENT'
-  | 'VILLA'
-  | 'DUPLEX'
-  | 'FARMHOUSE'
-  | 'OFFICE'
-  | 'CLINIC'
-  | 'RETAIL'
-  | 'RESTAURANT';
+  'APARTMENT' | 'VILLA' | 'DUPLEX' | 'FARMHOUSE' | 'OFFICE' | 'CLINIC' | 'RETAIL' | 'RESTAURANT';
 export type Segment = 'RESIDENTIAL' | 'COMMERCIAL';
 export type Nature = 'NEW' | 'RENOVATION';
 export type Bhk = '1BHK' | '2BHK' | '3BHK' | '4BHK+';
@@ -231,7 +224,16 @@ export interface Material {
   substituteForSlug?: string; // budget-down chain
   description?: Localised<string>;
   /** Visualiser pattern hint for materials without a PBR texture */
-  pattern?: 'plain' | 'geometric' | 'floral' | 'stripe' | 'damask' | 'textured' | 'chevron' | 'herringbone' | 'brick-lay';
+  pattern?:
+    | 'plain'
+    | 'geometric'
+    | 'floral'
+    | 'stripe'
+    | 'damask'
+    | 'textured'
+    | 'chevron'
+    | 'herringbone'
+    | 'brick-lay';
 }
 
 export type SurfaceType =
@@ -446,7 +448,12 @@ export interface QuizQuestion {
   prompt: string;
   /** Which dimension of the profile vector this question measures */
   dimension: QuizDimension;
-  options: { id: string; image: ImageRef; label: string; vector: Partial<Record<QuizDimension, number>> }[];
+  options: {
+    id: string;
+    image: ImageRef;
+    label: string;
+    vector: Partial<Record<QuizDimension, number>>;
+  }[];
 }
 
 export type QuizDimension =

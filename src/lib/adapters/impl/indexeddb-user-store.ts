@@ -6,7 +6,13 @@
 import type { IDBPDatabase } from 'idb';
 
 import type { StorageUsage, UserStore } from '@/lib/adapters/contracts';
-import { getDb, isIndexedDbAvailable, isQuotaError, StorageQuotaError, deleteDatabase } from '@/lib/db/client';
+import {
+  getDb,
+  isIndexedDbAvailable,
+  isQuotaError,
+  StorageQuotaError,
+  deleteDatabase,
+} from '@/lib/db/client';
 import { UPLOADS_CAP_BYTES, type AtelierDB } from '@/lib/db/schema';
 import { exportBundleSchema, hasDangerousKeys } from '@/lib/schemas/local';
 import { uid } from '@/lib/utils';
@@ -331,7 +337,9 @@ export class IndexedDbUserStore implements UserStore {
     }
     const parsed = exportBundleSchema.safeParse(raw);
     if (!parsed.success) {
-      const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join('.')}: ${i.message}`);
+      const issues = parsed.error.issues
+        .slice(0, 5)
+        .map((i) => `${i.path.join('.')}: ${i.message}`);
       return { ok: false, counts, errors: ['File does not match the expected format.', ...issues] };
     }
     const b = parsed.data;

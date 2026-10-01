@@ -31,7 +31,11 @@ export function istToUtcStamp(date: string, time: string, addMinutes = 0): strin
 }
 
 function escapeIcs(s: string): string {
-  return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  return s
+    .replace(/\\/g, '\\\\')
+    .replace(/;/g, '\\;')
+    .replace(/,/g, '\\,')
+    .replace(/\r?\n/g, '\\n');
 }
 
 /** RFC 5545 line folding at 75 octets. */

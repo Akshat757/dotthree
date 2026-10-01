@@ -17,7 +17,10 @@ export function isMobileUserAgent(ua?: string): boolean {
  * Builds the wa.me URL. `wa.me` itself redirects to the app on mobile and to
  * web.whatsapp.com on desktop, but we route explicitly so behaviour is testable.
  */
-export function buildWhatsAppUrl(message: string, opts?: { number?: string; forceWeb?: boolean; ua?: string }): string {
+export function buildWhatsAppUrl(
+  message: string,
+  opts?: { number?: string; forceWeb?: boolean; ua?: string },
+): string {
   const number = (opts?.number ?? site.whatsapp).replace(/\D/g, '');
   const text = encodeURIComponent(message.slice(0, MAX_MESSAGE_CHARS));
   const useWeb = opts?.forceWeb ?? !isMobileUserAgent(opts?.ua);
@@ -46,7 +49,10 @@ export function buildTelUrl(): string {
 export const messages = {
   generic: () => `Hi ${site.shortName}, I'd like to talk about interiors for my home in Indore.`,
 
-  project: (p: { title: string; bhk?: string; locality?: string }, mine?: { bhk?: string; locality?: string }) =>
+  project: (
+    p: { title: string; bhk?: string; locality?: string },
+    mine?: { bhk?: string; locality?: string },
+  ) =>
     `Hi, I saw the ${sanitiseForUrl(p.title, 120)} project and I'd like something similar for my ${
       mine?.bhk ?? p.bhk ?? 'home'
     } in ${mine?.locality ?? 'Indore'}.`,
@@ -60,11 +66,14 @@ export const messages = {
   visualiser: (d: { url: string; spec: string }) =>
     `Hi, here's the design I created: ${d.url}\n\n${d.spec}`,
 
-  designer: (name: string) => `Hi, I'd like to book a consultation with ${sanitiseForUrl(name, 80)}.`,
+  designer: (name: string) =>
+    `Hi, I'd like to book a consultation with ${sanitiseForUrl(name, 80)}.`,
 
-  service: (name: string) => `Hi, I'm interested in ${sanitiseForUrl(name, 80)}. Could you share how you'd approach it?`,
+  service: (name: string) =>
+    `Hi, I'm interested in ${sanitiseForUrl(name, 80)}. Could you share how you'd approach it?`,
 
-  locality: (name: string) => `Hi, I'm in ${sanitiseForUrl(name, 80)} and looking for an interior designer. Can we talk?`,
+  locality: (name: string) =>
+    `Hi, I'm in ${sanitiseForUrl(name, 80)} and looking for an interior designer. Can we talk?`,
 
   approvalNotice: (item: string, action: string, ref: string) =>
     `Hi, I've responded to "${sanitiseForUrl(item, 100)}" — ${action}. Project ref: ${ref}. Please take a look.`,

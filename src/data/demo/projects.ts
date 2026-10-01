@@ -1,4 +1,12 @@
-import type { BeforeAfterPair, Bhk, BudgetBand, ImageRef, Project, PropertyType, SurfaceType } from '@/types/content';
+import type {
+  BeforeAfterPair,
+  Bhk,
+  BudgetBand,
+  ImageRef,
+  Project,
+  PropertyType,
+  SurfaceType,
+} from '@/types/content';
 
 import { img } from './images';
 
@@ -48,8 +56,8 @@ export const ROOM_LABELS: Record<string, string> = {
   kitchen: 'Kitchen',
   'master-bedroom': 'Master bedroom',
   bedroom: 'Bedroom',
-  'kids-room': 'Kids\' room',
-  'parents-room': 'Parents\' room',
+  'kids-room': "Kids' room",
+  'parents-room': "Parents' room",
   'guest-room': 'Guest room',
   study: 'Study',
   pooja: 'Pooja room',
@@ -73,7 +81,9 @@ function p(r: Row, orderIndex: number): Project {
     return { ...ref, roomType: r.rooms[i % r.rooms.length], styleBucket: r.styles[0] };
   });
   const befores = r.befores ?? (r.nature === 'RENOVATION' ? [1, 2] : [1]);
-  const modes = r.baModes ?? (r.nature === 'RENOVATION' ? ['before-after', 'before-after'] : ['render-vs-built']);
+  const modes =
+    r.baModes ??
+    (r.nature === 'RENOVATION' ? ['before-after', 'before-after'] : ['render-vs-built']);
   const beforeAfters: BeforeAfterPair[] = befores.map((n, i) => {
     const after = images[n - 1] ?? images[0]!;
     return {
@@ -92,7 +102,9 @@ function p(r: Row, orderIndex: number): Project {
     propertyType: r.type,
     bhk: r.bhk,
     carpetAreaSqft: r.sqft,
-    segment: ['OFFICE', 'CLINIC', 'RETAIL', 'RESTAURANT'].includes(r.type) ? 'COMMERCIAL' : 'RESIDENTIAL',
+    segment: ['OFFICE', 'CLINIC', 'RETAIL', 'RESTAURANT'].includes(r.type)
+      ? 'COMMERCIAL'
+      : 'RESIDENTIAL',
     nature: r.nature,
     styles: r.styles,
     roomTypes: r.rooms,
@@ -130,7 +142,16 @@ const rows: Row[] = [
     sqft: 3200,
     nature: 'RENOVATION',
     styles: ['indo-modern-fusion', 'traditional-indian'],
-    rooms: ['living', 'dining', 'pooja', 'master-bedroom', 'courtyard', 'kitchen', 'foyer', 'study'],
+    rooms: [
+      'living',
+      'dining',
+      'pooja',
+      'master-bedroom',
+      'courtyard',
+      'kitchen',
+      'foyer',
+      'study',
+    ],
     budget: 4_200_000,
     weeks: 22,
     completed: '2025-11-14',
@@ -139,13 +160,31 @@ const rows: Row[] = [
     featured: true,
     gallery: 8,
     befores: [1, 2, 5],
-    brief: 'A 1978 bungalow, three generations under one roof, and a brief that began with a single sentence: "Please do not touch the Kota floor."',
-    challenge: 'The original green Kota stone floor was cracked in places and utterly beloved. The kitchen was a dark 8-ft room at the back; the pooja room sat under the staircase. Wiring dated from the eighties and a joint family of nine needed private and shared space that both felt generous.',
-    solution: 'We lifted, re-honed and re-laid every Kota slab we could save, patching with matched stone from a Kota quarry. The kitchen moved to the sunny South-East courtyard edge as an open pantry-kitchen. The pooja room moved to the North-East with a fluted teak screen. Every room got its own quiet corner; the courtyard became the shared heart with a neem tree and a cane swing.',
+    brief:
+      'A 1978 bungalow, three generations under one roof, and a brief that began with a single sentence: "Please do not touch the Kota floor."',
+    challenge:
+      'The original green Kota stone floor was cracked in places and utterly beloved. The kitchen was a dark 8-ft room at the back; the pooja room sat under the staircase. Wiring dated from the eighties and a joint family of nine needed private and shared space that both felt generous.',
+    solution:
+      'We lifted, re-honed and re-laid every Kota slab we could save, patching with matched stone from a Kota quarry. The kitchen moved to the sunny South-East courtyard edge as an open pantry-kitchen. The pooja room moved to the North-East with a fluted teak screen. Every room got its own quiet corner; the courtyard became the shared heart with a neem tree and a cane swing.',
     note: 'Nine people, two dogs, and not one of them wanted the house to look "new". That was the whole design.',
-    materials: ['vitrified-kota-look', 'veneer-natural-teak', 'paint-ivory-mist', 'paint-malwa-clay', 'metal-brushed-brass', 'marble-makrana-white', 'fabric-linen-oat', 'light-cane-pendant', 'ceramic-athangudi-pattern'],
+    materials: [
+      'vitrified-kota-look',
+      'veneer-natural-teak',
+      'paint-ivory-mist',
+      'paint-malwa-clay',
+      'metal-brushed-brass',
+      'marble-makrana-white',
+      'fabric-linen-oat',
+      'light-cane-pendant',
+      'ceramic-athangudi-pattern',
+    ],
     designers: ['meera-rathore', 'devendra-solanki'],
-    palette: { WALL: 'paint-ivory-mist', ACCENT_WALL: 'paint-malwa-clay', FLOOR: 'vitrified-kota-look', WALL_PANEL: 'veneer-natural-teak' },
+    palette: {
+      WALL: 'paint-ivory-mist',
+      ACCENT_WALL: 'paint-malwa-clay',
+      FLOOR: 'vitrified-kota-look',
+      WALL_PANEL: 'veneer-natural-teak',
+    },
     template: 'living-modern-indian',
   },
   {
@@ -164,13 +203,32 @@ const rows: Row[] = [
     featured: true,
     gallery: 7,
     befores: [1, 4],
-    brief: 'A 1990s apartment above a bakery on the Palasia square, for a couple who collect vintage Bollywood posters and wanted a home that felt like a 1930s Bombay cinema lobby.',
-    challenge: 'Low 9-ft ceilings and a chopped-up plan with a corridor that ate 120 sq ft. Every Art Deco reference risked tipping into pastiche.',
-    solution: 'We removed the corridor wall to make a long living-dining gallery, then used a fluted walnut headboard wall, a stepped plaster ceiling cove with brass profile lighting, and a herringbone walnut floor to build height and rhythm. Bronze mirror in the foyer doubles the perceived width. Colour is restrained to charcoal, ivory and one mustard velvet drape.',
+    brief:
+      'A 1990s apartment above a bakery on the Palasia square, for a couple who collect vintage Bollywood posters and wanted a home that felt like a 1930s Bombay cinema lobby.',
+    challenge:
+      'Low 9-ft ceilings and a chopped-up plan with a corridor that ate 120 sq ft. Every Art Deco reference risked tipping into pastiche.',
+    solution:
+      'We removed the corridor wall to make a long living-dining gallery, then used a fluted walnut headboard wall, a stepped plaster ceiling cove with brass profile lighting, and a herringbone walnut floor to build height and rhythm. Bronze mirror in the foyer doubles the perceived width. Colour is restrained to charcoal, ivory and one mustard velvet drape.',
     note: 'Art Deco is about geometry and materials, not gold paint. We used exactly one brass line per surface.',
-    materials: ['wood-herringbone-walnut', 'veneer-fluted-oak-panel', 'glass-bronze-mirror', 'metal-brushed-brass', 'paint-basalt-grey', 'paint-ivory-mist', 'curtain-velvet-mustard', 'marble-black-marquina', 'light-brass-pendant'],
+    materials: [
+      'wood-herringbone-walnut',
+      'veneer-fluted-oak-panel',
+      'glass-bronze-mirror',
+      'metal-brushed-brass',
+      'paint-basalt-grey',
+      'paint-ivory-mist',
+      'curtain-velvet-mustard',
+      'marble-black-marquina',
+      'light-brass-pendant',
+    ],
     designers: ['meera-rathore'],
-    palette: { WALL: 'paint-ivory-mist', ACCENT_WALL: 'paint-basalt-grey', FLOOR: 'wood-herringbone-walnut', WALL_PANEL: 'veneer-fluted-oak-panel', CURTAIN: 'curtain-velvet-mustard' },
+    palette: {
+      WALL: 'paint-ivory-mist',
+      ACCENT_WALL: 'paint-basalt-grey',
+      FLOOR: 'wood-herringbone-walnut',
+      WALL_PANEL: 'veneer-fluted-oak-panel',
+      CURTAIN: 'curtain-velvet-mustard',
+    },
     template: 'master-bedroom-contemporary',
   },
   {
@@ -190,12 +248,28 @@ const rows: Row[] = [
     vastu: true,
     joint: true,
     gallery: 6,
-    brief: 'A new-build for a family of temple priests in Ujjain: a strict Vastu plan, a central open-to-sky courtyard, and interiors that honour ritual without feeling like a museum.',
-    challenge: 'Vastu placed the kitchen in the South-East and the pooja in the North-East, which fixed most of the plan. Making the remaining rooms flow around a courtyard that floods in monsoon needed careful floor levels.',
-    solution: 'Pink Ambaji marble in the pooja room, Kota-look vitrified flooring stepping up 75 mm from the courtyard, and a lime-plaster finish on every wall for breathability. Antique copper pendants over the dining table pick up the temple-bell vocabulary without copying it.',
-    materials: ['marble-pink-ambaji', 'vitrified-kota-look', 'texture-lime-plaster', 'metal-antique-copper', 'veneer-natural-teak', 'paint-turmeric-light', 'fabric-ikat-indigo', 'light-cane-pendant'],
+    brief:
+      'A new-build for a family of temple priests in Ujjain: a strict Vastu plan, a central open-to-sky courtyard, and interiors that honour ritual without feeling like a museum.',
+    challenge:
+      'Vastu placed the kitchen in the South-East and the pooja in the North-East, which fixed most of the plan. Making the remaining rooms flow around a courtyard that floods in monsoon needed careful floor levels.',
+    solution:
+      'Pink Ambaji marble in the pooja room, Kota-look vitrified flooring stepping up 75 mm from the courtyard, and a lime-plaster finish on every wall for breathability. Antique copper pendants over the dining table pick up the temple-bell vocabulary without copying it.',
+    materials: [
+      'marble-pink-ambaji',
+      'vitrified-kota-look',
+      'texture-lime-plaster',
+      'metal-antique-copper',
+      'veneer-natural-teak',
+      'paint-turmeric-light',
+      'fabric-ikat-indigo',
+      'light-cane-pendant',
+    ],
     designers: ['meera-rathore', 'devendra-solanki'],
-    palette: { WALL: 'texture-lime-plaster', ACCENT_WALL: 'paint-turmeric-light', FLOOR: 'vitrified-kota-look' },
+    palette: {
+      WALL: 'texture-lime-plaster',
+      ACCENT_WALL: 'paint-turmeric-light',
+      FLOOR: 'vitrified-kota-look',
+    },
     template: 'pooja-traditional',
   },
   {
@@ -214,13 +288,31 @@ const rows: Row[] = [
     featured: true,
     gallery: 8,
     baModes: ['render-vs-built'],
-    brief: 'A top-floor duplex with a 900 sq ft terrace for a couple returning from Singapore, who wanted hotel-grade finishes and a staircase worth photographing.',
-    challenge: 'A double-height living volume that could feel cold; a terrace that bakes from 2 pm; and a client who had seen every luxury showroom in Asia.',
-    solution: 'Italian Statuario floors bounded by a smoked-oak library wall to warm the volume, a cantilevered oak-tread stair with a brass balustrade, and a teak-decked terrace under a louvred pergola. Magnetic track lighting throughout means the lighting plan can evolve with the art collection.',
+    brief:
+      'A top-floor duplex with a 900 sq ft terrace for a couple returning from Singapore, who wanted hotel-grade finishes and a staircase worth photographing.',
+    challenge:
+      'A double-height living volume that could feel cold; a terrace that bakes from 2 pm; and a client who had seen every luxury showroom in Asia.',
+    solution:
+      'Italian Statuario floors bounded by a smoked-oak library wall to warm the volume, a cantilevered oak-tread stair with a brass balustrade, and a teak-decked terrace under a louvred pergola. Magnetic track lighting throughout means the lighting plan can evolve with the art collection.',
     note: 'Luxury here meant fewer materials, not more. Four, in total, across the whole ground floor.',
-    materials: ['marble-italian-statuario', 'veneer-smoked-oak', 'wood-teak-solid-deck', 'metal-brushed-brass', 'light-linear-magnetic-track', 'pu-gloss-ivory', 'top-sintered-stone-marble', 'fabric-boucle-cream', 'san-rain-shower-brass', 'paint-satin-luxe-white'],
+    materials: [
+      'marble-italian-statuario',
+      'veneer-smoked-oak',
+      'wood-teak-solid-deck',
+      'metal-brushed-brass',
+      'light-linear-magnetic-track',
+      'pu-gloss-ivory',
+      'top-sintered-stone-marble',
+      'fabric-boucle-cream',
+      'san-rain-shower-brass',
+      'paint-satin-luxe-white',
+    ],
     designers: ['meera-rathore', 'rohan-jaiswal'],
-    palette: { WALL: 'paint-satin-luxe-white', FLOOR: 'marble-italian-statuario', WALL_PANEL: 'veneer-smoked-oak' },
+    palette: {
+      WALL: 'paint-satin-luxe-white',
+      FLOOR: 'marble-italian-statuario',
+      WALL_PANEL: 'veneer-smoked-oak',
+    },
     template: 'living-modern-indian',
   },
   {
@@ -240,13 +332,33 @@ const rows: Row[] = [
     featured: true,
     gallery: 6,
     baModes: ['render-vs-built'],
-    brief: 'A first home for a young couple with a toddler: 860 sq ft, a Standard-tier budget, and a list of needs that read like a 3BHK.',
-    challenge: 'A living room that had to be a lounge, a dining room, a play area and a work-from-home desk. A kitchen exactly 7 ft long. No store room.',
-    solution: 'A wall-to-wall storage spine along the living room hides a fold-down desk, the TV, a crockery unit and toys behind sage-matte shutters. The kitchen went tall — 8-ft uppers with lift-up flaps — and gained a corner carousel. The kids\' room bed has three deep drawers and a loft over the door.',
+    brief:
+      'A first home for a young couple with a toddler: 860 sq ft, a Standard-tier budget, and a list of needs that read like a 3BHK.',
+    challenge:
+      'A living room that had to be a lounge, a dining room, a play area and a work-from-home desk. A kitchen exactly 7 ft long. No store room.',
+    solution:
+      "A wall-to-wall storage spine along the living room hides a fold-down desk, the TV, a crockery unit and toys behind sage-matte shutters. The kitchen went tall — 8-ft uppers with lift-up flaps — and gained a corner carousel. The kids' room bed has three deep drawers and a loft over the door.",
     note: 'Every centimetre was drawn twice. The couple still send us photos when they find a drawer they forgot about.',
-    materials: ['laminate-sage-matte', 'laminate-frosty-white', 'laminate-oak-linear', 'granite-black-galaxy', 'hw-lift-up-flap', 'hw-corner-carousel', 'paint-cotton-white', 'vitrified-ivory-matte', 'fabric-performance-grey', 'curtain-sheer-white'],
+    materials: [
+      'laminate-sage-matte',
+      'laminate-frosty-white',
+      'laminate-oak-linear',
+      'granite-black-galaxy',
+      'hw-lift-up-flap',
+      'hw-corner-carousel',
+      'paint-cotton-white',
+      'vitrified-ivory-matte',
+      'fabric-performance-grey',
+      'curtain-sheer-white',
+    ],
     designers: ['arjun-bhatnagar'],
-    palette: { WALL: 'paint-cotton-white', CABINET_LOWER: 'laminate-sage-matte', CABINET_UPPER: 'laminate-frosty-white', COUNTERTOP: 'granite-black-galaxy', FLOOR: 'vitrified-ivory-matte' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      CABINET_LOWER: 'laminate-sage-matte',
+      CABINET_UPPER: 'laminate-frosty-white',
+      COUNTERTOP: 'granite-black-galaxy',
+      FLOOR: 'vitrified-ivory-matte',
+    },
     template: 'kitchen-modular-l',
   },
   {
@@ -266,12 +378,30 @@ const rows: Row[] = [
     joint: true,
     gallery: 7,
     baModes: ['render-vs-built'],
-    brief: 'Parents, a couple and two school-going children in a new 3BHK — with a pooja space, a quiet parents\' room, and a kids\' room that would survive a decade.',
-    challenge: 'Vastu preferences for the pooja unit, grab-friendly detailing for the parents\' room, and a children\'s room that would work for ages 6 and 16.',
-    solution: 'The pooja unit is a North-East-facing niche in the living room with a fluted panel and warm cove light. The parents\' room has a walnut wardrobe at reachable height, a bedside sconce and an anti-skid wooden-look tile. The kids\' room has a loft bed over a study counter, with wallpaper on one wall that can be swapped in a weekend.',
-    materials: ['laminate-walnut-classic', 'laminate-frosty-white', 'veneer-fluted-oak-panel', 'paint-sand-stone', 'paint-sage-whisper', 'wallpaper-kids-clouds', 'vitrified-wood-plank-oak', 'light-cove-profile-warm', 'granite-kashmir-white', 'hw-soft-close-hinge'],
+    brief:
+      "Parents, a couple and two school-going children in a new 3BHK — with a pooja space, a quiet parents' room, and a kids' room that would survive a decade.",
+    challenge:
+      "Vastu preferences for the pooja unit, grab-friendly detailing for the parents' room, and a children's room that would work for ages 6 and 16.",
+    solution:
+      "The pooja unit is a North-East-facing niche in the living room with a fluted panel and warm cove light. The parents' room has a walnut wardrobe at reachable height, a bedside sconce and an anti-skid wooden-look tile. The kids' room has a loft bed over a study counter, with wallpaper on one wall that can be swapped in a weekend.",
+    materials: [
+      'laminate-walnut-classic',
+      'laminate-frosty-white',
+      'veneer-fluted-oak-panel',
+      'paint-sand-stone',
+      'paint-sage-whisper',
+      'wallpaper-kids-clouds',
+      'vitrified-wood-plank-oak',
+      'light-cove-profile-warm',
+      'granite-kashmir-white',
+      'hw-soft-close-hinge',
+    ],
     designers: ['arjun-bhatnagar', 'priya-menon'],
-    palette: { WALL: 'paint-sand-stone', ACCENT_WALL: 'paint-sage-whisper', WARDROBE: 'laminate-walnut-classic' },
+    palette: {
+      WALL: 'paint-sand-stone',
+      ACCENT_WALL: 'paint-sage-whisper',
+      WARDROBE: 'laminate-walnut-classic',
+    },
     template: 'kids-study-contemporary',
   },
   {
@@ -289,12 +419,30 @@ const rows: Row[] = [
     completed: '2024-12-10',
     gallery: 6,
     baModes: ['render-vs-built'],
-    brief: 'A narrow-fronted row house for two software engineers who both work from home and wanted "a Copenhagen apartment, but for Indore heat".',
-    challenge: 'A 14-ft-wide frontage that made the foyer and staircase dominate; two home offices that could not hear each other; and a Scandinavian palette that risked looking washed-out under strong Indian sun.',
-    solution: 'White-ash veneer and a pale oak SPC floor for the light look, but with sand-linen drapes and a terracotta-matte kitchen lower to keep warmth. The stair got a slatted ash screen that doubles as a bookshelf. Studies are on separate floors with solid-core doors and acoustic panels.',
-    materials: ['veneer-white-ash', 'vinyl-spc-oak-natural', 'laminate-terracotta-matte', 'paint-cotton-white', 'curtain-linen-sand', 'handle-leather-loop', 'quartz-pure-white', 'light-wall-sconce-plaster', 'fabric-linen-oat'],
+    brief:
+      'A narrow-fronted row house for two software engineers who both work from home and wanted "a Copenhagen apartment, but for Indore heat".',
+    challenge:
+      'A 14-ft-wide frontage that made the foyer and staircase dominate; two home offices that could not hear each other; and a Scandinavian palette that risked looking washed-out under strong Indian sun.',
+    solution:
+      'White-ash veneer and a pale oak SPC floor for the light look, but with sand-linen drapes and a terracotta-matte kitchen lower to keep warmth. The stair got a slatted ash screen that doubles as a bookshelf. Studies are on separate floors with solid-core doors and acoustic panels.',
+    materials: [
+      'veneer-white-ash',
+      'vinyl-spc-oak-natural',
+      'laminate-terracotta-matte',
+      'paint-cotton-white',
+      'curtain-linen-sand',
+      'handle-leather-loop',
+      'quartz-pure-white',
+      'light-wall-sconce-plaster',
+      'fabric-linen-oat',
+    ],
     designers: ['arjun-bhatnagar'],
-    palette: { WALL: 'paint-cotton-white', FLOOR: 'vinyl-spc-oak-natural', WALL_PANEL: 'veneer-white-ash', CABINET_LOWER: 'laminate-terracotta-matte' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      FLOOR: 'vinyl-spc-oak-natural',
+      WALL_PANEL: 'veneer-white-ash',
+      CABINET_LOWER: 'laminate-terracotta-matte',
+    },
     template: 'living-modern-indian',
   },
   {
@@ -313,13 +461,32 @@ const rows: Row[] = [
     compact: true,
     gallery: 5,
     baModes: ['essential-vs-premium'],
-    brief: 'An Essential-tier brief for a young teacher\'s first home: a kitchen, two wardrobes, a TV unit, painting, and lights — and it had to feel considered, not cheap.',
-    challenge: 'A hard budget under ₹6.5 lakh with no room for a single upgrade. Every material had to be in stock in Indore.',
-    solution: 'One good idea per room. A frosty-white kitchen with a single sage lower run and a Tan Brown granite top. Oak-linear wardrobes with leather loops instead of metal handles. Ivory Mist walls with one Neem Leaf door. Warm cove lighting in the living room instead of a false ceiling.',
+    brief:
+      "An Essential-tier brief for a young teacher's first home: a kitchen, two wardrobes, a TV unit, painting, and lights — and it had to feel considered, not cheap.",
+    challenge:
+      'A hard budget under ₹6.5 lakh with no room for a single upgrade. Every material had to be in stock in Indore.',
+    solution:
+      'One good idea per room. A frosty-white kitchen with a single sage lower run and a Tan Brown granite top. Oak-linear wardrobes with leather loops instead of metal handles. Ivory Mist walls with one Neem Leaf door. Warm cove lighting in the living room instead of a false ceiling.',
     note: 'This project is why we run the visualiser: the client chose the sage lowers herself, in about four minutes.',
-    materials: ['laminate-frosty-white', 'laminate-sage-matte', 'granite-tan-brown', 'laminate-oak-linear', 'handle-leather-loop', 'paint-ivory-mist', 'paint-neem-leaf', 'light-cove-profile-warm', 'ceramic-subway-white'],
+    materials: [
+      'laminate-frosty-white',
+      'laminate-sage-matte',
+      'granite-tan-brown',
+      'laminate-oak-linear',
+      'handle-leather-loop',
+      'paint-ivory-mist',
+      'paint-neem-leaf',
+      'light-cove-profile-warm',
+      'ceramic-subway-white',
+    ],
     designers: ['arjun-bhatnagar'],
-    palette: { WALL: 'paint-ivory-mist', DOOR: 'paint-neem-leaf', CABINET_LOWER: 'laminate-sage-matte', CABINET_UPPER: 'laminate-frosty-white', COUNTERTOP: 'granite-tan-brown' },
+    palette: {
+      WALL: 'paint-ivory-mist',
+      DOOR: 'paint-neem-leaf',
+      CABINET_LOWER: 'laminate-sage-matte',
+      CABINET_UPPER: 'laminate-frosty-white',
+      COUNTERTOP: 'granite-tan-brown',
+    },
     template: 'kitchen-modular-l',
   },
   {
@@ -338,12 +505,30 @@ const rows: Row[] = [
     featured: true,
     gallery: 7,
     befores: [1, 3],
-    brief: 'A tired 2008 apartment for a ceramicist and an architect who wanted "nothing on the walls except light" and a home for two hundred pots.',
-    challenge: 'Existing beige vitrified flooring across 1,750 sq ft could not be replaced within budget; the plan had a dead 6-ft corridor.',
-    solution: 'We laid engineered oak directly over the old tile in the living areas and left the beige tile in the wet zones, painted out with Lime Plaster walls above. The corridor became a floor-to-ceiling display wall of oak niches for the pots. Bamboo blinds, a low-slung oat linen sofa, and one plaster sconce per wall.',
-    materials: ['wood-engineered-oak', 'texture-lime-plaster', 'veneer-white-ash', 'curtain-bamboo-blind', 'fabric-linen-oat', 'light-wall-sconce-plaster', 'pu-matte-white', 'top-nano-white', 'san-countertop-basin-stone'],
+    brief:
+      'A tired 2008 apartment for a ceramicist and an architect who wanted "nothing on the walls except light" and a home for two hundred pots.',
+    challenge:
+      'Existing beige vitrified flooring across 1,750 sq ft could not be replaced within budget; the plan had a dead 6-ft corridor.',
+    solution:
+      'We laid engineered oak directly over the old tile in the living areas and left the beige tile in the wet zones, painted out with Lime Plaster walls above. The corridor became a floor-to-ceiling display wall of oak niches for the pots. Bamboo blinds, a low-slung oat linen sofa, and one plaster sconce per wall.',
+    materials: [
+      'wood-engineered-oak',
+      'texture-lime-plaster',
+      'veneer-white-ash',
+      'curtain-bamboo-blind',
+      'fabric-linen-oat',
+      'light-wall-sconce-plaster',
+      'pu-matte-white',
+      'top-nano-white',
+      'san-countertop-basin-stone',
+    ],
     designers: ['arjun-bhatnagar'],
-    palette: { WALL: 'texture-lime-plaster', FLOOR: 'wood-engineered-oak', WALL_PANEL: 'veneer-white-ash', CURTAIN: 'curtain-bamboo-blind' },
+    palette: {
+      WALL: 'texture-lime-plaster',
+      FLOOR: 'wood-engineered-oak',
+      WALL_PANEL: 'veneer-white-ash',
+      CURTAIN: 'curtain-bamboo-blind',
+    },
     template: 'master-bedroom-contemporary',
   },
   {
@@ -360,12 +545,29 @@ const rows: Row[] = [
     completed: '2025-05-05',
     gallery: 6,
     baModes: ['render-vs-built'],
-    brief: 'A three-chair dental clinic that should feel like a calm café, not a hospital — while meeting every infection-control and fire requirement.',
-    challenge: 'A hard 8-week deadline before the practice\'s lease started; hygienic, wipeable surfaces everywhere; and a waiting area that reduces anxiety.',
-    solution: 'Seamless welded vinyl floors, PU matte white cabinetry with satin stainless counters in the sterilisation bay, back-painted sage glass in the operatories, and a reception wrapped in fluted oak under a warm cove. Acoustic ceiling baffles keep the drill sound out of the waiting room.',
-    materials: ['vinyl-roll-clinic-blue', 'pu-matte-white', 'metal-stainless-satin', 'glass-back-painted-sage', 'veneer-fluted-oak-panel', 'light-cove-profile-warm', 'paint-cotton-white', 'fabric-performance-grey', 'light-recessed-spot-black'],
+    brief:
+      'A three-chair dental clinic that should feel like a calm café, not a hospital — while meeting every infection-control and fire requirement.',
+    challenge:
+      "A hard 8-week deadline before the practice's lease started; hygienic, wipeable surfaces everywhere; and a waiting area that reduces anxiety.",
+    solution:
+      'Seamless welded vinyl floors, PU matte white cabinetry with satin stainless counters in the sterilisation bay, back-painted sage glass in the operatories, and a reception wrapped in fluted oak under a warm cove. Acoustic ceiling baffles keep the drill sound out of the waiting room.',
+    materials: [
+      'vinyl-roll-clinic-blue',
+      'pu-matte-white',
+      'metal-stainless-satin',
+      'glass-back-painted-sage',
+      'veneer-fluted-oak-panel',
+      'light-cove-profile-warm',
+      'paint-cotton-white',
+      'fabric-performance-grey',
+      'light-recessed-spot-black',
+    ],
     designers: ['sana-qureshi'],
-    palette: { WALL: 'paint-cotton-white', WALL_PANEL: 'veneer-fluted-oak-panel', FLOOR: 'vinyl-roll-clinic-blue' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      WALL_PANEL: 'veneer-fluted-oak-panel',
+      FLOOR: 'vinyl-roll-clinic-blue',
+    },
   },
   {
     slug: 'palasia-specialty-cafe',
@@ -381,12 +583,28 @@ const rows: Row[] = [
     completed: '2024-11-22',
     gallery: 6,
     befores: [1, 2],
-    brief: 'A 900 sq ft former mobile-phone shop turned specialty coffee bar: exposed structure, a long communal table, and an Instagram-proof entrance.',
-    challenge: 'A 7-week turnaround, a low budget, and a landlord who would not allow structural changes.',
-    solution: 'We stripped the ceiling to the slab, applied a concrete-effect texture over the uneven walls, ran matte-black conduit as a design feature, and built a 14-ft oak butcher-block communal table. Fish-scale teal tiles behind the espresso bar give the one saturated moment; cane pendants soften the industrial shell.',
-    materials: ['texture-concrete-effect', 'metal-matte-black', 'top-butcher-block-oak', 'ceramic-moroccan-fish-scale', 'light-cane-pendant', 'fabric-leather-tan', 'vitrified-grey-stone', 'paint-basalt-grey'],
+    brief:
+      'A 900 sq ft former mobile-phone shop turned specialty coffee bar: exposed structure, a long communal table, and an Instagram-proof entrance.',
+    challenge:
+      'A 7-week turnaround, a low budget, and a landlord who would not allow structural changes.',
+    solution:
+      'We stripped the ceiling to the slab, applied a concrete-effect texture over the uneven walls, ran matte-black conduit as a design feature, and built a 14-ft oak butcher-block communal table. Fish-scale teal tiles behind the espresso bar give the one saturated moment; cane pendants soften the industrial shell.',
+    materials: [
+      'texture-concrete-effect',
+      'metal-matte-black',
+      'top-butcher-block-oak',
+      'ceramic-moroccan-fish-scale',
+      'light-cane-pendant',
+      'fabric-leather-tan',
+      'vitrified-grey-stone',
+      'paint-basalt-grey',
+    ],
     designers: ['sana-qureshi'],
-    palette: { WALL: 'texture-concrete-effect', BACKSPLASH: 'ceramic-moroccan-fish-scale', FLOOR: 'vitrified-grey-stone' },
+    palette: {
+      WALL: 'texture-concrete-effect',
+      BACKSPLASH: 'ceramic-moroccan-fish-scale',
+      FLOOR: 'vitrified-grey-stone',
+    },
   },
   {
     slug: 'super-corridor-tech-office',
@@ -403,12 +621,29 @@ const rows: Row[] = [
     featured: true,
     gallery: 7,
     baModes: ['render-vs-built'],
-    brief: 'A 60-seat product office for a fintech startup: focus rooms, a town-hall space, and a pantry that would actually get used.',
-    challenge: 'Open-plan acoustics, west-facing glass along the entire length, and a fixed fit-out budget per seat.',
-    solution: 'SPC grey-stone floors, magnetic track lighting for flexibility, acoustic bamboo blinds against the west glass, and phone booths clad in charcoal woodgrain laminate. The town hall doubles as the pantry with a 20-ft concrete-quartz island.',
-    materials: ['vinyl-spc-grey-stone', 'light-linear-magnetic-track', 'curtain-bamboo-blind', 'laminate-charcoal-woodgrain', 'quartz-concrete-grey', 'metal-matte-black', 'paint-cotton-white', 'paint-monsoon-grey', 'fabric-performance-grey'],
+    brief:
+      'A 60-seat product office for a fintech startup: focus rooms, a town-hall space, and a pantry that would actually get used.',
+    challenge:
+      'Open-plan acoustics, west-facing glass along the entire length, and a fixed fit-out budget per seat.',
+    solution:
+      'SPC grey-stone floors, magnetic track lighting for flexibility, acoustic bamboo blinds against the west glass, and phone booths clad in charcoal woodgrain laminate. The town hall doubles as the pantry with a 20-ft concrete-quartz island.',
+    materials: [
+      'vinyl-spc-grey-stone',
+      'light-linear-magnetic-track',
+      'curtain-bamboo-blind',
+      'laminate-charcoal-woodgrain',
+      'quartz-concrete-grey',
+      'metal-matte-black',
+      'paint-cotton-white',
+      'paint-monsoon-grey',
+      'fabric-performance-grey',
+    ],
     designers: ['sana-qureshi', 'rohan-jaiswal'],
-    palette: { WALL: 'paint-cotton-white', ACCENT_WALL: 'paint-monsoon-grey', FLOOR: 'vinyl-spc-grey-stone' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      ACCENT_WALL: 'paint-monsoon-grey',
+      FLOOR: 'vinyl-spc-grey-stone',
+    },
   },
   {
     slug: 'bypass-road-restaurant',
@@ -424,12 +659,28 @@ const rows: Row[] = [
     completed: '2025-04-19',
     gallery: 6,
     baModes: ['render-vs-built'],
-    brief: 'A 120-cover regional thali restaurant that celebrates Malwa without turning into a theme park.',
-    challenge: 'Heavy footfall, grease and spillage; a kitchen exhaust route that dictated the ceiling; and a client who wanted "authentic" without clichés.',
-    solution: 'Athangudi-pattern tiles at the entrance, rustic sand-textured walls, Tan Brown granite tabletops, teak-veneer partitions and antique copper pendants. Seating is a mix of low baithak platforms with ikat cushions and standard tables.',
-    materials: ['ceramic-athangudi-pattern', 'texture-rustic-sand', 'granite-tan-brown', 'veneer-natural-teak', 'metal-antique-copper', 'fabric-ikat-indigo', 'paint-malwa-clay', 'vitrified-kota-look'],
+    brief:
+      'A 120-cover regional thali restaurant that celebrates Malwa without turning into a theme park.',
+    challenge:
+      'Heavy footfall, grease and spillage; a kitchen exhaust route that dictated the ceiling; and a client who wanted "authentic" without clichés.',
+    solution:
+      'Athangudi-pattern tiles at the entrance, rustic sand-textured walls, Tan Brown granite tabletops, teak-veneer partitions and antique copper pendants. Seating is a mix of low baithak platforms with ikat cushions and standard tables.',
+    materials: [
+      'ceramic-athangudi-pattern',
+      'texture-rustic-sand',
+      'granite-tan-brown',
+      'veneer-natural-teak',
+      'metal-antique-copper',
+      'fabric-ikat-indigo',
+      'paint-malwa-clay',
+      'vitrified-kota-look',
+    ],
     designers: ['sana-qureshi', 'devendra-solanki'],
-    palette: { WALL: 'texture-rustic-sand', ACCENT_WALL: 'paint-malwa-clay', FLOOR: 'vitrified-kota-look' },
+    palette: {
+      WALL: 'texture-rustic-sand',
+      ACCENT_WALL: 'paint-malwa-clay',
+      FLOOR: 'vitrified-kota-look',
+    },
   },
   {
     slug: 'saket-nagar-paediatric-clinic',
@@ -445,12 +696,27 @@ const rows: Row[] = [
     completed: '2025-01-30',
     gallery: 5,
     befores: [1],
-    brief: 'A ground-floor paediatric clinic in a doctor\'s own home, redone so children stop crying at the door.',
-    challenge: 'A very small waiting area, a budget under ₹12 lakh, and surfaces that must be disinfected daily.',
-    solution: 'Cloud-drift wallpaper on a single wall, sage-matte laminate cabinetry with rounded corners, a low ash-veneer play bench, and clinic-grade vinyl flooring in a soft blue. Wall sconces instead of overhead glare.',
-    materials: ['wallpaper-kids-clouds', 'laminate-sage-matte', 'veneer-white-ash', 'vinyl-roll-clinic-blue', 'paint-cotton-white', 'light-wall-sconce-plaster', 'metal-stainless-satin'],
+    brief:
+      "A ground-floor paediatric clinic in a doctor's own home, redone so children stop crying at the door.",
+    challenge:
+      'A very small waiting area, a budget under ₹12 lakh, and surfaces that must be disinfected daily.',
+    solution:
+      'Cloud-drift wallpaper on a single wall, sage-matte laminate cabinetry with rounded corners, a low ash-veneer play bench, and clinic-grade vinyl flooring in a soft blue. Wall sconces instead of overhead glare.',
+    materials: [
+      'wallpaper-kids-clouds',
+      'laminate-sage-matte',
+      'veneer-white-ash',
+      'vinyl-roll-clinic-blue',
+      'paint-cotton-white',
+      'light-wall-sconce-plaster',
+      'metal-stainless-satin',
+    ],
     designers: ['sana-qureshi', 'priya-menon'],
-    palette: { WALL: 'paint-cotton-white', ACCENT_WALL: 'wallpaper-kids-clouds', FLOOR: 'vinyl-roll-clinic-blue' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      ACCENT_WALL: 'wallpaper-kids-clouds',
+      FLOOR: 'vinyl-roll-clinic-blue',
+    },
   },
   {
     slug: 'bicholi-mardana-joint-family-villa',
@@ -461,7 +727,17 @@ const rows: Row[] = [
     sqft: 4200,
     nature: 'NEW',
     styles: ['modern-indian', 'traditional-indian'],
-    rooms: ['courtyard', 'living', 'dining', 'pooja', 'master-bedroom', 'parents-room', 'kids-room', 'kitchen', 'terrace'],
+    rooms: [
+      'courtyard',
+      'living',
+      'dining',
+      'pooja',
+      'master-bedroom',
+      'parents-room',
+      'kids-room',
+      'kitchen',
+      'terrace',
+    ],
     budget: 5_400_000,
     weeks: 24,
     completed: '2025-06-28',
@@ -470,13 +746,32 @@ const rows: Row[] = [
     featured: true,
     gallery: 8,
     baModes: ['render-vs-built'],
-    brief: 'A ground-plus-one villa for eleven people: grandparents, two brothers with their families, and a dog named Bunty. A courtyard was non-negotiable.',
-    challenge: 'Two kitchens or one? Where does everyone eat? How do you give a teenager privacy in a joint family? Plus a strict Vastu plan.',
-    solution: 'One big South-East kitchen with two cooking zones and a 12-seat dining table off the courtyard. Each family got a suite with its own tea corner. The teenager got the terrace room. Terracotta, teak and lime plaster tie every floor together; the courtyard has a tulsi platform in Makrana marble.',
+    brief:
+      'A ground-plus-one villa for eleven people: grandparents, two brothers with their families, and a dog named Bunty. A courtyard was non-negotiable.',
+    challenge:
+      'Two kitchens or one? Where does everyone eat? How do you give a teenager privacy in a joint family? Plus a strict Vastu plan.',
+    solution:
+      'One big South-East kitchen with two cooking zones and a 12-seat dining table off the courtyard. Each family got a suite with its own tea corner. The teenager got the terrace room. Terracotta, teak and lime plaster tie every floor together; the courtyard has a tulsi platform in Makrana marble.',
     note: 'The single best decision was the 12-seat table. Everything else in the house is arranged so people end up there.',
-    materials: ['texture-lime-plaster', 'veneer-natural-teak', 'marble-makrana-white', 'paint-malwa-clay', 'vitrified-large-format-travertine', 'metal-brushed-brass', 'laminate-walnut-classic', 'granite-black-galaxy', 'light-cove-profile-warm', 'curtain-linen-sand'],
+    materials: [
+      'texture-lime-plaster',
+      'veneer-natural-teak',
+      'marble-makrana-white',
+      'paint-malwa-clay',
+      'vitrified-large-format-travertine',
+      'metal-brushed-brass',
+      'laminate-walnut-classic',
+      'granite-black-galaxy',
+      'light-cove-profile-warm',
+      'curtain-linen-sand',
+    ],
     designers: ['devendra-solanki'],
-    palette: { WALL: 'texture-lime-plaster', ACCENT_WALL: 'paint-malwa-clay', FLOOR: 'vitrified-large-format-travertine', WALL_PANEL: 'veneer-natural-teak' },
+    palette: {
+      WALL: 'texture-lime-plaster',
+      ACCENT_WALL: 'paint-malwa-clay',
+      FLOOR: 'vitrified-large-format-travertine',
+      WALL_PANEL: 'veneer-natural-teak',
+    },
     template: 'living-modern-indian',
   },
   {
@@ -494,12 +789,31 @@ const rows: Row[] = [
     completed: '2024-10-05',
     gallery: 7,
     baModes: ['day-vs-night'],
-    brief: 'A gated-community villa with a 1,200 sq ft lawn, for a family who entertain every weekend.',
-    challenge: 'Indoor–outdoor continuity in a climate with 44 °C summers and a monsoon; a kitchen that could feed forty.',
-    solution: 'Botticino beige marble flowing from the living room to the covered verandah, sliding glass walls, a Black Marquina island with a lift-up bar counter, and a master bath in Udaipur green marble with a brass rain shower. Night lighting was designed as its own scheme.',
-    materials: ['marble-beige-botticino', 'marble-black-marquina', 'marble-green-udaipur', 'san-rain-shower-brass', 'pu-matte-charcoal', 'veneer-smoked-oak', 'metal-brushed-brass', 'light-brass-pendant', 'fabric-velvet-forest', 'paint-satin-luxe-white'],
+    brief:
+      'A gated-community villa with a 1,200 sq ft lawn, for a family who entertain every weekend.',
+    challenge:
+      'Indoor–outdoor continuity in a climate with 44 °C summers and a monsoon; a kitchen that could feed forty.',
+    solution:
+      'Botticino beige marble flowing from the living room to the covered verandah, sliding glass walls, a Black Marquina island with a lift-up bar counter, and a master bath in Udaipur green marble with a brass rain shower. Night lighting was designed as its own scheme.',
+    materials: [
+      'marble-beige-botticino',
+      'marble-black-marquina',
+      'marble-green-udaipur',
+      'san-rain-shower-brass',
+      'pu-matte-charcoal',
+      'veneer-smoked-oak',
+      'metal-brushed-brass',
+      'light-brass-pendant',
+      'fabric-velvet-forest',
+      'paint-satin-luxe-white',
+    ],
     designers: ['devendra-solanki', 'rohan-jaiswal'],
-    palette: { WALL: 'paint-satin-luxe-white', FLOOR: 'marble-beige-botticino', COUNTERTOP: 'marble-black-marquina', CABINET_LOWER: 'pu-matte-charcoal' },
+    palette: {
+      WALL: 'paint-satin-luxe-white',
+      FLOOR: 'marble-beige-botticino',
+      COUNTERTOP: 'marble-black-marquina',
+      CABINET_LOWER: 'pu-matte-charcoal',
+    },
     template: 'bathroom-spa',
   },
   {
@@ -517,12 +831,29 @@ const rows: Row[] = [
     completed: '2025-03-08',
     gallery: 6,
     befores: [1, 4],
-    brief: 'A 1990s farmhouse on two acres of neem and mango, used on weekends, refreshed to feel like a holiday every Friday evening.',
-    challenge: 'Materials that survive being shut up for weeks in monsoon humidity; power cuts; and a client allergic to anything "resort-like".',
-    solution: 'Terrazzo-look floors, lime-washed walls, rustic sand texture on the verandah, solid teak decking that just needs oiling, and bamboo blinds everywhere. No MDF anywhere in the house. Cane pendants on a battery-backed lighting circuit.',
-    materials: ['ceramic-terrazzo-look', 'texture-lime-plaster', 'texture-rustic-sand', 'wood-teak-solid-deck', 'curtain-bamboo-blind', 'light-cane-pendant', 'fabric-linen-oat', 'paint-sage-whisper', 'granite-steel-grey'],
+    brief:
+      'A 1990s farmhouse on two acres of neem and mango, used on weekends, refreshed to feel like a holiday every Friday evening.',
+    challenge:
+      'Materials that survive being shut up for weeks in monsoon humidity; power cuts; and a client allergic to anything "resort-like".',
+    solution:
+      'Terrazzo-look floors, lime-washed walls, rustic sand texture on the verandah, solid teak decking that just needs oiling, and bamboo blinds everywhere. No MDF anywhere in the house. Cane pendants on a battery-backed lighting circuit.',
+    materials: [
+      'ceramic-terrazzo-look',
+      'texture-lime-plaster',
+      'texture-rustic-sand',
+      'wood-teak-solid-deck',
+      'curtain-bamboo-blind',
+      'light-cane-pendant',
+      'fabric-linen-oat',
+      'paint-sage-whisper',
+      'granite-steel-grey',
+    ],
     designers: ['devendra-solanki'],
-    palette: { WALL: 'texture-lime-plaster', ACCENT_WALL: 'paint-sage-whisper', FLOOR: 'ceramic-terrazzo-look' },
+    palette: {
+      WALL: 'texture-lime-plaster',
+      ACCENT_WALL: 'paint-sage-whisper',
+      FLOOR: 'ceramic-terrazzo-look',
+    },
   },
   {
     slug: 'annapurna-traditional-home',
@@ -540,12 +871,29 @@ const rows: Row[] = [
     vastu: true,
     gallery: 6,
     befores: [1, 2],
-    brief: 'A retired couple\'s home of thirty years, renovated for their retirement: warm, traditional, easy to maintain, and with a pooja room to be proud of.',
-    challenge: 'Uneven old walls, an under-stair pooja, and a fixed budget that could not afford real teak throughout.',
-    solution: 'Recon wengé and walnut laminate where hands rarely touch, natural teak veneer only on the pooja unit and main door. Ambaji pink marble in the pooja niche with an antique copper bell fixture. Sand Stone walls after a full putty-levelling pass.',
-    materials: ['veneer-natural-teak', 'veneer-recon-wenge', 'laminate-walnut-classic', 'marble-pink-ambaji', 'metal-antique-copper', 'paint-sand-stone', 'paint-turmeric-light', 'vitrified-ivory-matte'],
+    brief:
+      "A retired couple's home of thirty years, renovated for their retirement: warm, traditional, easy to maintain, and with a pooja room to be proud of.",
+    challenge:
+      'Uneven old walls, an under-stair pooja, and a fixed budget that could not afford real teak throughout.',
+    solution:
+      'Recon wengé and walnut laminate where hands rarely touch, natural teak veneer only on the pooja unit and main door. Ambaji pink marble in the pooja niche with an antique copper bell fixture. Sand Stone walls after a full putty-levelling pass.',
+    materials: [
+      'veneer-natural-teak',
+      'veneer-recon-wenge',
+      'laminate-walnut-classic',
+      'marble-pink-ambaji',
+      'metal-antique-copper',
+      'paint-sand-stone',
+      'paint-turmeric-light',
+      'vitrified-ivory-matte',
+    ],
     designers: ['devendra-solanki'],
-    palette: { WALL: 'paint-sand-stone', ACCENT_WALL: 'paint-turmeric-light', WALL_PANEL: 'veneer-natural-teak', FLOOR: 'vitrified-ivory-matte' },
+    palette: {
+      WALL: 'paint-sand-stone',
+      ACCENT_WALL: 'paint-turmeric-light',
+      WALL_PANEL: 'veneer-natural-teak',
+      FLOOR: 'vitrified-ivory-matte',
+    },
     template: 'pooja-traditional',
   },
   {
@@ -564,12 +912,28 @@ const rows: Row[] = [
     compact: true,
     gallery: 6,
     befores: [1, 2],
-    brief: 'A textile designer\'s rental-turned-owned flat: colour, pattern, plants, and a home for two hundred metres of fabric.',
-    challenge: 'A modest budget, existing floors that stayed, and a client who wanted five colours where we would normally use two.',
-    solution: 'We agreed on a rule: one saturated colour per room, everything else earthy neutrals. Indigo block-print wallpaper in the bedroom, Rajwada Rose in the living room, Turmeric Light in the kitchen, cane-print laminate on the wardrobes, and a bamboo-blind balcony full of plants.',
-    materials: ['wallpaper-indigo-block-print', 'paint-rajwada-rose', 'paint-turmeric-light', 'laminate-cane-print', 'curtain-bamboo-blind', 'fabric-ikat-indigo', 'light-cane-pendant', 'handle-leather-loop'],
+    brief:
+      "A textile designer's rental-turned-owned flat: colour, pattern, plants, and a home for two hundred metres of fabric.",
+    challenge:
+      'A modest budget, existing floors that stayed, and a client who wanted five colours where we would normally use two.',
+    solution:
+      'We agreed on a rule: one saturated colour per room, everything else earthy neutrals. Indigo block-print wallpaper in the bedroom, Rajwada Rose in the living room, Turmeric Light in the kitchen, cane-print laminate on the wardrobes, and a bamboo-blind balcony full of plants.',
+    materials: [
+      'wallpaper-indigo-block-print',
+      'paint-rajwada-rose',
+      'paint-turmeric-light',
+      'laminate-cane-print',
+      'curtain-bamboo-blind',
+      'fabric-ikat-indigo',
+      'light-cane-pendant',
+      'handle-leather-loop',
+    ],
     designers: ['priya-menon'],
-    palette: { WALL: 'paint-rajwada-rose', ACCENT_WALL: 'wallpaper-indigo-block-print', WARDROBE: 'laminate-cane-print' },
+    palette: {
+      WALL: 'paint-rajwada-rose',
+      ACCENT_WALL: 'wallpaper-indigo-block-print',
+      WARDROBE: 'laminate-cane-print',
+    },
     template: 'master-bedroom-contemporary',
   },
   {
@@ -587,12 +951,28 @@ const rows: Row[] = [
     completed: '2025-05-24',
     gallery: 5,
     befores: [1, 3],
-    brief: 'Two children\'s rooms — a 7-year-old and a 13-year-old — redone during the summer holidays in five weeks.',
-    challenge: 'Rooms that must grow with the children; a five-week window; and two very different personalities.',
-    solution: 'Modular bed platforms with drawer storage, adjustable-height desks, one wallpaper wall each (clouds for the younger, sage paint for the teenager), grey-oak laminate floors that take a beating, and blackout curtains for exam season.',
-    materials: ['wallpaper-kids-clouds', 'paint-sage-whisper', 'wood-laminate-oak-grey', 'laminate-frosty-white', 'laminate-oak-linear', 'curtain-blackout-charcoal', 'handle-leather-loop', 'light-recessed-spot-black'],
+    brief:
+      "Two children's rooms — a 7-year-old and a 13-year-old — redone during the summer holidays in five weeks.",
+    challenge:
+      'Rooms that must grow with the children; a five-week window; and two very different personalities.',
+    solution:
+      'Modular bed platforms with drawer storage, adjustable-height desks, one wallpaper wall each (clouds for the younger, sage paint for the teenager), grey-oak laminate floors that take a beating, and blackout curtains for exam season.',
+    materials: [
+      'wallpaper-kids-clouds',
+      'paint-sage-whisper',
+      'wood-laminate-oak-grey',
+      'laminate-frosty-white',
+      'laminate-oak-linear',
+      'curtain-blackout-charcoal',
+      'handle-leather-loop',
+      'light-recessed-spot-black',
+    ],
     designers: ['priya-menon'],
-    palette: { WALL: 'paint-sage-whisper', ACCENT_WALL: 'wallpaper-kids-clouds', FLOOR: 'wood-laminate-oak-grey' },
+    palette: {
+      WALL: 'paint-sage-whisper',
+      ACCENT_WALL: 'wallpaper-kids-clouds',
+      FLOOR: 'wood-laminate-oak-grey',
+    },
     template: 'kids-study-contemporary',
   },
   {
@@ -610,12 +990,29 @@ const rows: Row[] = [
     completed: '2024-12-21',
     gallery: 6,
     baModes: ['render-vs-built'],
-    brief: 'A family from Goa relocating to Indore who missed the sea and wanted their new home to feel like their old one.',
+    brief:
+      'A family from Goa relocating to Indore who missed the sea and wanted their new home to feel like their old one.',
     challenge: 'Coastal without kitsch, in a landlocked city with harsh light and no view.',
-    solution: 'White sheers layered with sand linen, Ivory Matte vitrified floors, white-ash veneer and cane-print wardrobes, one Monsoon Grey wall, and a fish-scale teal backsplash as the only nod to water. The balcony became an outdoor room with terrazzo tile and bamboo blinds.',
-    materials: ['curtain-sheer-white', 'curtain-linen-sand', 'vitrified-ivory-matte', 'veneer-white-ash', 'laminate-cane-print', 'paint-monsoon-grey', 'ceramic-moroccan-fish-scale', 'ceramic-terrazzo-look', 'fabric-linen-oat'],
+    solution:
+      'White sheers layered with sand linen, Ivory Matte vitrified floors, white-ash veneer and cane-print wardrobes, one Monsoon Grey wall, and a fish-scale teal backsplash as the only nod to water. The balcony became an outdoor room with terrazzo tile and bamboo blinds.',
+    materials: [
+      'curtain-sheer-white',
+      'curtain-linen-sand',
+      'vitrified-ivory-matte',
+      'veneer-white-ash',
+      'laminate-cane-print',
+      'paint-monsoon-grey',
+      'ceramic-moroccan-fish-scale',
+      'ceramic-terrazzo-look',
+      'fabric-linen-oat',
+    ],
     designers: ['priya-menon', 'arjun-bhatnagar'],
-    palette: { WALL: 'paint-cotton-white', ACCENT_WALL: 'paint-monsoon-grey', FLOOR: 'vitrified-ivory-matte', BACKSPLASH: 'ceramic-moroccan-fish-scale' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      ACCENT_WALL: 'paint-monsoon-grey',
+      FLOOR: 'vitrified-ivory-matte',
+      BACKSPLASH: 'ceramic-moroccan-fish-scale',
+    },
     template: 'living-modern-indian',
   },
   {
@@ -634,11 +1031,19 @@ const rows: Row[] = [
     compact: true,
     gallery: 4,
     befores: [1, 2],
-    brief: 'The smallest project on this site, and one of our favourites: paint, lights and one wallpaper wall, done in three weeks.',
+    brief:
+      'The smallest project on this site, and one of our favourites: paint, lights and one wallpaper wall, done in three weeks.',
     challenge: 'A budget of ₹2.1 lakh. That is the whole challenge.',
-    solution: 'Ivory Mist throughout, a Neem Leaf accent wall behind the sofa, Jaali Geometric wallpaper in the bedroom, warm cove lighting on a simple pelmet, and new matte-black handles on the existing kitchen. Nothing else changed — and the flat looks new.',
+    solution:
+      'Ivory Mist throughout, a Neem Leaf accent wall behind the sofa, Jaali Geometric wallpaper in the bedroom, warm cove lighting on a simple pelmet, and new matte-black handles on the existing kitchen. Nothing else changed — and the flat looks new.',
     note: 'Colour is the cheapest, fastest change you can make. This flat is the proof.',
-    materials: ['paint-ivory-mist', 'paint-neem-leaf', 'wallpaper-jaali-geometric', 'light-cove-profile-warm', 'handle-knurled-knob-steel'],
+    materials: [
+      'paint-ivory-mist',
+      'paint-neem-leaf',
+      'wallpaper-jaali-geometric',
+      'light-cove-profile-warm',
+      'handle-knurled-knob-steel',
+    ],
     designers: ['priya-menon'],
     palette: { WALL: 'paint-ivory-mist', ACCENT_WALL: 'paint-neem-leaf' },
     template: 'living-modern-indian',
@@ -658,13 +1063,31 @@ const rows: Row[] = [
     completed: '2025-09-06',
     gallery: 6,
     befores: [1, 2, 5],
-    brief: 'A 2004 flat renovated while the family lived in it — room by room, over eleven weeks, with the kitchen rebuilt over a single long weekend.',
-    challenge: 'Living through a renovation. Dust, noise, and a working kitchen needed every single day.',
-    solution: 'A phased plan: bedrooms first (family slept in the living room for a week), then living, then a 72-hour kitchen swap with a temporary induction station on the balcony. Slate-grey and frosty-white kitchen, Kashmir White granite, Carrara-look vitrified in the bathrooms, Walnut Classic wardrobes.',
-    note: 'Rohan\'s phasing plan had 41 line items. The family never missed a home-cooked meal.',
-    materials: ['laminate-slate-grey', 'laminate-frosty-white', 'granite-kashmir-white', 'vitrified-carrara-look', 'laminate-walnut-classic', 'paint-ivory-mist', 'san-wall-hung-wc', 'san-matte-black-faucet', 'hw-tandem-drawer'],
+    brief:
+      'A 2004 flat renovated while the family lived in it — room by room, over eleven weeks, with the kitchen rebuilt over a single long weekend.',
+    challenge:
+      'Living through a renovation. Dust, noise, and a working kitchen needed every single day.',
+    solution:
+      'A phased plan: bedrooms first (family slept in the living room for a week), then living, then a 72-hour kitchen swap with a temporary induction station on the balcony. Slate-grey and frosty-white kitchen, Kashmir White granite, Carrara-look vitrified in the bathrooms, Walnut Classic wardrobes.',
+    note: "Rohan's phasing plan had 41 line items. The family never missed a home-cooked meal.",
+    materials: [
+      'laminate-slate-grey',
+      'laminate-frosty-white',
+      'granite-kashmir-white',
+      'vitrified-carrara-look',
+      'laminate-walnut-classic',
+      'paint-ivory-mist',
+      'san-wall-hung-wc',
+      'san-matte-black-faucet',
+      'hw-tandem-drawer',
+    ],
     designers: ['rohan-jaiswal', 'arjun-bhatnagar'],
-    palette: { WALL: 'paint-ivory-mist', CABINET_LOWER: 'laminate-slate-grey', CABINET_UPPER: 'laminate-frosty-white', COUNTERTOP: 'granite-kashmir-white' },
+    palette: {
+      WALL: 'paint-ivory-mist',
+      CABINET_LOWER: 'laminate-slate-grey',
+      CABINET_UPPER: 'laminate-frosty-white',
+      COUNTERTOP: 'granite-kashmir-white',
+    },
     template: 'kitchen-modular-l',
   },
   {
@@ -682,12 +1105,31 @@ const rows: Row[] = [
     completed: '2025-11-29',
     gallery: 7,
     baModes: ['day-vs-night'],
-    brief: 'A 2,400 sq ft west-facing apartment with floor-to-ceiling glass — glorious at sunset, brutal at 3 pm.',
+    brief:
+      'A 2,400 sq ft west-facing apartment with floor-to-ceiling glass — glorious at sunset, brutal at 3 pm.',
     challenge: 'Managing west light and heat without blocking the view that sold the flat.',
-    solution: 'A layered window system: bamboo blinds for heat, white sheers for glare, charcoal blackout in bedrooms. Cool-leaning finishes — Monsoon Grey, travertine large-format tile, smoked-oak veneer — to counter the warm light. Champagne acrylic uppers in the kitchen reflect the evening glow.',
-    materials: ['curtain-bamboo-blind', 'curtain-sheer-white', 'curtain-blackout-charcoal', 'paint-monsoon-grey', 'vitrified-large-format-travertine', 'veneer-smoked-oak', 'acrylic-champagne', 'acrylic-graphite', 'quartz-calacatta-look', 'light-recessed-spot-black'],
+    solution:
+      'A layered window system: bamboo blinds for heat, white sheers for glare, charcoal blackout in bedrooms. Cool-leaning finishes — Monsoon Grey, travertine large-format tile, smoked-oak veneer — to counter the warm light. Champagne acrylic uppers in the kitchen reflect the evening glow.',
+    materials: [
+      'curtain-bamboo-blind',
+      'curtain-sheer-white',
+      'curtain-blackout-charcoal',
+      'paint-monsoon-grey',
+      'vitrified-large-format-travertine',
+      'veneer-smoked-oak',
+      'acrylic-champagne',
+      'acrylic-graphite',
+      'quartz-calacatta-look',
+      'light-recessed-spot-black',
+    ],
     designers: ['rohan-jaiswal', 'meera-rathore'],
-    palette: { WALL: 'paint-cotton-white', ACCENT_WALL: 'paint-monsoon-grey', FLOOR: 'vitrified-large-format-travertine', CABINET_UPPER: 'acrylic-champagne', CABINET_LOWER: 'acrylic-graphite' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      ACCENT_WALL: 'paint-monsoon-grey',
+      FLOOR: 'vitrified-large-format-travertine',
+      CABINET_UPPER: 'acrylic-champagne',
+      CABINET_LOWER: 'acrylic-graphite',
+    },
     template: 'kitchen-modular-l',
   },
   {
@@ -706,12 +1148,29 @@ const rows: Row[] = [
     completed: '2025-02-08',
     gallery: 6,
     befores: [1, 3],
-    brief: 'A manufacturing company\'s guest house for visiting executives: six suites, a boardroom, and a dining room, delivered in ten weeks with GST-compliant costing.',
-    challenge: 'Hotel-grade durability on a corporate budget, plus a hard handover date tied to a factory inauguration.',
-    solution: 'Anti-fingerprint black and frosty-white laminates, Grey Stone vitrified floors, performance-weave upholstery, wall-hung sanitaryware for easy cleaning, and a boardroom in smoked-oak veneer with a magnetic track above the table.',
-    materials: ['laminate-anti-fingerprint-black', 'laminate-frosty-white', 'vitrified-grey-stone', 'fabric-performance-grey', 'san-wall-hung-wc', 'veneer-smoked-oak', 'light-linear-magnetic-track', 'paint-cotton-white', 'curtain-blackout-charcoal'],
+    brief:
+      "A manufacturing company's guest house for visiting executives: six suites, a boardroom, and a dining room, delivered in ten weeks with GST-compliant costing.",
+    challenge:
+      'Hotel-grade durability on a corporate budget, plus a hard handover date tied to a factory inauguration.',
+    solution:
+      'Anti-fingerprint black and frosty-white laminates, Grey Stone vitrified floors, performance-weave upholstery, wall-hung sanitaryware for easy cleaning, and a boardroom in smoked-oak veneer with a magnetic track above the table.',
+    materials: [
+      'laminate-anti-fingerprint-black',
+      'laminate-frosty-white',
+      'vitrified-grey-stone',
+      'fabric-performance-grey',
+      'san-wall-hung-wc',
+      'veneer-smoked-oak',
+      'light-linear-magnetic-track',
+      'paint-cotton-white',
+      'curtain-blackout-charcoal',
+    ],
     designers: ['rohan-jaiswal', 'sana-qureshi'],
-    palette: { WALL: 'paint-cotton-white', FLOOR: 'vitrified-grey-stone', WALL_PANEL: 'veneer-smoked-oak' },
+    palette: {
+      WALL: 'paint-cotton-white',
+      FLOOR: 'vitrified-grey-stone',
+      WALL_PANEL: 'veneer-smoked-oak',
+    },
   },
 ];
 

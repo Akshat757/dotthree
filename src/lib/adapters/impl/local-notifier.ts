@@ -6,15 +6,17 @@ import type { CalendarLinks, Notifier } from '@/lib/adapters/contracts';
 import { buildGoogleCalendarUrl, buildIcs, type CalendarEvent } from '@/lib/ics';
 import type { ConsultationType, Enquiry } from '@/types/local';
 
-export const CONSULTATION_TYPES: Record<ConsultationType, { label: string; minutes: number; where: 'remote' | 'studio' | 'site' }> =
-  {
-    VIDEO: { label: 'Video call', minutes: 45, where: 'remote' },
-    PHONE: { label: 'Phone call', minutes: 20, where: 'remote' },
-    STUDIO_VISIT: { label: 'Studio visit', minutes: 60, where: 'studio' },
-    HOME_VISIT: { label: 'Home visit', minutes: 90, where: 'site' },
-    SITE_MEASUREMENT: { label: 'Site measurement', minutes: 120, where: 'site' },
-    MATERIAL_SELECTION: { label: 'Material selection', minutes: 120, where: 'studio' },
-  };
+export const CONSULTATION_TYPES: Record<
+  ConsultationType,
+  { label: string; minutes: number; where: 'remote' | 'studio' | 'site' }
+> = {
+  VIDEO: { label: 'Video call', minutes: 45, where: 'remote' },
+  PHONE: { label: 'Phone call', minutes: 20, where: 'remote' },
+  STUDIO_VISIT: { label: 'Studio visit', minutes: 60, where: 'studio' },
+  HOME_VISIT: { label: 'Home visit', minutes: 90, where: 'site' },
+  SITE_MEASUREMENT: { label: 'Site measurement', minutes: 120, where: 'site' },
+  MATERIAL_SELECTION: { label: 'Material selection', minutes: 120, where: 'studio' },
+};
 
 export function enquiryToEvent(e: Enquiry): CalendarEvent | null {
   if (!e.preferredSlot) return null;
@@ -52,7 +54,8 @@ export class LocalNotifier implements Notifier {
   async remind(enquiry: Enquiry): Promise<boolean> {
     if (typeof Notification === 'undefined') return false;
     try {
-      const perm = Notification.permission === 'granted' ? 'granted' : await Notification.requestPermission();
+      const perm =
+        Notification.permission === 'granted' ? 'granted' : await Notification.requestPermission();
       if (perm !== 'granted') return false;
       const t = CONSULTATION_TYPES[enquiry.type];
       new Notification(`${t.label} booked — ${enquiry.reference}`, {

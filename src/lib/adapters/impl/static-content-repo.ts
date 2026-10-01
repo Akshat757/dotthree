@@ -1,9 +1,23 @@
 import MiniSearch from 'minisearch';
 
 import * as demo from '@/data/demo';
-import type { Designer, Material, PriceBook, Project, RoomTemplate, Testimonial } from '@/types/content';
+import { JOURNAL_DOCS } from '@/data/journal.generated';
+import type {
+  Designer,
+  Material,
+  PriceBook,
+  Project,
+  RoomTemplate,
+  Testimonial,
+} from '@/types/content';
 
-import type { ContentRepo, MaterialFilter, ProjectFilter, SearchHit, SearchScope } from '../contracts';
+import type {
+  ContentRepo,
+  MaterialFilter,
+  ProjectFilter,
+  SearchHit,
+  SearchScope,
+} from '../contracts';
 
 const AREA_BANDS: [string, number, number][] = [
   ['<800', 0, 800],
@@ -80,10 +94,19 @@ interface Doc {
   image?: string;
 }
 
-/** Journal entries are registered lazily by the MDX loader (build-time). */
-let extraDocs: Doc[] = [];
-export function registerJournalDocs(docs: { slug: string; title: string; excerpt: string; tags: string[]; image?: string }[]) {
-  extraDocs = docs.map((d) => ({
+/** Journal docs ship as a generated static module so the browser-side index can include them. */
+let extraDocs: Doc[] = toJournalDocs(JOURNAL_DOCS);
+export function registerJournalDocs(
+  docs: { slug: string; title: string; excerpt: string; tags: string[]; image?: string }[],
+) {
+  extraDocs = toJournalDocs(docs);
+  index = null;
+}
+
+function toJournalDocs(
+  docs: { slug: string; title: string; excerpt: string; tags: string[]; image?: string }[],
+): Doc[] {
+  return docs.map((d) => ({
     id: `journal:${d.slug}`,
     scope: 'journal',
     slug: d.slug,
@@ -94,7 +117,6 @@ export function registerJournalDocs(docs: { slug: string; title: string; excerpt
     href: `/journal/${d.slug}/`,
     image: d.image,
   }));
-  index = null;
 }
 
 let index: MiniSearch<Doc> | null = null;
@@ -103,41 +125,74 @@ function buildDocs(): Doc[] {
   const docs: Doc[] = [];
   for (const p of demo.projects) {
     docs.push({
-      id: `projects:${p.slug}`, scope: 'projects', slug: p.slug, title: p.title,
+      id: `projects:${p.slug}`,
+      scope: 'projects',
+      slug: p.slug,
+      title: p.title,
       subtitle: [p.locality ?? p.city, p.bhk, p.propertyType].filter(Boolean).join(' · '),
       body: `${p.brief} ${p.challenge} ${p.solution}`,
       tags: [...p.styles, ...p.roomTypes, p.locality ?? '', p.city, p.budgetBand].join(' '),
-      href: `/projects/${p.slug}/`, image: p.heroImage.src,
+      href: `/projects/${p.slug}/`,
+      image: p.heroImage.src,
     });
   }
   for (const m of demo.materials) {
     docs.push({
-      id: `materials:${m.slug}`, scope: 'materials', slug: m.slug, title: m.name,
+      id: `materials:${m.slug}`,
+      scope: 'materials',
+      slug: m.slug,
+      title: m.name,
       subtitle: [m.brand, m.category.replace(/_/g, ' ').toLowerCase()].filter(Boolean).join(' · '),
       body: m.description ?? '',
-      tags: [m.category, m.colorFamily ?? '', m.finish ?? '', m.tonality ?? '', ...m.usageRooms, m.tier].join(' '),
-      href: `/materials/${m.slug}/`, image: m.swatch.src,
+      tags: [
+        m.category,
+        m.colorFamily ?? '',
+        m.finish ?? '',
+        m.tonality ?? '',
+        ...m.usageRooms,
+        m.tier,
+      ].join(' '),
+      href: `/materials/${m.slug}/`,
+      image: m.swatch.src,
     });
   }
   for (const s of demo.services) {
     docs.push({
-      id: `services:${s.slug}`, scope: 'services', slug: s.slug, title: s.name,
-      subtitle: s.tagline, body: `${s.description} ${s.inclusions.join(' ')}`,
-      tags: s.slug.replace(/-/g, ' '), href: `/services/${s.slug}/`, image: s.heroImage.src,
+      id: `services:${s.slug}`,
+      scope: 'services',
+      slug: s.slug,
+      title: s.name,
+      subtitle: s.tagline,
+      body: `${s.description} ${s.inclusions.join(' ')}`,
+      tags: s.slug.replace(/-/g, ' '),
+      href: `/services/${s.slug}/`,
+      image: s.heroImage.src,
     });
   }
   for (const s of demo.styles) {
     docs.push({
-      id: `styles:${s.slug}`, scope: 'styles', slug: s.slug, title: s.name,
-      subtitle: s.tagline, body: `${s.description} ${s.characteristics.join(' ')}`,
-      tags: s.slug.replace(/-/g, ' '), href: `/styles/${s.slug}/`, image: s.heroImage.src,
+      id: `styles:${s.slug}`,
+      scope: 'styles',
+      slug: s.slug,
+      title: s.name,
+      subtitle: s.tagline,
+      body: `${s.description} ${s.characteristics.join(' ')}`,
+      tags: s.slug.replace(/-/g, ' '),
+      href: `/styles/${s.slug}/`,
+      image: s.heroImage.src,
     });
   }
   for (const r of demo.roomGuides) {
     docs.push({
-      id: `rooms:${r.slug}`, scope: 'rooms', slug: r.slug, title: r.name,
-      subtitle: r.tagline, body: `${r.description} ${r.considerations.join(' ')}`,
-      tags: `${r.slug.replace(/-/g, ' ')} ${r.roomType}`, href: `/rooms/${r.slug}/`, image: r.heroImage.src,
+      id: `rooms:${r.slug}`,
+      scope: 'rooms',
+      slug: r.slug,
+      title: r.name,
+      subtitle: r.tagline,
+      body: `${r.description} ${r.considerations.join(' ')}`,
+      tags: `${r.slug.replace(/-/g, ' ')} ${r.roomType}`,
+      href: `/rooms/${r.slug}/`,
+      image: r.heroImage.src,
     });
   }
   return docs.concat(extraDocs);
@@ -196,7 +251,10 @@ export class StaticContentRepo implements ContentRepo {
   async search(query: string, scopes?: SearchScope[]): Promise<SearchHit[]> {
     const q = query.trim();
     if (q.length < 2) return [];
-    const results = getIndex().search(q, scopes ? { filter: (r) => scopes.includes(r['scope'] as SearchScope) } : undefined);
+    const results = getIndex().search(
+      q,
+      scopes ? { filter: (r) => scopes.includes(r['scope'] as SearchScope) } : undefined,
+    );
     return results.slice(0, 40).map((r) => ({
       scope: r['scope'] as SearchScope,
       slug: r['slug'] as string,

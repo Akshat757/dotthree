@@ -159,10 +159,12 @@ export async function copyToClipboard(text: string): Promise<boolean> {
 
 /** Strip control characters and cap length — used before embedding user text in URLs. */
 export function sanitiseForUrl(text: string, max = 600): string {
-  return text
-    // eslint-disable-next-line no-control-regex -- intentionally stripping control chars
-    .replace(/[\u0000-\u001f\u007f]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, max);
+  return (
+    text
+      // eslint-disable-next-line no-control-regex -- intentionally stripping control chars
+      .replace(/[\u0000-\u001f\u007f]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, max)
+  );
 }

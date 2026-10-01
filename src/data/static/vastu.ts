@@ -73,8 +73,13 @@ export const vastuRules: VastuRule[] = [
   {
     id: 'colours',
     topic: 'Directional colours',
-    preferred: ['Light and airy in the North-East', 'Warm accents in the South-East', 'Earthy tones in the South-West', 'Greens in the North'],
-    note: 'Use these as a starting point for accent walls. The visualiser\'s Vastu filter highlights shades that suit the wall you have selected.',
+    preferred: [
+      'Light and airy in the North-East',
+      'Warm accents in the South-East',
+      'Earthy tones in the South-West',
+      'Greens in the North',
+    ],
+    note: "Use these as a starting point for accent walls. The visualiser's Vastu filter highlights shades that suit the wall you have selected.",
     colours: {
       'North-East': 'White, light blue',
       'South-East': 'Red, orange accents',

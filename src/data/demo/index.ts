@@ -4,7 +4,14 @@
  */
 import { priceBooks, CURRENT_PRICEBOOK_VERSION, priceBook202609 } from '@/data/pricebook/2026.09';
 import { shades, SHADE_FAMILIES } from '@/data/shades/shades.generated';
-import { localities, indoreLocalities, nearbyCities, getLocality, localityMultiplier, isServiceablePin } from '@/data/static/localities';
+import {
+  localities,
+  indoreLocalities,
+  nearbyCities,
+  getLocality,
+  localityMultiplier,
+  isServiceablePin,
+} from '@/data/static/localities';
 import { vastuRules, VASTU_DISCLAIMER, VASTU_DIRECTION_FAMILIES } from '@/data/static/vastu';
 
 import { demoClientProject, DEMO_TODAY } from './clientProject';

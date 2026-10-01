@@ -42,7 +42,8 @@ export interface SurfaceAssignment {
 }
 
 export type DaylightPreset = 'morning' | 'midday' | 'afternoon' | 'golden' | 'evening' | 'night';
-export type ArtificialKind = 'warm2700' | 'neutral4000' | 'cool6500' | 'cove' | 'pendant' | 'spot' | 'ambient';
+export type ArtificialKind =
+  'warm2700' | 'neutral4000' | 'cool6500' | 'cove' | 'pendant' | 'spot' | 'ambient';
 export type WindowDirection = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
 
 export interface ArtificialLight {
@@ -92,7 +93,13 @@ export interface Design {
   width: number;
   height: number;
   /** User-authored surfaces for uploads (templates carry their own) */
-  customSurfaces?: { id: string; surfaceType: SurfaceType; label: string; maskRle: string; quad?: [Pt, Pt, Pt, Pt] }[];
+  customSurfaces?: {
+    id: string;
+    surfaceType: SurfaceType;
+    label: string;
+    maskRle: string;
+    quad?: [Pt, Pt, Pt, Pt];
+  }[];
   variantIds: string[];
   activeVariantId: string;
   createdAt: number;
@@ -172,7 +179,13 @@ export interface EstimateInput {
     chimneyHob: boolean;
     tallUnit: boolean;
   };
-  wardrobes: { bedroom: string; runningFeet: number; type: 'OPENABLE' | 'SLIDING'; finish: string; loft: boolean }[];
+  wardrobes: {
+    bedroom: string;
+    runningFeet: number;
+    type: 'OPENABLE' | 'SLIDING';
+    finish: string;
+    loft: boolean;
+  }[];
   extras: {
     falseCeilingSqft: number;
     tvUnit: boolean;
@@ -191,7 +204,12 @@ export interface EstimateInput {
   style?: string;
   vastu: 'STRICT' | 'BASIC' | 'NONE';
   entranceFacing?: WindowDirection;
-  contact?: { name: string; phone: string; email?: string; preferred: 'WHATSAPP' | 'CALL' | 'EMAIL' };
+  contact?: {
+    name: string;
+    phone: string;
+    email?: string;
+    preferred: 'WHATSAPP' | 'CALL' | 'EMAIL';
+  };
   /** Materials chosen in the visualiser, used to pre-fill */
   visualiserMaterialSlugs?: string[];
 }
@@ -245,12 +263,7 @@ export interface SavedEstimate {
 }
 
 export type ConsultationType =
-  | 'VIDEO'
-  | 'PHONE'
-  | 'STUDIO_VISIT'
-  | 'HOME_VISIT'
-  | 'SITE_MEASUREMENT'
-  | 'MATERIAL_SELECTION';
+  'VIDEO' | 'PHONE' | 'STUDIO_VISIT' | 'HOME_VISIT' | 'SITE_MEASUREMENT' | 'MATERIAL_SELECTION';
 
 export interface Enquiry {
   reference: string; // IND-YYMM-####
