@@ -8,7 +8,7 @@
   Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' blob: https://cloudflareinsights.com https://script.google.com https://script.googleusercontent.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://script.google.com; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' blob: https://cloudflareinsights.com https://script.google.com https://script.googleusercontent.com; worker-src 'self' blob:; media-src 'self' blob:; frame-src https://www.openstreetmap.org; object-src 'none'; base-uri 'self'; form-action 'self' https://script.google.com; frame-ancestors 'none'; upgrade-insecure-requests
 
 # Shared designs are private-by-URL — never indexed.
 /d/*
