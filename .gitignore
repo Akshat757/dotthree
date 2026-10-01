@@ -22,6 +22,7 @@ public/og/
 public/textures/
 public/masks/
 public/icons/generated/
+.cache/
 
 # misc
 .DS_Store

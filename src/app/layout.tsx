@@ -23,10 +23,22 @@ export const metadata: Metadata = {
   },
   description: site.tagline,
   applicationName: site.name,
-  openGraph: { type: 'website', siteName: site.name, locale: 'en_IN' },
+  openGraph: {
+    type: 'website',
+    siteName: site.name,
+    locale: 'en_IN',
+    images: [{ url: '/og/default.png', width: 1200, height: 630 }],
+  },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
   manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icons/generated/apple-touch-180.png',
+  },
 };
 
 export const viewport: Viewport = {
