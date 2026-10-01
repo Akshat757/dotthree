@@ -17,7 +17,12 @@ export function shade(hexIn: string, dl: number, dc = 0): string {
 }
 
 export function withAlpha(hexIn: string, a: number): string {
-  const h = hexIn.replace('#', '');
+  let h = hexIn.replace('#', '');
+  if (h.length === 3)
+    h = h
+      .split('')
+      .map((ch) => ch + ch)
+      .join('');
   const r = parseInt(h.slice(0, 2), 16);
   const g = parseInt(h.slice(2, 4), 16);
   const b = parseInt(h.slice(4, 6), 16);
