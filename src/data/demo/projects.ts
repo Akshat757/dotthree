@@ -121,7 +121,7 @@ function p(r: Row, orderIndex: number): Project {
     challenge: r.challenge,
     solution: r.solution,
     designerNote: r.note,
-    heroImage: { ...images[0]!, id: `proj-${r.slug}-hero` },
+    heroImage: images[0]!,
     images,
     beforeAfters,
     materialSlugs: r.materials,

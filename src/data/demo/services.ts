@@ -194,6 +194,10 @@ export const services: Service[] = [
         q: 'Do you do walk-in wardrobes?',
         a: 'Yes, from about 6 × 8 ft upwards. Many of our Scheme 78 and Bypass villa projects include one.',
       },
+      {
+        q: 'What goes inside the wardrobe?',
+        a: 'We plan internals from an inventory of what you own: hanging depth for saris and sherwanis, deep drawers for folded clothes, a lockable drawer, and loft space for quilts and suitcases.',
+      },
     ],
   }),
   svc({
@@ -236,6 +240,14 @@ export const services: Service[] = [
       {
         q: 'Can you design just the TV wall?',
         a: 'Yes. A TV wall with concealed wiring, panelling and lighting is one of our most common single-room commissions.',
+      },
+      {
+        q: 'Do you supply sofas and loose furniture?',
+        a: 'We curate and quote loose furniture from local and national makers; you can buy through us or take the specification and source yourself.',
+      },
+      {
+        q: 'How do you plan seating for festivals and daily use?',
+        a: 'A fixed core — sofa, rug, TV wall — plus movable pieces: ottomans, nested tables and floor cushions that come out for Diwali and go back on Monday.',
       },
     ],
   }),
@@ -280,6 +292,14 @@ export const services: Service[] = [
         q: "Do you design kids' rooms that can grow?",
         a: 'Always. Modular bed platforms, adjustable desks and a single swappable wallpaper wall mean the room works from 6 to 16.',
       },
+      {
+        q: 'Can you make a west-facing bedroom cooler and darker?',
+        a: 'Blackout layering, a lighter wall palette, insulated curtain pelmets and a ceiling fan positioned over the bed make a measurable difference in Indore summers.',
+      },
+      {
+        q: "What do you change for parents' rooms?",
+        a: 'Lower wardrobe hanging, a bedside with reach-from-bed switching, non-slip flooring, night-path lighting and grab-bar provisions in the attached bathroom.',
+      },
     ],
   }),
   svc({
@@ -323,6 +343,14 @@ export const services: Service[] = [
         q: 'Which direction should the pooja room face?',
         a: 'Traditionally the North-East is preferred. We show this as advisory and design around your plan, not the other way round.',
       },
+      {
+        q: 'How do you handle smoke from diyas and incense?',
+        a: 'A small concealed exhaust or a louvred top panel, and a ceiling finish that wipes clean. We never seal a pooja unit fully.',
+      },
+      {
+        q: 'Can a pooja unit fit in a 2BHK with no spare room?',
+        a: 'Yes — a 2 × 2 ft wall niche or a tall unit in the dining area with shutters is our most common compact solution, from about ₹18k.',
+      },
     ],
   }),
   svc({
@@ -364,6 +392,14 @@ export const services: Service[] = [
       {
         q: 'Do I need a false ceiling at all?',
         a: 'Not always. With 9-ft ceilings we often recommend a perimeter pelmet with cove lighting instead of a full drop. It costs a third as much and keeps the height.',
+      },
+      {
+        q: 'Gypsum or POP?',
+        a: 'Gypsum board for speed, flat finish and consistency; POP where you want curves or a very local, hand-finished look. Both are quoted per sq ft in our price book.',
+      },
+      {
+        q: 'Will the ceiling work with my AC and fans?',
+        a: 'We fix fan and AC positions first and design the ceiling around them, including access panels for the AC indoor unit drain.',
       },
     ],
   }),
@@ -411,6 +447,10 @@ export const services: Service[] = [
         q: 'Can you lay new flooring over old tiles?',
         a: 'Often. Engineered wood and SPC can go directly over sound tile, saving demolition cost and a week of dust.',
       },
+      {
+        q: 'Do you need society permission for renovation?',
+        a: 'Most Indore societies require an NOC for civil work and set working hours. We prepare the application; you sign it.',
+      },
     ],
   }),
   svc({
@@ -442,6 +482,14 @@ export const services: Service[] = [
       {
         q: "Will you build another designer's drawings?",
         a: 'Yes, after a buildability review. If we find a problem in the drawings we tell you before we quote.',
+      },
+      {
+        q: 'What is the execution fee charged on?',
+        a: 'On the material and labour value at our published price-book rates. The fee covers site management, quality checks and the workmanship warranty.',
+      },
+      {
+        q: 'Can I supply some materials myself?',
+        a: 'Yes, for tiles, sanitaryware and appliances. Client-supplied items are excluded from our warranty but we still install them.',
       },
     ],
   }),
@@ -485,6 +533,14 @@ export const services: Service[] = [
         q: 'Can I upgrade to full execution later?',
         a: 'Yes. The consultation fee is credited against the design fee if you engage us for execution within six months.',
       },
+      {
+        q: 'Do you work with clients outside Indore?',
+        a: 'Yes — consultation-only packages work well for Ujjain, Dewas, Pithampur and Mhow, with one site visit included.',
+      },
+      {
+        q: 'What will my contractor receive?',
+        a: 'Dimensioned layouts, a material and colour specification with product codes, an electrical point plan and the visualiser scenes as reference images.',
+      },
     ],
   }),
   svc({
@@ -523,6 +579,14 @@ export const services: Service[] = [
       {
         q: "Do you work with our landlord's fit-out rules?",
         a: 'Yes — we review the fit-out manual before design and handle the approvals paperwork.',
+      },
+      {
+        q: 'What does an office cost per seat?',
+        a: 'Roughly ₹85k to ₹1.8 L per seat all-in for a 50-seat office, depending on meeting-room count and finish tier.',
+      },
+      {
+        q: 'Can you work nights and weekends to avoid disruption?',
+        a: 'For occupied offices, yes. Noisy work is scheduled after hours and the site is cleaned before staff arrive.',
       },
     ],
   }),
@@ -567,6 +631,14 @@ export const services: Service[] = [
       {
         q: 'Can you open before Diwali?',
         a: 'If we start by early August, yes. Festival-season openings are the busiest time of our year — book early.',
+      },
+      {
+        q: 'Do you coordinate the commercial kitchen?',
+        a: 'We design the back-of-house layout, ventilation route and utilities with your kitchen consultant or equipment supplier, who supplies the equipment.',
+      },
+      {
+        q: 'What surfaces survive a clinic or café?',
+        a: 'Roll vinyl with welded seams for clinics, through-body porcelain and sealed concrete-effect plaster for cafés, and stainless or compact laminate on service counters.',
       },
     ],
   }),

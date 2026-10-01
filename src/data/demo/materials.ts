@@ -562,6 +562,7 @@ export const materials: Material[] = [
     tex: { set: 'laminate-plain', scaleCm: 100 },
     water: true,
     maint: 'LOW',
+    sub: 'acrylic-pearl-white',
     desc: 'The workhorse white laminate. Suede-matte, fingerprint-resistant, and available everywhere.',
   }),
   m({
@@ -722,7 +723,7 @@ export const materials: Material[] = [
     tex: { set: 'laminate-plain', scaleCm: 100 },
     water: true,
     maint: 'MEDIUM',
-    sub: 'laminate-frosty-white',
+    sub: 'pu-matte-white',
     desc: 'Mirror-gloss acrylic sheet with a pearlescent depth. Bounces light around a small kitchen.',
   }),
   m({
@@ -786,7 +787,6 @@ export const materials: Material[] = [
     tex: { set: 'laminate-plain', scaleCm: 100 },
     water: true,
     maint: 'LOW',
-    sub: 'acrylic-pearl-white',
     desc: 'Sprayed polyurethane in a soft matte white. Seamless edges, no visible joints — the finish luxury kitchens are made of.',
   }),
   m({
@@ -988,7 +988,7 @@ export const materials: Material[] = [
     tone: 'pastel',
     finish: 'polished',
     price: [140, 200, 'sqft'],
-    surfaces: ['FLOOR', 'WALL_PANEL'],
+    surfaces: ['FLOOR', 'WALL_PANEL', 'COUNTERTOP'],
     rooms: ['pooja', 'bedroom', 'foyer'],
     tex: { set: 'marble-pink', scaleCm: 120, normal: true },
     water: true,
