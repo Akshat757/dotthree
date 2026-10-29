@@ -94,7 +94,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-caption text-ink-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {site.legalName}. GSTIN {site.gstin}. Serving{' '}
+            © {year} {site.legalName}.{site.gstin ? ` GSTIN ${site.gstin}.` : ''} Serving{' '}
             {site.serviceAreas.slice(0, 4).join(', ')} and nearby.
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">

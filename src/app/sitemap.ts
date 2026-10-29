@@ -30,6 +30,7 @@ const STATIC: { path: string; priority: number; freq: Entry['changeFrequency'] }
   { path: '/studio/', priority: 0.7, freq: 'monthly' },
   { path: '/studio/careers/', priority: 0.3, freq: 'monthly' },
   { path: '/process/', priority: 0.7, freq: 'yearly' },
+  { path: '/gallery/', priority: 0.7, freq: 'monthly' },
   { path: '/testimonials/', priority: 0.6, freq: 'monthly' },
   { path: '/contact/', priority: 0.8, freq: 'yearly' },
   { path: '/consultation/', priority: 0.8, freq: 'yearly' },

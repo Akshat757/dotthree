@@ -17,11 +17,6 @@ blob-report/
 
 # generated binaries — rebuilt by `npm run assets:all` (SRS §11.3 rule 4).
 # The *.generated.ts manifests are deterministic text and ARE committed.
-public/demo/
-public/og/
-public/textures/
-public/masks/
-public/icons/generated/
 .cache/
 
 # misc

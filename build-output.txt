@@ -1,0 +1,110 @@
+
+> atelier@0.1.0 build
+> npm run content:journal && next build
+
+
+> atelier@0.1.0 content:journal
+> tsx scripts/build-journal-index.ts
+
+✔ 12 journal docs → src/data/journal.generated.ts
+   ▲ Next.js 15.5.27
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 11.8s
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/271) ...
+   Generating static pages (67/271) 
+   Generating static pages (135/271) 
+   Generating static pages (203/271) 
+ ✓ Generating static pages (271/271)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                                        Size  First Load JS
+┌ ○ /                                                           7.57 kB         277 kB
+├ ○ /_not-found                                                   141 B         103 kB
+├ ○ /consultation                                               8.07 kB         325 kB
+├ ○ /contact                                                       3 kB         181 kB
+├ ○ /dashboard                                                  2.72 kB         319 kB
+├ ○ /dev/components                                             8.13 kB         219 kB
+├ ○ /estimate                                                   12.1 kB         329 kB
+├ ○ /gallery                                                    2.95 kB         269 kB
+├ ○ /journal                                                    2.63 kB         214 kB
+├ ● /journal/[slug]                                             2.72 kB         181 kB
+├   ├ /journal/2bhk-interior-cost-indore-2026
+├   ├ /journal/modular-kitchen-materials-explained
+├   ├ /journal/false-ceiling-costs-types-and-when-you-need-one
+├   └ [+9 more paths]
+├ ○ /journal/rss.xml                                              141 B         103 kB
+├ ○ /legal/image-credits                                          241 B         178 kB
+├ ○ /legal/privacy                                                241 B         178 kB
+├ ○ /legal/terms                                                  241 B         178 kB
+├ ○ /locations                                                    241 B         178 kB
+├ ● /locations/[slug]                                             221 B         178 kB
+├   ├ /locations/vijay-nagar
+├   ├ /locations/nipania
+├   ├ /locations/super-corridor
+├   └ [+21 more paths]
+├ ○ /manifest.webmanifest                                         141 B         103 kB
+├ ○ /materials                                                  21.9 kB         339 kB
+├ ● /materials/[slug]                                             221 B         178 kB
+├   ├ /materials/paint-ivory-mist
+├   ├ /materials/paint-monsoon-grey
+├   ├ /materials/paint-sage-whisper
+├   └ [+121 more paths]
+├ ○ /materials/compare                                          4.85 kB         276 kB
+├ ○ /process                                                      241 B         178 kB
+├ ○ /projects                                                   7.28 kB         278 kB
+├ ● /projects/[slug]                                            4.54 kB         270 kB
+├   ├ /projects/scheme-54-heritage-bungalow
+├   ├ /projects/palasia-art-deco-apartment
+├   ├ /projects/ujjain-courtyard-home
+├   └ [+22 more paths]
+├ ○ /quiz                                                       2.11 kB         268 kB
+├ ○ /quiz/result                                                3.35 kB         274 kB
+├ ○ /robots.txt                                                   141 B         103 kB
+├ ○ /rooms                                                        241 B         178 kB
+├ ● /rooms/[slug]                                                 241 B         178 kB
+├   ├ /rooms/living-room
+├   ├ /rooms/dining-room
+├   ├ /rooms/modular-kitchen
+├   └ [+15 more paths]
+├ ○ /search                                                     3.27 kB         320 kB
+├ ○ /services                                                     241 B         178 kB
+├ ● /services/[slug]                                              221 B         178 kB
+├   ├ /services/full-home-interiors
+├   ├ /services/modular-kitchen
+├   ├ /services/wardrobes-storage
+├   └ [+9 more paths]
+├ ○ /sitemap.xml                                                  141 B         103 kB
+├ ○ /studio                                                     2.25 kB         180 kB
+├ ● /studio/[slug]                                                221 B         178 kB
+├   ├ /studio/meera-rathore
+├   ├ /studio/arjun-bhatnagar
+├   ├ /studio/sana-qureshi
+├   └ [+3 more paths]
+├ ○ /studio/careers                                               221 B         178 kB
+├ ○ /styles                                                       241 B         178 kB
+├ ● /styles/[slug]                                                241 B         178 kB
+├   ├ /styles/modern-indian
+├   ├ /styles/contemporary
+├   ├ /styles/minimal
+├   └ [+13 more paths]
+├ ○ /testimonials                                               5.27 kB         276 kB
+├ ○ /visualiser                                                   241 B         178 kB
+└ ○ /visualiser/edit                                            8.62 kB         324 kB
++ First Load JS shared by all                                    103 kB
+  ├ chunks/1255-26360f14c98c734f.js                             46.3 kB
+  ├ chunks/4bd1b696-100b9d70ed4e49c1.js                         54.2 kB
+  └ other shared chunks (total)                                  2.3 kB
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

@@ -185,7 +185,7 @@ export function MaterialsCompare() {
           Not sure which to pick? Send us the shortlist and we&apos;ll advise for your room.
         </p>
         <WhatsAppButton
-          message={`Hi Aangan, I'm comparing ${items.map((m) => m.name).join(', ')} for my home. Which would you recommend?`}
+          message={`Hi Dot 3, I'm comparing ${items.map((m) => m.name).join(', ')} for my home. Which would you recommend?`}
           label="Ask on WhatsApp"
         />
       </div>

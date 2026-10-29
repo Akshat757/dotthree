@@ -98,7 +98,7 @@ function DesktopNav() {
     <nav
       ref={navRef}
       aria-label="Primary"
-      className="relative hidden items-center gap-1 lg:flex"
+      className="relative hidden items-center gap-1 xl:flex"
       onMouseLeave={scheduleClose}
     >
       {primaryNav.map((item, i) => {
@@ -254,7 +254,7 @@ function MobileMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden">
+        <Button variant="ghost" size="icon" className="xl:hidden">
           <Menu aria-hidden />
           <span className="sr-only">Open menu</span>
         </Button>
@@ -356,7 +356,7 @@ export function Header({ variant = 'default' }: { variant?: 'default' | 'transpa
       data-transparent={transparent || undefined}
     >
       <Container className="flex h-16 items-center justify-between gap-4 md:h-[4.5rem]">
-        <Logo className={cn(transparent && '[&_span]:text-canvas [&_span_span]:text-canvas/70')} />
+        <Logo tone={transparent ? 'light' : 'auto'} />
         <DesktopNav />
         <div className="flex items-center gap-1">
           <Tooltip label="Search">

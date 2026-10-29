@@ -161,6 +161,11 @@ export interface LeadSink {
   submit(enquiry: Enquiry): Promise<LeadResult | Partial<LeadResult>>;
 }
 
+/** The composed pipeline the UI calls; always yields a full result. */
+export interface LeadRouter {
+  submit(enquiry: Enquiry): Promise<LeadResult>;
+}
+
 export interface CalendarLinks {
   icsBlob: Blob;
   icsFilename: string;
@@ -201,7 +206,7 @@ export interface BotGuard {
 export interface Adapters {
   content: ContentRepo;
   user: UserStore;
-  leads: LeadSink;
+  leads: LeadRouter;
   notifier: Notifier;
   share: ShareAdapter;
   analytics: Analytics;

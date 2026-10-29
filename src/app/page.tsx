@@ -1,3 +1,4 @@
+import { PORTFOLIO_PHOTOS } from '@/data/client/photos.generated';
 import Link from 'next/link';
 import { ArrowRight, Calculator, Palette, Phone, ShieldCheck } from 'lucide-react';
 
@@ -43,6 +44,14 @@ export const metadata = pageMeta({
 });
 
 const HERO = ['hero-01', 'hero-02', 'hero-03'].map((id) => img(id));
+const SHOWCASE = [
+  'dot3-evara-elevation-dusk',
+  'dot3-courtyard-aerial',
+  'dot3-roof-terrace',
+  'dot3-stair-atrium',
+  'dot3-bathroom-red-arches',
+  'dot3-twin-bedroom-rose',
+].map((id) => PORTFOLIO_PHOTOS.find((p) => p.ref.id === id)!.ref);
 
 const ESTIMATOR_POINTS = [
   'GST shown separately, exclusions listed up front',
@@ -72,13 +81,13 @@ export default function HomePage() {
           size="xl"
           className="flex min-h-[82svh] flex-col justify-end pt-32 pb-16 md:pb-24"
         >
-          <p className="text-canvas/80 overline">Interior design studio · {site.address.city}</p>
+          <p className="text-canvas/80 overline">Design studio · {site.address.city}</p>
           <h1 className="mt-3 max-w-3xl font-display text-display-l text-canvas md:text-display-xl">
             {site.tagline}
           </h1>
           <p className="mt-5 max-w-xl text-body-l text-canvas/85">
-            {site.stats.projectsCompleted}+ homes and workplaces across Indore, delivered on a fixed
-            schedule with a line-item quote. See it on your walls first.
+            From the first sketch to the last fixture, under one roof. Try materials on your walls
+            first, then get a line-item estimate before you call.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
@@ -126,6 +135,46 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      {/* 2b — The studio's own work */}
+      <Section>
+        <Container size="xl">
+          <SectionHeader
+            overline="Our work"
+            title="From the street front to the bathroom tiles"
+            description="Architecture, interiors, landscape and furniture, designed together so the outside and the inside agree."
+            action={
+              <Button asChild variant="link">
+                <Link href="/gallery/">
+                  Full gallery <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
+            }
+          />
+          <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+            {SHOWCASE.map((im, i) => (
+              <li key={im.id} className={i === 0 ? 'col-span-2 row-span-2' : undefined}>
+                <Link
+                  href="/gallery/"
+                  className="group relative block overflow-hidden rounded-md bg-surface-sunk focus-visible:ring-2 focus-visible:ring-focus/40 focus-visible:outline-none"
+                >
+                  <Img
+                    image={im}
+                    aspect={i === 0 ? '16 / 10' : '4 / 3'}
+                    sizes={
+                      i === 0 ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 50vw'
+                    }
+                    imgClassName="size-full object-cover transition-transform duration-slow group-hover:scale-[1.03] motion-reduce:transition-none"
+                  />
+                  <span className="on-photo absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent p-3 text-caption text-canvas">
+                    {im.caption}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
 

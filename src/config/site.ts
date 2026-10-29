@@ -6,12 +6,12 @@
  * phone numbers, wa.me links, or email addresses appear anywhere else.
  */
 export const site = {
-  name: 'Aangan Design Studio',
-  shortName: 'Aangan',
-  tagline: 'Interiors for how Indore actually lives.',
-  legalName: 'Aangan Design Studio LLP',
-  gstin: '23AAAAA0000A1Z5',
-  brandPrefix: 'AG',
+  name: 'Dot 3 Design Studio',
+  shortName: 'Dot 3',
+  tagline: 'Architecture, interiors, landscape and furniture.',
+  legalName: 'Dot 3 Design Studio',
+  gstin: '', // add the real GSTIN here; the footer shows it only when set
+  brandPrefix: 'D3',
   foundedYear: 2014,
   phone: '+91 90000 00000',
   phoneE164: '+919000000000',

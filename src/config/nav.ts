@@ -45,6 +45,7 @@ export const primaryNav: NavItem[] = [
           heading: 'Explore',
           links: [
             { label: 'All projects', href: '/projects' },
+            { label: 'Gallery', href: '/gallery' },
             { label: 'Styles', href: '/styles' },
             { label: 'Room guides', href: '/rooms' },
             { label: 'Testimonials', href: '/testimonials' },
@@ -115,7 +116,6 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = [
       { label: 'Room visualiser', href: '/visualiser' },
       { label: 'Cost estimator', href: '/estimate' },
       { label: 'Style quiz', href: '/quiz' },
-      { label: 'Mood boards', href: '/moodboards' },
       { label: 'My dashboard', href: '/dashboard' },
     ],
   },
@@ -123,6 +123,7 @@ export const footerColumns: { heading: string; links: NavLink[] }[] = [
     heading: 'Explore',
     links: [
       { label: 'Projects', href: '/projects' },
+      { label: 'Gallery', href: '/gallery' },
       { label: 'Services', href: '/services' },
       { label: 'Materials', href: '/materials' },
       { label: 'Styles', href: '/styles' },

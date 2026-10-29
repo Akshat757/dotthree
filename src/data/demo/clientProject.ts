@@ -9,7 +9,7 @@ export const DEMO_TODAY = '2026-10-14';
 const P = 'proj-mahalaxmi-nagar-family-3bhk';
 
 export const demoClientProject: ClientProject = {
-  id: 'AG-2609-0142',
+  id: 'D3-2609-0142',
   name: 'Sharma Residence — 3BHK Full Home',
   clientName: 'Anita & Rohit Sharma',
   locality: 'Mahalaxmi Nagar',

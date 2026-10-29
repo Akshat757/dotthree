@@ -228,6 +228,22 @@
   color-scheme: dark;
 }
 
+/* Text over full-bleed photography (hero): always the light-theme palette, so the dark scrim and light
+   text keep their meaning when the visitor is in dark mode. */
+.on-photo,
+.dark .on-photo {
+  --color-canvas: #fbf9f6;
+  --color-surface: #ffffff;
+  --color-surface-sunk: #f3efe9;
+  --color-ink: #1c1b19;
+  --color-ink-muted: #6b6762;
+  --color-ink-subtle: #9c9791;
+  --color-line: #e5dfd6;
+  --color-sand: #d9cebf;
+  --color-accent-soft: #f5e8e0;
+  color-scheme: light;
+}
+
 /* High-contrast preference (FR-L-01) */
 .high-contrast {
   --color-ink: #000000;
@@ -251,6 +267,142 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Ambient background + scroll-driven motion                          */
+/* ------------------------------------------------------------------ */
+
+/* Slow-drifting soft colour fields behind every page (see components/motion). */
+.ambient {
+  background:
+    radial-gradient(
+      120% 80% at 50% -10%,
+      color-mix(in oklab, var(--color-surface-sunk) 70%, transparent),
+      transparent 60%
+    ),
+    var(--color-canvas);
+}
+.ambient-blob {
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+  animation: ambient-drift 36s ease-in-out infinite alternate;
+}
+.ambient-blob--a {
+  background: radial-gradient(circle at 40% 40%, var(--color-accent-soft) 0%, transparent 65%);
+}
+.ambient-blob--b {
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-sand) 70%, white) 0%,
+    transparent 62%
+  );
+  animation-duration: 48s;
+  animation-delay: -12s;
+}
+.ambient-blob--c {
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-forest) 22%, var(--color-canvas)) 0%,
+    transparent 60%
+  );
+  animation-duration: 42s;
+  animation-delay: -24s;
+  opacity: 0.45;
+}
+.dark .ambient-blob {
+  opacity: 0.35;
+}
+.dark .ambient-blob--b {
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--color-gold) 30%, transparent) 0%,
+    transparent 62%
+  );
+}
+.ambient-grain {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+.dark .ambient-grain {
+  mix-blend-mode: screen;
+  opacity: 0.06;
+}
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6vw, -4vh, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-4vw, 5vh, 0) scale(0.96);
+  }
+}
+
+/* Let the ambient layer show through section backgrounds subtly. */
+.js-motion body {
+  background-color: transparent;
+}
+.js-motion main .bg-canvas {
+  background-color: color-mix(in oklab, var(--color-canvas) 86%, transparent);
+}
+.js-motion main .bg-surface-sunk {
+  background-color: color-mix(in oklab, var(--color-surface-sunk) 92%, transparent);
+}
+
+/*
+ * Automatic scroll reveals: every <section> inside <main> (tagged by the
+ * ScrollReveals observer) rises in with a soft stagger of its direct children.
+ * Only active when JS confirmed motion is allowed (html.js-motion).
+ */
+.js-motion main [data-reveal]:not([data-inview]) > * {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.js-motion main [data-reveal] > * {
+  transition:
+    opacity 0.8s var(--ease-slow, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.9s var(--ease-slow, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.js-motion main [data-reveal][data-inview] > * {
+  opacity: 1;
+  transform: none;
+}
+.js-motion main [data-reveal][data-inview] > :nth-child(2) {
+  transition-delay: 0.08s;
+}
+.js-motion main [data-reveal][data-inview] > :nth-child(3) {
+  transition-delay: 0.16s;
+}
+.js-motion main [data-reveal][data-inview] > :nth-child(n + 4) {
+  transition-delay: 0.24s;
+}
+/* Never hide form controls / live regions behind a reveal. */
+.js-motion main [data-reveal] > :where(form, [aria-live], [role='status'], [role='alert']) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Images inside cards get a gentle lift on hover (interior-portfolio feel). */
+.js-motion main article:has(> picture, > a > picture) {
+  transition:
+    transform 0.6s var(--ease-slow, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.6s var(--ease-slow, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.js-motion main article:has(> picture, > a > picture):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -24px color-mix(in oklab, var(--color-ink) 35%, transparent);
+}
+.js-motion main article picture img {
+  transition: transform 1.2s var(--ease-slow, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.js-motion main article:hover picture img {
+  transform: scale(1.04);
+}
+
+/* ------------------------------------------------------------------ */
 /* Base                                                               */
 /* ------------------------------------------------------------------ */
 @layer base {
@@ -259,6 +411,7 @@
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-block: 6rem; /* keeps focused and anchored content clear of the sticky header and the mobile bottom bar */
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
   }

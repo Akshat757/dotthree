@@ -490,7 +490,7 @@ export interface VastuRule {
 }
 
 export interface Shade {
-  code: string; // AG-1042
+  code: string; // D3-1042
   slug: string;
   name: string;
   hex: string;

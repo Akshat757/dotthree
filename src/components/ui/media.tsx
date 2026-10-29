@@ -166,7 +166,9 @@ export function KenBurnsHero({
   }, [slides.length, intervalMs]);
 
   return (
-    <section className={cn('relative isolate overflow-hidden bg-ink text-canvas', className)}>
+    <section
+      className={cn('on-photo relative isolate overflow-hidden bg-ink text-canvas', className)}
+    >
       <div className="absolute inset-0" aria-hidden>
         {slides.map((s, i) => (
           <div

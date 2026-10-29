@@ -1,4 +1,4 @@
-# atelier — Aangan Design Studio (demo)
+# atelier — Dot 3 Design Studio (demo)
 
 Premium interior-design website and client design platform for an Indore firm. Built to the
 "Zero-Cost Edition" brief (SRS-IDW-002 v2.0): **zero recurring cost, zero client assets required,

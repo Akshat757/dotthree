@@ -61,7 +61,7 @@ describe('image refs', () => {
       expect(i.height, i.id).toBeGreaterThan(0);
       expect(i.blurHash.length, i.id).toBeGreaterThanOrEqual(6);
       expect(i.alt.trim().length, i.id).toBeGreaterThan(3);
-      expect(i.src.startsWith('/demo/'), i.id).toBe(true);
+      expect(i.src.startsWith('/demo/') || i.src.startsWith('/dot3/'), i.id).toBe(true);
     }
   });
 
@@ -116,7 +116,9 @@ describe('projects', () => {
         expect(slugs.templates.has(p.roomTemplateSlug), `${p.slug} template`).toBe(true);
       // Indore projects must sit in a known locality; out-of-town projects (Ujjain, etc.) name a city-level entry.
       if (p.city === 'Indore')
-        expect(slugs.localityNames.has(p.locality ?? ''), `${p.slug} locality ${p.locality}`).toBe(true);
+        expect(slugs.localityNames.has(p.locality ?? ''), `${p.slug} locality ${p.locality}`).toBe(
+          true,
+        );
       else expect(slugs.localityNames.has(p.city), `${p.slug} city ${p.city}`).toBe(true);
       if (p.palette) {
         expect(

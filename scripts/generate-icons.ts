@@ -12,21 +12,28 @@ import { join } from 'node:path';
 
 import sharp from 'sharp';
 
-const ACCENT = '#b5643c';
-const CANVAS = '#fbf9f6';
+const INK = '#111111';
+const CANVAS = '#ffffff';
+
+/** The studio's circle mark (ring, hole, dot) on a 100-unit grid — keep in sync with LogoMark in layout/primitives.tsx. */
+const MARK_PATH = [
+  'M0 50a50 50 0 1 0 100 0a50 50 0 1 0-100 0Z',
+  'M17 66.7a33.2 33.2 0 1 0 66.4 0a33.2 33.2 0 1 0-66.4 0Z',
+  'M17 66.5a16.5 16.5 0 1 0 33 0a16.5 16.5 0 1 0-33 0Z',
+].join('');
 
 /** `pad` = fraction of the canvas kept as safe margin (maskable icons need ≥10%). */
 function monogramSvg(size: number, pad = 0, rounded = true): string {
   const inset = size * pad;
   const inner = size - inset * 2;
   const r = rounded ? inner * 0.19 : 0;
-  const s = inner / 32; // scale from the 32-unit logo grid
-  const tx = (v: number) => (inset + v * s).toFixed(2);
+  const markSize = inner * 0.72;
+  const offset = inset + (inner - markSize) / 2;
+  const s = markSize / 100;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-  ${pad > 0 ? `<rect width="${size}" height="${size}" fill="${ACCENT}"/>` : ''}
-  <rect x="${inset}" y="${inset}" width="${inner}" height="${inner}" rx="${r}" fill="${ACCENT}"/>
-  <path d="M${tx(8)} ${tx(24)} ${tx(16)} ${tx(8)} ${tx(24)} ${tx(24)} M${tx(11.5)} ${tx(18)} H${tx(20.5)}"
-        stroke="${CANVAS}" stroke-width="${(2.2 * s).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  ${pad > 0 ? `<rect width="${size}" height="${size}" fill="${CANVAS}"/>` : ''}
+  <rect x="${inset}" y="${inset}" width="${inner}" height="${inner}" rx="${r}" fill="${CANVAS}"/>
+  <path transform="translate(${offset.toFixed(2)} ${offset.toFixed(2)}) scale(${s.toFixed(4)})" d="${MARK_PATH}" fill="${INK}" fill-rule="evenodd"/>
 </svg>`;
 }
 
@@ -46,7 +53,9 @@ async function main() {
   await png(monogramSvg(32), join(gen, 'favicon-32.png'));
 
   // favicon.ico: browsers accept a PNG byte stream under the .ico name.
-  const fav = await sharp(Buffer.from(monogramSvg(32))).png().toBuffer();
+  const fav = await sharp(Buffer.from(monogramSvg(32)))
+    .png()
+    .toBuffer();
   writeFileSync(join(root, 'public', 'favicon.ico'), fav);
   writeFileSync(join(root, 'public', 'icon.svg'), monogramSvg(32));
 

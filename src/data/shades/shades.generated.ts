@@ -46,7 +46,7 @@ export const SHADE_FAMILIES = [
 
 export const shades: Shade[] = [
   {
-    code: 'AG-1001',
+    code: 'D3-1001',
     slug: 'ivory-light',
     name: 'Ivory Light',
     hex: '#FFFAEA',
@@ -58,7 +58,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1002',
+    code: 'D3-1002',
     slug: 'ivory-whisper',
     name: 'Ivory Whisper',
     hex: '#FFFAF0',
@@ -70,7 +70,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1003',
+    code: 'D3-1003',
     slug: 'milk-morning',
     name: 'Milk Morning',
     hex: '#FFF7E8',
@@ -82,7 +82,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1004',
+    code: 'D3-1004',
     slug: 'kaolin-drift',
     name: 'Kaolin Drift',
     hex: '#FFF6E8',
@@ -94,7 +94,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1005',
+    code: 'D3-1005',
     slug: 'bone-whisper',
     name: 'Bone Whisper',
     hex: '#FFFAEC',
@@ -106,7 +106,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1006',
+    code: 'D3-1006',
     slug: 'cotton-whisper',
     name: 'Cotton Whisper',
     hex: '#FDF7EC',
@@ -118,7 +118,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1007',
+    code: 'D3-1007',
     slug: 'pearl-veil',
     name: 'Pearl Veil',
     hex: '#FDF9ED',
@@ -130,7 +130,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1008',
+    code: 'D3-1008',
     slug: 'muslin-drift',
     name: 'Muslin Drift',
     hex: '#FCF0E7',
@@ -142,7 +142,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1009',
+    code: 'D3-1009',
     slug: 'pearl-air',
     name: 'Pearl Air',
     hex: '#F8F3E9',
@@ -154,7 +154,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1010',
+    code: 'D3-1010',
     slug: 'jasmine-dawn',
     name: 'Jasmine Dawn',
     hex: '#FAF0E3',
@@ -166,7 +166,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1011',
+    code: 'D3-1011',
     slug: 'bone-air',
     name: 'Bone Air',
     hex: '#FCF2E2',
@@ -178,7 +178,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1012',
+    code: 'D3-1012',
     slug: 'jasmine-air',
     name: 'Jasmine Air',
     hex: '#F6EFE4',
@@ -190,7 +190,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1013',
+    code: 'D3-1013',
     slug: 'salt-veil',
     name: 'Salt Veil',
     hex: '#FAF2EC',
@@ -202,7 +202,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1014',
+    code: 'D3-1014',
     slug: 'cotton-morning',
     name: 'Cotton Morning',
     hex: '#F9F0E5',
@@ -214,7 +214,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1015',
+    code: 'D3-1015',
     slug: 'muslin-whisper',
     name: 'Muslin Whisper',
     hex: '#F7F4E7',
@@ -226,7 +226,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1016',
+    code: 'D3-1016',
     slug: 'muslin-dawn',
     name: 'Muslin Dawn',
     hex: '#F6EDE2',
@@ -238,7 +238,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1017',
+    code: 'D3-1017',
     slug: 'salt-air',
     name: 'Salt Air',
     hex: '#F2EDDF',
@@ -250,7 +250,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1018',
+    code: 'D3-1018',
     slug: 'rice-mist',
     name: 'Rice Mist',
     hex: '#F7EFE9',
@@ -262,7 +262,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1019',
+    code: 'D3-1019',
     slug: 'milk-light',
     name: 'Milk Light',
     hex: '#F5EDE4',
@@ -274,7 +274,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1020',
+    code: 'D3-1020',
     slug: 'coconut-hush',
     name: 'Coconut Hush',
     hex: '#F5EBDD',
@@ -286,7 +286,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1021',
+    code: 'D3-1021',
     slug: 'kaolin-hush',
     name: 'Kaolin Hush',
     hex: '#F2ECDF',
@@ -298,7 +298,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1022',
+    code: 'D3-1022',
     slug: 'coconut-dawn',
     name: 'Coconut Dawn',
     hex: '#F5EEDF',
@@ -310,7 +310,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1023',
+    code: 'D3-1023',
     slug: 'salt-whisper',
     name: 'Salt Whisper',
     hex: '#F3EFE2',
@@ -322,7 +322,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1024',
+    code: 'D3-1024',
     slug: 'muslin-glow',
     name: 'Muslin Glow',
     hex: '#F2EDE4',
@@ -334,7 +334,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1025',
+    code: 'D3-1025',
     slug: 'rice-air',
     name: 'Rice Air',
     hex: '#F4ECDF',
@@ -346,7 +346,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1026',
+    code: 'D3-1026',
     slug: 'jasmine-whisper',
     name: 'Jasmine Whisper',
     hex: '#F5E7D9',
@@ -358,7 +358,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1027',
+    code: 'D3-1027',
     slug: 'jasmine-veil',
     name: 'Jasmine Veil',
     hex: '#F2E9DC',
@@ -370,7 +370,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1028',
+    code: 'D3-1028',
     slug: 'paper-dawn',
     name: 'Paper Dawn',
     hex: '#F0EADC',
@@ -382,7 +382,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1029',
+    code: 'D3-1029',
     slug: 'bone-mist',
     name: 'Bone Mist',
     hex: '#EFE7E0',
@@ -394,7 +394,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1030',
+    code: 'D3-1030',
     slug: 'milk-dawn',
     name: 'Milk Dawn',
     hex: '#EFE3D5',
@@ -406,7 +406,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1031',
+    code: 'D3-1031',
     slug: 'sesame-clay',
     name: 'Sesame Clay',
     hex: '#FAE0C9',
@@ -418,7 +418,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1032',
+    code: 'D3-1032',
     slug: 'malwa-path',
     name: 'Malwa Path',
     hex: '#F8DBB7',
@@ -430,7 +430,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1033',
+    code: 'D3-1033',
     slug: 'halwa-field',
     name: 'Halwa Field',
     hex: '#FDDCC2',
@@ -442,7 +442,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1034',
+    code: 'D3-1034',
     slug: 'halwa-weave',
     name: 'Halwa Weave',
     hex: '#EFD8C5',
@@ -454,7 +454,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1035',
+    code: 'D3-1035',
     slug: 'oat-weave',
     name: 'Oat Weave',
     hex: '#F7D6BE',
@@ -466,7 +466,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1036',
+    code: 'D3-1036',
     slug: 'cashew-weave',
     name: 'Cashew Weave',
     hex: '#F2D9B9',
@@ -478,7 +478,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1037',
+    code: 'D3-1037',
     slug: 'camel-shade',
     name: 'Camel Shade',
     hex: '#F7D6B2',
@@ -490,7 +490,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1038',
+    code: 'D3-1038',
     slug: 'jute-clay',
     name: 'Jute Clay',
     hex: '#EAD3C1',
@@ -502,7 +502,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1039',
+    code: 'D3-1039',
     slug: 'almond-stone',
     name: 'Almond Stone',
     hex: '#EBCFAF',
@@ -514,7 +514,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1040',
+    code: 'D3-1040',
     slug: 'wheat-shade',
     name: 'Wheat Shade',
     hex: '#ECD0BB',
@@ -526,7 +526,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1041',
+    code: 'D3-1041',
     slug: 'sand-field',
     name: 'Sand Field',
     hex: '#E3CFB0',
@@ -538,7 +538,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1042',
+    code: 'D3-1042',
     slug: 'almond-hearth',
     name: 'Almond Hearth',
     hex: '#E9C9AC',
@@ -550,7 +550,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1043',
+    code: 'D3-1043',
     slug: 'biscuit-hearth',
     name: 'Biscuit Hearth',
     hex: '#E0C8B2',
@@ -562,7 +562,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1044',
+    code: 'D3-1044',
     slug: 'camel-hearth',
     name: 'Camel Hearth',
     hex: '#E1C9B6',
@@ -574,7 +574,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1045',
+    code: 'D3-1045',
     slug: 'camel-loam',
     name: 'Camel Loam',
     hex: '#DEC9B4',
@@ -586,7 +586,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1046',
+    code: 'D3-1046',
     slug: 'khadi-warmth',
     name: 'Khadi Warmth',
     hex: '#D8C0B0',
@@ -598,7 +598,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1047',
+    code: 'D3-1047',
     slug: 'oat-dust',
     name: 'Oat Dust',
     hex: '#DDC4B0',
@@ -610,7 +610,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1048',
+    code: 'D3-1048',
     slug: 'chikki-hearth',
     name: 'Chikki Hearth',
     hex: '#D2C0A3',
@@ -622,7 +622,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1049',
+    code: 'D3-1049',
     slug: 'sesame-stone',
     name: 'Sesame Stone',
     hex: '#D8C39E',
@@ -634,7 +634,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1050',
+    code: 'D3-1050',
     slug: 'dune-stone',
     name: 'Dune Stone',
     hex: '#CFBF9E',
@@ -646,7 +646,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1051',
+    code: 'D3-1051',
     slug: 'barley-shade',
     name: 'Barley Shade',
     hex: '#D6B89D',
@@ -658,7 +658,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1052',
+    code: 'D3-1052',
     slug: 'wheat-weave',
     name: 'Wheat Weave',
     hex: '#CABCA5',
@@ -670,7 +670,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1053',
+    code: 'D3-1053',
     slug: 'khadi-hearth',
     name: 'Khadi Hearth',
     hex: '#CEB59A',
@@ -682,7 +682,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1054',
+    code: 'D3-1054',
     slug: 'khadi-path',
     name: 'Khadi Path',
     hex: '#CFB491',
@@ -694,7 +694,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1055',
+    code: 'D3-1055',
     slug: 'toast-shade',
     name: 'Toast Shade',
     hex: '#D8B399',
@@ -706,7 +706,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1056',
+    code: 'D3-1056',
     slug: 'toast-clay',
     name: 'Toast Clay',
     hex: '#D0AD93',
@@ -718,7 +718,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1057',
+    code: 'D3-1057',
     slug: 'toast-weave',
     name: 'Toast Weave',
     hex: '#CCB392',
@@ -730,7 +730,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1058',
+    code: 'D3-1058',
     slug: 'wheat-warmth',
     name: 'Wheat Warmth',
     hex: '#C6AD8F',
@@ -742,7 +742,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1059',
+    code: 'D3-1059',
     slug: 'biscuit-dust',
     name: 'Biscuit Dust',
     hex: '#C0AB90',
@@ -754,7 +754,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1060',
+    code: 'D3-1060',
     slug: 'almond-weave',
     name: 'Almond Weave',
     hex: '#CAAC8D',
@@ -766,7 +766,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1061',
+    code: 'D3-1061',
     slug: 'barley-dust',
     name: 'Barley Dust',
     hex: '#BFAA99',
@@ -778,7 +778,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1062',
+    code: 'D3-1062',
     slug: 'barley-stone',
     name: 'Barley Stone',
     hex: '#C0AA88',
@@ -790,7 +790,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1063',
+    code: 'D3-1063',
     slug: 'chikki-weave',
     name: 'Chikki Weave',
     hex: '#BFA28E',
@@ -802,7 +802,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1064',
+    code: 'D3-1064',
     slug: 'dune-dust',
     name: 'Dune Dust',
     hex: '#BCA18D',
@@ -814,7 +814,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1065',
+    code: 'D3-1065',
     slug: 'almond-dust',
     name: 'Almond Dust',
     hex: '#B9A692',
@@ -826,7 +826,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1066',
+    code: 'D3-1066',
     slug: 'chikki-shade',
     name: 'Chikki Shade',
     hex: '#C19F86',
@@ -838,7 +838,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1067',
+    code: 'D3-1067',
     slug: 'frost-haze',
     name: 'Frost Haze',
     hex: '#D5E7EE',
@@ -850,7 +850,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1068',
+    code: 'D3-1068',
     slug: 'slate-veil',
     name: 'Slate Veil',
     hex: '#D4EAF7',
@@ -862,7 +862,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1069',
+    code: 'D3-1069',
     slug: 'frost-stone',
     name: 'Frost Stone',
     hex: '#D3DDF1',
@@ -874,7 +874,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1070',
+    code: 'D3-1070',
     slug: 'quarry-calm',
     name: 'Quarry Calm',
     hex: '#C9E0E9',
@@ -886,7 +886,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1071',
+    code: 'D3-1071',
     slug: 'pebble-shadow',
     name: 'Pebble Shadow',
     hex: '#D0DDE8',
@@ -898,7 +898,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1072',
+    code: 'D3-1072',
     slug: 'ash-veil',
     name: 'Ash Veil',
     hex: '#CDDBE8',
@@ -910,7 +910,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1073',
+    code: 'D3-1073',
     slug: 'frost-wash',
     name: 'Frost Wash',
     hex: '#C6D8E6',
@@ -922,7 +922,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1074',
+    code: 'D3-1074',
     slug: 'river-hush',
     name: 'River Hush',
     hex: '#CAD0D9',
@@ -934,7 +934,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1075',
+    code: 'D3-1075',
     slug: 'quarry-haze',
     name: 'Quarry Haze',
     hex: '#C5CFE1',
@@ -946,7 +946,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1076',
+    code: 'D3-1076',
     slug: 'pebble-wash',
     name: 'Pebble Wash',
     hex: '#BDCEDD',
@@ -958,7 +958,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1077',
+    code: 'D3-1077',
     slug: 'steel-wash',
     name: 'Steel Wash',
     hex: '#C0C7D0',
@@ -970,7 +970,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1078',
+    code: 'D3-1078',
     slug: 'ash-wash',
     name: 'Ash Wash',
     hex: '#BCC2CF',
@@ -982,7 +982,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1079',
+    code: 'D3-1079',
     slug: 'dove-veil',
     name: 'Dove Veil',
     hex: '#B7C0CC',
@@ -994,7 +994,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1080',
+    code: 'D3-1080',
     slug: 'slate-grey',
     name: 'Slate Grey',
     hex: '#ACC2CD',
@@ -1006,7 +1006,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1081',
+    code: 'D3-1081',
     slug: 'fog-wash',
     name: 'Fog Wash',
     hex: '#B1BBC6',
@@ -1018,7 +1018,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1082',
+    code: 'D3-1082',
     slug: 'monsoon-calm',
     name: 'Monsoon Calm',
     hex: '#A6BDC8',
@@ -1030,7 +1030,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1083',
+    code: 'D3-1083',
     slug: 'river-veil',
     name: 'River Veil',
     hex: '#ADB9C6',
@@ -1042,7 +1042,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1084',
+    code: 'D3-1084',
     slug: 'pebble-haze',
     name: 'Pebble Haze',
     hex: '#ABB2C0',
@@ -1054,7 +1054,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1085',
+    code: 'D3-1085',
     slug: 'fog-veil',
     name: 'Fog Veil',
     hex: '#A1B0B7',
@@ -1066,7 +1066,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1086',
+    code: 'D3-1086',
     slug: 'slate-shadow',
     name: 'Slate Shadow',
     hex: '#A2B0BF',
@@ -1078,7 +1078,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1087',
+    code: 'D3-1087',
     slug: 'ash-haze',
     name: 'Ash Haze',
     hex: '#A1ABBC',
@@ -1090,7 +1090,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1088',
+    code: 'D3-1088',
     slug: 'steel-veil',
     name: 'Steel Veil',
     hex: '#9BAAB8',
@@ -1102,7 +1102,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1089',
+    code: 'D3-1089',
     slug: 'monsoon-stone',
     name: 'Monsoon Stone',
     hex: '#99A6AF',
@@ -1114,7 +1114,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1090',
+    code: 'D3-1090',
     slug: 'monsoon-wash',
     name: 'Monsoon Wash',
     hex: '#979EAF',
@@ -1126,7 +1126,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1091',
+    code: 'D3-1091',
     slug: 'iron-edge',
     name: 'Iron Edge',
     hex: '#B8ABA6',
@@ -1138,7 +1138,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1092',
+    code: 'D3-1092',
     slug: 'charcoal-night',
     name: 'Charcoal Night',
     hex: '#A9A499',
@@ -1150,7 +1150,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1093',
+    code: 'D3-1093',
     slug: 'mica-night',
     name: 'Mica Night',
     hex: '#AAA29D',
@@ -1162,7 +1162,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1094',
+    code: 'D3-1094',
     slug: 'storm-dusk',
     name: 'Storm Dusk',
     hex: '#A29D95',
@@ -1174,7 +1174,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1095',
+    code: 'D3-1095',
     slug: 'mica-shade',
     name: 'Mica Shade',
     hex: '#9D938D',
@@ -1186,7 +1186,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1096',
+    code: 'D3-1096',
     slug: 'flint-shade',
     name: 'Flint Shade',
     hex: '#968F8A',
@@ -1198,7 +1198,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1097',
+    code: 'D3-1097',
     slug: 'mica-depth',
     name: 'Mica Depth',
     hex: '#958D82',
@@ -1210,7 +1210,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1098',
+    code: 'D3-1098',
     slug: 'storm-grey',
     name: 'Storm Grey',
     hex: '#90847D',
@@ -1222,7 +1222,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1099',
+    code: 'D3-1099',
     slug: 'storm-night',
     name: 'Storm Night',
     hex: '#848077',
@@ -1234,7 +1234,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1100',
+    code: 'D3-1100',
     slug: 'smoke-grey',
     name: 'Smoke Grey',
     hex: '#877F74',
@@ -1246,7 +1246,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1101',
+    code: 'D3-1101',
     slug: 'graphite-grey',
     name: 'Graphite Grey',
     hex: '#837671',
@@ -1258,7 +1258,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1102',
+    code: 'D3-1102',
     slug: 'graphite-dusk',
     name: 'Graphite Dusk',
     hex: '#7A7068',
@@ -1270,7 +1270,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1103',
+    code: 'D3-1103',
     slug: 'iron-grey',
     name: 'Iron Grey',
     hex: '#7A6F67',
@@ -1282,7 +1282,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1104',
+    code: 'D3-1104',
     slug: 'basalt-edge',
     name: 'Basalt Edge',
     hex: '#716B65',
@@ -1294,7 +1294,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1105',
+    code: 'D3-1105',
     slug: 'smoke-dusk',
     name: 'Smoke Dusk',
     hex: '#70645F',
@@ -1306,7 +1306,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1106',
+    code: 'D3-1106',
     slug: 'charcoal-edge',
     name: 'Charcoal Edge',
     hex: '#68615D',
@@ -1318,7 +1318,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1107',
+    code: 'D3-1107',
     slug: 'flint-edge',
     name: 'Flint Edge',
     hex: '#675C58',
@@ -1330,7 +1330,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1108',
+    code: 'D3-1108',
     slug: 'flint-depth',
     name: 'Flint Depth',
     hex: '#5C574B',
@@ -1342,7 +1342,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1109',
+    code: 'D3-1109',
     slug: 'neem-deep',
     name: 'Neem Deep',
     hex: '#D1E4B3',
@@ -1354,7 +1354,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1110',
+    code: 'D3-1110',
     slug: 'moss-calm',
     name: 'Moss Calm',
     hex: '#B7E1B9',
@@ -1366,7 +1366,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1111',
+    code: 'D3-1111',
     slug: 'sage-whisper',
     name: 'Sage Whisper',
     hex: '#C7D8A6',
@@ -1378,7 +1378,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1112',
+    code: 'D3-1112',
     slug: 'pista-field',
     name: 'Pista Field',
     hex: '#AEDEA6',
@@ -1390,7 +1390,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1113',
+    code: 'D3-1113',
     slug: 'olive-field',
     name: 'Olive Field',
     hex: '#A3D698',
@@ -1402,7 +1402,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1114',
+    code: 'D3-1114',
     slug: 'moss-hollow',
     name: 'Moss Hollow',
     hex: '#A6D3AA',
@@ -1414,7 +1414,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1115',
+    code: 'D3-1115',
     slug: 'cardamom-leaf',
     name: 'Cardamom Leaf',
     hex: '#B4C396',
@@ -1426,7 +1426,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1116',
+    code: 'D3-1116',
     slug: 'lichen-leaf',
     name: 'Lichen Leaf',
     hex: '#7DCEAC',
@@ -1438,7 +1438,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1117',
+    code: 'D3-1117',
     slug: 'bamboo-calm',
     name: 'Bamboo Calm',
     hex: '#9EC279',
@@ -1450,7 +1450,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1118',
+    code: 'D3-1118',
     slug: 'olive-light',
     name: 'Olive Light',
     hex: '#A2BD6E',
@@ -1462,7 +1462,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1119',
+    code: 'D3-1119',
     slug: 'lichen-morning',
     name: 'Lichen Morning',
     hex: '#9EB868',
@@ -1474,7 +1474,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1120',
+    code: 'D3-1120',
     slug: 'sage-light',
     name: 'Sage Light',
     hex: '#7CB899',
@@ -1486,7 +1486,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1121',
+    code: 'D3-1121',
     slug: 'betel-light',
     name: 'Betel Light',
     hex: '#7CB58F',
@@ -1498,7 +1498,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1122',
+    code: 'D3-1122',
     slug: 'fern-leaf',
     name: 'Fern Leaf',
     hex: '#7DAC91',
@@ -1510,7 +1510,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1123',
+    code: 'D3-1123',
     slug: 'olive-calm',
     name: 'Olive Calm',
     hex: '#83A46F',
@@ -1522,7 +1522,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1124',
+    code: 'D3-1124',
     slug: 'moss-whisper',
     name: 'Moss Whisper',
     hex: '#899B6B',
@@ -1534,7 +1534,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1125',
+    code: 'D3-1125',
     slug: 'pista-whisper',
     name: 'Pista Whisper',
     hex: '#63A36A',
@@ -1546,7 +1546,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1126',
+    code: 'D3-1126',
     slug: 'tulsi-grove',
     name: 'Tulsi Grove',
     hex: '#6E9A7D',
@@ -1558,7 +1558,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1127',
+    code: 'D3-1127',
     slug: 'moss-leaf',
     name: 'Moss Leaf',
     hex: '#778E68',
@@ -1570,7 +1570,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1128',
+    code: 'D3-1128',
     slug: 'sage-morning',
     name: 'Sage Morning',
     hex: '#638E6F',
@@ -1582,7 +1582,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1129',
+    code: 'D3-1129',
     slug: 'bamboo-light',
     name: 'Bamboo Light',
     hex: '#74874D',
@@ -1594,7 +1594,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1130',
+    code: 'D3-1130',
     slug: 'sage-leaf',
     name: 'Sage Leaf',
     hex: '#46896A',
@@ -1606,7 +1606,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1131',
+    code: 'D3-1131',
     slug: 'bamboo-grove',
     name: 'Bamboo Grove',
     hex: '#638060',
@@ -1618,7 +1618,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1132',
+    code: 'D3-1132',
     slug: 'pista-leaf',
     name: 'Pista Leaf',
     hex: '#677750',
@@ -1630,7 +1630,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1133',
+    code: 'D3-1133',
     slug: 'olive-morning',
     name: 'Olive Morning',
     hex: '#617227',
@@ -1642,7 +1642,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1134',
+    code: 'D3-1134',
     slug: 'vetiver-morning',
     name: 'Vetiver Morning',
     hex: '#3A745B',
@@ -1654,7 +1654,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1135',
+    code: 'D3-1135',
     slug: 'banyan-leaf',
     name: 'Banyan Leaf',
     hex: '#516C48',
@@ -1666,7 +1666,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1136',
+    code: 'D3-1136',
     slug: 'tulsi-calm',
     name: 'Tulsi Calm',
     hex: '#456D4A',
@@ -1678,7 +1678,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1137',
+    code: 'D3-1137',
     slug: 'olive-grove',
     name: 'Olive Grove',
     hex: '#1B693E',
@@ -1690,7 +1690,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1138',
+    code: 'D3-1138',
     slug: 'peepal-deep',
     name: 'Peepal Deep',
     hex: '#505D36',
@@ -1702,7 +1702,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1139',
+    code: 'D3-1139',
     slug: 'ochre-glow',
     name: 'Ochre Glow',
     hex: '#F4A489',
@@ -1714,7 +1714,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1140',
+    code: 'D3-1140',
     slug: 'malwa-clay',
     name: 'Malwa Clay',
     hex: '#FF997B',
@@ -1726,7 +1726,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1141',
+    code: 'D3-1141',
     slug: 'rust-rose',
     name: 'Rust Rose',
     hex: '#FE9271',
@@ -1738,7 +1738,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1142',
+    code: 'D3-1142',
     slug: 'rust-clay',
     name: 'Rust Clay',
     hex: '#EE9D70',
@@ -1750,7 +1750,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1143',
+    code: 'D3-1143',
     slug: 'kumhar-kiln',
     name: 'Kumhar Kiln',
     hex: '#E6926C',
@@ -1762,7 +1762,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1144',
+    code: 'D3-1144',
     slug: 'gulal-kiln',
     name: 'Gulal Kiln',
     hex: '#E59664',
@@ -1774,7 +1774,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1145',
+    code: 'D3-1145',
     slug: 'rajwada-dusk',
     name: 'Rajwada Dusk',
     hex: '#D99166',
@@ -1786,7 +1786,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1146',
+    code: 'D3-1146',
     slug: 'ochre-blush',
     name: 'Ochre Blush',
     hex: '#D49370',
@@ -1798,7 +1798,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1147',
+    code: 'D3-1147',
     slug: 'copper-glow',
     name: 'Copper Glow',
     hex: '#EB7E61',
@@ -1810,7 +1810,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1148',
+    code: 'D3-1148',
     slug: 'brick-sun',
     name: 'Brick Sun',
     hex: '#E57457',
@@ -1822,7 +1822,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1149',
+    code: 'D3-1149',
     slug: 'gulal-rose',
     name: 'Gulal Rose',
     hex: '#DD7554',
@@ -1834,7 +1834,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1150',
+    code: 'D3-1150',
     slug: 'rajwada-glow',
     name: 'Rajwada Glow',
     hex: '#C6806A',
@@ -1846,7 +1846,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1151',
+    code: 'D3-1151',
     slug: 'sindoor-kiln',
     name: 'Sindoor Kiln',
     hex: '#C8774C',
@@ -1858,7 +1858,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1152',
+    code: 'D3-1152',
     slug: 'chai-rose',
     name: 'Chai Rose',
     hex: '#D06A53',
@@ -1870,7 +1870,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1153',
+    code: 'D3-1153',
     slug: 'mandu-sun',
     name: 'Mandu Sun',
     hex: '#CA6B52',
@@ -1882,7 +1882,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1154',
+    code: 'D3-1154',
     slug: 'kesar-sun',
     name: 'Kesar Sun',
     hex: '#CC634B',
@@ -1894,7 +1894,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1155',
+    code: 'D3-1155',
     slug: 'kumhar-warmth',
     name: 'Kumhar Warmth',
     hex: '#C9623A',
@@ -1906,7 +1906,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1156',
+    code: 'D3-1156',
     slug: 'sindoor-sun',
     name: 'Sindoor Sun',
     hex: '#BA6138',
@@ -1918,7 +1918,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1157',
+    code: 'D3-1157',
     slug: 'kumhar-clay',
     name: 'Kumhar Clay',
     hex: '#B1662D',
@@ -1930,7 +1930,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1158',
+    code: 'D3-1158',
     slug: 'brick-earth',
     name: 'Brick Earth',
     hex: '#B15F3A',
@@ -1942,7 +1942,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1159',
+    code: 'D3-1159',
     slug: 'kumhar-rose',
     name: 'Kumhar Rose',
     hex: '#A85D37',
@@ -1954,7 +1954,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1160',
+    code: 'D3-1160',
     slug: 'ember-earth',
     name: 'Ember Earth',
     hex: '#A4573C',
@@ -1966,7 +1966,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1161',
+    code: 'D3-1161',
     slug: 'brick-glow',
     name: 'Brick Glow',
     hex: '#A7572C',
@@ -1978,7 +1978,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1162',
+    code: 'D3-1162',
     slug: 'kumhar-hearth',
     name: 'Kumhar Hearth',
     hex: '#9C4F3B',
@@ -1990,7 +1990,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1163',
+    code: 'D3-1163',
     slug: 'malwa-rose',
     name: 'Malwa Rose',
     hex: '#985126',
@@ -2002,7 +2002,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1164',
+    code: 'D3-1164',
     slug: 'ember-clay',
     name: 'Ember Clay',
     hex: '#96503E',
@@ -2014,7 +2014,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1165',
+    code: 'D3-1165',
     slug: 'kiln-rose',
     name: 'Kiln Rose',
     hex: '#9B4500',
@@ -2026,7 +2026,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1166',
+    code: 'D3-1166',
     slug: 'ember-kiln',
     name: 'Ember Kiln',
     hex: '#8D4330',
@@ -2038,7 +2038,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1167',
+    code: 'D3-1167',
     slug: 'chai-warmth',
     name: 'Chai Warmth',
     hex: '#973A00',
@@ -2050,7 +2050,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1168',
+    code: 'D3-1168',
     slug: 'malwa-hearth',
     name: 'Malwa Hearth',
     hex: '#893C15',
@@ -2062,7 +2062,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1169',
+    code: 'D3-1169',
     slug: 'amber-gold',
     name: 'Amber Gold',
     hex: '#FDD7A0',
@@ -2074,7 +2074,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1170',
+    code: 'D3-1170',
     slug: 'haldi-gold',
     name: 'Haldi Gold',
     hex: '#EDD875',
@@ -2086,7 +2086,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1171',
+    code: 'D3-1171',
     slug: 'turmeric-light',
     name: 'Turmeric Light',
     hex: '#FBC772',
@@ -2098,7 +2098,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1172',
+    code: 'D3-1172',
     slug: 'ghee-gold',
     name: 'Ghee Gold',
     hex: '#FFBC6A',
@@ -2110,7 +2110,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1173',
+    code: 'D3-1173',
     slug: 'ghee-morning',
     name: 'Ghee Morning',
     hex: '#EAC788',
@@ -2122,7 +2122,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1174',
+    code: 'D3-1174',
     slug: 'marigold-morning',
     name: 'Marigold Morning',
     hex: '#EBC18A',
@@ -2134,7 +2134,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1175',
+    code: 'D3-1175',
     slug: 'haldi-morning',
     name: 'Haldi Morning',
     hex: '#D4BE80',
@@ -2146,7 +2146,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1176',
+    code: 'D3-1176',
     slug: 'ghee-field',
     name: 'Ghee Field',
     hex: '#DABC7D',
@@ -2158,7 +2158,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1177',
+    code: 'D3-1177',
     slug: 'besan-glow',
     name: 'Besan Glow',
     hex: '#C7B966',
@@ -2170,7 +2170,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1178',
+    code: 'D3-1178',
     slug: 'amber-haze',
     name: 'Amber Haze',
     hex: '#E8A53D',
@@ -2182,7 +2182,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1179',
+    code: 'D3-1179',
     slug: 'turmeric-field',
     name: 'Turmeric Field',
     hex: '#CFAE52',
@@ -2194,7 +2194,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1180',
+    code: 'D3-1180',
     slug: 'turmeric-glow',
     name: 'Turmeric Glow',
     hex: '#DBA034',
@@ -2206,7 +2206,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1181',
+    code: 'D3-1181',
     slug: 'amber-field',
     name: 'Amber Field',
     hex: '#BEA766',
@@ -2218,7 +2218,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1182',
+    code: 'D3-1182',
     slug: 'amber-glow',
     name: 'Amber Glow',
     hex: '#B3A23C',
@@ -2230,7 +2230,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1183',
+    code: 'D3-1183',
     slug: 'haldi-warmth',
     name: 'Haldi Warmth',
     hex: '#AF9F52',
@@ -2242,7 +2242,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1184',
+    code: 'D3-1184',
     slug: 'sunlit-field',
     name: 'Sunlit Field',
     hex: '#C68F48',
@@ -2254,7 +2254,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1185',
+    code: 'D3-1185',
     slug: 'amber-morning',
     name: 'Amber Morning',
     hex: '#BD904D',
@@ -2266,7 +2266,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1186',
+    code: 'D3-1186',
     slug: 'mustard-light',
     name: 'Mustard Light',
     hex: '#AE9152',
@@ -2278,7 +2278,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1187',
+    code: 'D3-1187',
     slug: 'straw-morning',
     name: 'Straw Morning',
     hex: '#AF853E',
@@ -2290,7 +2290,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1188',
+    code: 'D3-1188',
     slug: 'mustard-dust',
     name: 'Mustard Dust',
     hex: '#AA7F3A',
@@ -2302,7 +2302,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1189',
+    code: 'D3-1189',
     slug: 'turmeric-haze',
     name: 'Turmeric Haze',
     hex: '#A47F00',
@@ -2314,7 +2314,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1190',
+    code: 'D3-1190',
     slug: 'sunlit-haze',
     name: 'Sunlit Haze',
     hex: '#A27D2B',
@@ -2326,7 +2326,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1191',
+    code: 'D3-1191',
     slug: 'powder-wash',
     name: 'Powder Wash',
     hex: '#9CEAFF',
@@ -2338,7 +2338,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1192',
+    code: 'D3-1192',
     slug: 'peacock-calm',
     name: 'Peacock Calm',
     hex: '#91DFFF',
@@ -2350,7 +2350,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1193',
+    code: 'D3-1193',
     slug: 'narmada-mist',
     name: 'Narmada Mist',
     hex: '#98DAF1',
@@ -2362,7 +2362,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1194',
+    code: 'D3-1194',
     slug: 'indigo-night',
     name: 'Indigo Night',
     hex: '#98CEFD',
@@ -2374,7 +2374,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1195',
+    code: 'D3-1195',
     slug: 'denim-blue',
     name: 'Denim Blue',
     hex: '#6CCDFF',
@@ -2386,7 +2386,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1196',
+    code: 'D3-1196',
     slug: 'harbour-tide',
     name: 'Harbour Tide',
     hex: '#7DC6EE',
@@ -2398,7 +2398,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1197',
+    code: 'D3-1197',
     slug: 'narmada-depth',
     name: 'Narmada Depth',
     hex: '#73C2DE',
@@ -2410,7 +2410,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1198',
+    code: 'D3-1198',
     slug: 'indigo-dusk',
     name: 'Indigo Dusk',
     hex: '#7FB8EF',
@@ -2422,7 +2422,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1199',
+    code: 'D3-1199',
     slug: 'ink-night',
     name: 'Ink Night',
     hex: '#3DBAE8',
@@ -2434,7 +2434,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1200',
+    code: 'D3-1200',
     slug: 'harbour-night',
     name: 'Harbour Night',
     hex: '#80A4CD',
@@ -2446,7 +2446,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1201',
+    code: 'D3-1201',
     slug: 'neel-dusk',
     name: 'Neel Dusk',
     hex: '#55A9E0',
@@ -2458,7 +2458,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1202',
+    code: 'D3-1202',
     slug: 'ink-hush',
     name: 'Ink Hush',
     hex: '#42A0D6',
@@ -2470,7 +2470,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1203',
+    code: 'D3-1203',
     slug: 'peacock-night',
     name: 'Peacock Night',
     hex: '#5F98D8',
@@ -2482,7 +2482,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1204',
+    code: 'D3-1204',
     slug: 'powder-dusk',
     name: 'Powder Dusk',
     hex: '#6692B8',
@@ -2494,7 +2494,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1205',
+    code: 'D3-1205',
     slug: 'narmada-blue',
     name: 'Narmada Blue',
     hex: '#618ACA',
@@ -2506,7 +2506,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1206',
+    code: 'D3-1206',
     slug: 'denim-depth',
     name: 'Denim Depth',
     hex: '#4F81BE',
@@ -2518,7 +2518,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1207',
+    code: 'D3-1207',
     slug: 'harbour-blue',
     name: 'Harbour Blue',
     hex: '#5E7EA8',
@@ -2530,7 +2530,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1208',
+    code: 'D3-1208',
     slug: 'ink-calm',
     name: 'Ink Calm',
     hex: '#3E7CB9',
@@ -2542,7 +2542,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1209',
+    code: 'D3-1209',
     slug: 'powder-night',
     name: 'Powder Night',
     hex: '#0D7D9E',
@@ -2554,7 +2554,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1210',
+    code: 'D3-1210',
     slug: 'cobalt-wash',
     name: 'Cobalt Wash',
     hex: '#3070A1',
@@ -2566,7 +2566,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1211',
+    code: 'D3-1211',
     slug: 'twilight-mist',
     name: 'Twilight Mist',
     hex: '#196F87',
@@ -2578,7 +2578,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1212',
+    code: 'D3-1212',
     slug: 'sapphire-night',
     name: 'Sapphire Night',
     hex: '#006F93',
@@ -2590,7 +2590,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1213',
+    code: 'D3-1213',
     slug: 'neel-tide',
     name: 'Neel Tide',
     hex: '#006695',
@@ -2602,7 +2602,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1214',
+    code: 'D3-1214',
     slug: 'shipra-night',
     name: 'Shipra Night',
     hex: '#005F84',
@@ -2614,7 +2614,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1215',
+    code: 'D3-1215',
     slug: 'powder-depth',
     name: 'Powder Depth',
     hex: '#005776',
@@ -2626,7 +2626,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1216',
+    code: 'D3-1216',
     slug: 'shipra-blue',
     name: 'Shipra Blue',
     hex: '#004F75',
@@ -2638,7 +2638,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1217',
+    code: 'D3-1217',
     slug: 'lotus-bloom',
     name: 'Lotus Bloom',
     hex: '#FFDAE1',
@@ -2650,7 +2650,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1218',
+    code: 'D3-1218',
     slug: 'petal-bloom',
     name: 'Petal Bloom',
     hex: '#FFD3CE',
@@ -2662,7 +2662,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1219',
+    code: 'D3-1219',
     slug: 'lotus-rose',
     name: 'Lotus Rose',
     hex: '#F6CBD5',
@@ -2674,7 +2674,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1220',
+    code: 'D3-1220',
     slug: 'dawn-veil',
     name: 'Dawn Veil',
     hex: '#F9CBC5',
@@ -2686,7 +2686,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1221',
+    code: 'D3-1221',
     slug: 'rajwada-blush',
     name: 'Rajwada Blush',
     hex: '#F4BEC5',
@@ -2698,7 +2698,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1222',
+    code: 'D3-1222',
     slug: 'dawn-blush',
     name: 'Dawn Blush',
     hex: '#F7B9CB',
@@ -2710,7 +2710,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1223',
+    code: 'D3-1223',
     slug: 'petal-mist',
     name: 'Petal Mist',
     hex: '#EAB8B6',
@@ -2722,7 +2722,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1224',
+    code: 'D3-1224',
     slug: 'petal-rose',
     name: 'Petal Rose',
     hex: '#E4B4AD',
@@ -2734,7 +2734,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1225',
+    code: 'D3-1225',
     slug: 'blush-mist',
     name: 'Blush Mist',
     hex: '#DDAEAB',
@@ -2746,7 +2746,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1226',
+    code: 'D3-1226',
     slug: 'dawn-bloom',
     name: 'Dawn Bloom',
     hex: '#DCA2A0',
@@ -2758,7 +2758,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1227',
+    code: 'D3-1227',
     slug: 'gulab-light',
     name: 'Gulab Light',
     hex: '#D39EAC',
@@ -2770,7 +2770,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1228',
+    code: 'D3-1228',
     slug: 'petal-veil',
     name: 'Petal Veil',
     hex: '#CDA0A3',
@@ -2782,7 +2782,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1229',
+    code: 'D3-1229',
     slug: 'rosewater-veil',
     name: 'Rosewater Veil',
     hex: '#D0928E',
@@ -2794,7 +2794,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1230',
+    code: 'D3-1230',
     slug: 'quartz-rose',
     name: 'Quartz Rose',
     hex: '#C1938D',
@@ -2806,7 +2806,7 @@ export const shades: Shade[] = [
     tier: 'LUXURY',
   },
   {
-    code: 'AG-1231',
+    code: 'D3-1231',
     slug: 'sheesham-night',
     name: 'Sheesham Night',
     hex: '#9D6D4E',
@@ -2818,7 +2818,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1232',
+    code: 'D3-1232',
     slug: 'walnut-depth',
     name: 'Walnut Depth',
     hex: '#9E6343',
@@ -2830,7 +2830,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1233',
+    code: 'D3-1233',
     slug: 'jaggery-shade',
     name: 'Jaggery Shade',
     hex: '#87624A',
@@ -2842,7 +2842,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1234',
+    code: 'D3-1234',
     slug: 'sheesham-brown',
     name: 'Sheesham Brown',
     hex: '#7E5A43',
@@ -2854,7 +2854,7 @@ export const shades: Shade[] = [
     tier: 'ESSENTIAL',
   },
   {
-    code: 'AG-1235',
+    code: 'D3-1235',
     slug: 'teak-depth',
     name: 'Teak Depth',
     hex: '#774F20',
@@ -2866,7 +2866,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1236',
+    code: 'D3-1236',
     slug: 'teak-night',
     name: 'Teak Night',
     hex: '#664E2F',
@@ -2878,7 +2878,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1237',
+    code: 'D3-1237',
     slug: 'jaggery-earth',
     name: 'Jaggery Earth',
     hex: '#6A3915',
@@ -2890,7 +2890,7 @@ export const shades: Shade[] = [
     tier: 'STANDARD',
   },
   {
-    code: 'AG-1238',
+    code: 'D3-1238',
     slug: 'umber-brown',
     name: 'Umber Brown',
     hex: '#563617',
@@ -2902,7 +2902,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1239',
+    code: 'D3-1239',
     slug: 'umber-shade',
     name: 'Umber Shade',
     hex: '#56280C',
@@ -2914,7 +2914,7 @@ export const shades: Shade[] = [
     tier: 'PREMIUM',
   },
   {
-    code: 'AG-1240',
+    code: 'D3-1240',
     slug: 'cocoa-shade',
     name: 'Cocoa Shade',
     hex: '#4A2913',

@@ -1,9 +1,18 @@
 /**
  * Local (browser) state — the shapes persisted to IndexedDB (SRS §9).
  */
-import type { BudgetBand, Bhk, Nature, PropertyType, Pt, SurfaceType, Tier } from './content';
+import type {
+  BudgetBand,
+  Bhk,
+  Finish,
+  Nature,
+  PropertyType,
+  Pt,
+  SurfaceType,
+  Tier,
+} from './content';
 
-export type Finish = 'matte' | 'eggshell' | 'satin' | 'semi-gloss' | 'high-gloss' | 'textured';
+export type { Finish };
 export type TileLayout = 'straight' | 'staggered' | 'herringbone' | 'basketweave' | 'diagonal';
 export type PatternKind =
   | 'plain'

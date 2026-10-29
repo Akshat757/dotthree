@@ -11,6 +11,8 @@ import {
   SkipLink,
   WhatsAppFab,
 } from '@/components/layout';
+import { AmbientBackground } from '@/components/motion/ambient-background';
+import { ScrollProgress, ScrollReveals } from '@/components/motion';
 import { site } from '@/config/site';
 
 import './globals.css';
@@ -58,8 +60,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* eslint-disable-next-line no-restricted-syntax */}
         <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
       </head>
-      <body className="min-h-dvh bg-canvas font-sans text-body text-ink antialiased">
+      <body className="relative min-h-dvh bg-canvas font-sans text-body text-ink antialiased">
         <AppProviders>
+          <AmbientBackground />
+          <ScrollProgress />
+          <ScrollReveals />
           <SkipLink />
           <DemoBanner />
           <Header />

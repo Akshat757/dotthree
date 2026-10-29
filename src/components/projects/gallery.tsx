@@ -9,7 +9,17 @@ import { ROOM_LABELS } from '@/data/demo';
 import { cn } from '@/lib/utils';
 import type { ImageRef } from '@/types/content';
 
-export function ProjectGallery({ images, title }: { images: ImageRef[]; title: string }) {
+export function ProjectGallery({
+  images,
+  title,
+  labels,
+}: {
+  images: ImageRef[];
+  title: string;
+  /** Overrides for the filter chips / badges, keyed by `roomType` */
+  labels?: Record<string, string>;
+}) {
+  const labelOf = (r: string) => labels?.[r] ?? ROOM_LABELS[r] ?? r;
   const lb = useLightbox(images.length);
   const [room, setRoom] = React.useState<string | null>(null);
 
@@ -28,7 +38,7 @@ export function ProjectGallery({ images, title }: { images: ImageRef[]; title: s
           </RoomTab>
           {rooms.map((r) => (
             <RoomTab key={r} active={room === r} onClick={() => setRoom(r)}>
-              {ROOM_LABELS[r] ?? r}
+              {labelOf(r)}
             </RoomTab>
           ))}
         </div>
@@ -51,12 +61,12 @@ export function ProjectGallery({ images, title }: { images: ImageRef[]; title: s
                   sizes={wide ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 50vw'}
                   imgClassName="size-full object-cover transition-transform duration-slow group-hover:scale-[1.03] motion-reduce:transition-none"
                 />
-                <span className="absolute right-2 bottom-2 flex size-8 items-center justify-center rounded-full bg-ink/60 text-canvas opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span className="on-photo absolute right-2 bottom-2 flex size-8 items-center justify-center rounded-full bg-ink/60 text-canvas opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                   <Expand className="size-4" aria-hidden />
                 </span>
                 {im.roomType && (
-                  <span className="absolute top-2 left-2 rounded-sm bg-ink/60 px-1.5 py-0.5 text-caption text-canvas">
-                    {ROOM_LABELS[im.roomType] ?? im.roomType}
+                  <span className="on-photo absolute top-2 left-2 rounded-sm bg-ink/60 px-1.5 py-0.5 text-caption text-canvas">
+                    {labelOf(im.roomType)}
                   </span>
                 )}
               </button>
@@ -71,7 +81,7 @@ export function ProjectGallery({ images, title }: { images: ImageRef[]; title: s
           caption: (
             <>
               {title}
-              {im.roomType ? ` · ${ROOM_LABELS[im.roomType] ?? im.roomType}` : ''}
+              {im.roomType ? ` · ${labelOf(im.roomType)}` : ''}
               {im.caption ? ` — ${im.caption}` : ''}
             </>
           ),

@@ -7,6 +7,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { formatHex, oklch, wcagLuminance } from 'culori';
+import { site } from '../src/config/site';
 
 type Tier = 'ESSENTIAL' | 'STANDARD' | 'PREMIUM' | 'LUXURY';
 type Tonality = 'warm' | 'cool' | 'neutral' | 'bold' | 'pastel' | 'earthy' | 'jewel';
@@ -362,7 +363,7 @@ function main() {
 
       const lrv = Math.round(wcagLuminance(color) * 100);
       const shade = {
-        code: `AG-${code}`,
+        code: `${site.brandPrefix}-${code}`,
         slug,
         name,
         hex,

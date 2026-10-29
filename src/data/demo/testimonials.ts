@@ -170,7 +170,7 @@ const rows: Row[] = [
     locality: 'Mahalaxmi Nagar',
     designer: 'arjun-bhatnagar',
     quote:
-      "My parents' room was designed around my father's knee — the wardrobe height, the bedside light, the floor. Nobody else asked about that. Aangan did.",
+      "My parents' room was designed around my father's knee — the wardrobe height, the bedside light, the floor. Nobody else asked about that. Dot 3 did.",
     rating: 5,
     date: '2025-10-15',
   },

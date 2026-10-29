@@ -21,6 +21,7 @@
     "assets:textures": "tsx scripts/fetch-textures.ts",
     "assets:templates": "tsx scripts/author-templates.ts",
     "assets:og": "tsx scripts/generate-og.ts",
+    "assets:client": "tsx scripts/import-client-photos.ts",
     "assets:icons": "tsx scripts/generate-icons.ts",
     "assets:verify": "tsx scripts/verify-assets.ts",
     "assets:all": "npm run assets:shades && npm run assets:images && npm run assets:textures && npm run assets:templates && npm run assets:icons && npm run assets:og",

@@ -125,12 +125,30 @@ export async function encodeSvg(
   };
 }
 
-/** Write an 8-bit greyscale PNG mask from an SVG (white on black). */
+/**
+ * Turn a white-on-black greyscale image into a white PNG whose alpha channel carries the mask.
+ * CSS `mask-image` reads alpha (luminance masks are not portable to Safari), so shipped masks are alpha masks.
+ */
+export async function greyToAlphaPng(input: Buffer | string): Promise<Buffer> {
+  const { data, info } = await sharp(input)
+    .greyscale()
+    .extractChannel(0)
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const rgba = Buffer.alloc(info.width * info.height * 4, 255);
+  for (let i = 0; i < data.length; i++) rgba[i * 4 + 3] = data[i] ?? 0;
+  return sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+}
+
+/** Write an alpha PNG mask from an SVG (white shape on black). */
 export async function encodeMask(svg: string, outPath: string, feather = 2): Promise<void> {
   ensureDir(outPath);
   let img = sharp(Buffer.from(svg), { density: 72 }).greyscale();
   if (feather > 0) img = img.blur(feather);
-  await img.png({ compressionLevel: 9, palette: false }).toFile(outPath);
+  const grey = await img.png().toBuffer();
+  writeFileSync(outPath, await greyToAlphaPng(grey));
 }
 
 export function writeText(path: string, text: string) {

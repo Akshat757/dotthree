@@ -39,7 +39,7 @@ interface Row {
 }
 
 const BRANDS: Partial<Record<MaterialCategory, string>> = {
-  PAINT: 'Aangan Shades',
+  PAINT: 'Dot 3 Shades',
   LAMINATE: 'Malwa Laminates',
   VENEER: 'Narmada Veneers',
   ACRYLIC: 'Malwa Laminates',

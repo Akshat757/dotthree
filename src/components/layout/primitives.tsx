@@ -14,7 +14,46 @@ export function SkipLink() {
   );
 }
 
-export function Logo({ className, compact }: { className?: string; compact?: boolean }) {
+/** The studio's circle mark as one evenodd path, so it takes any text colour (ring, hole, dot). */
+const MARK_PATH = [
+  'M0 50a50 50 0 1 0 100 0a50 50 0 1 0-100 0Z', // outer disc
+  'M17 66.7a33.2 33.2 0 1 0 66.4 0a33.2 33.2 0 1 0-66.4 0Z', // inner hole, tangent to the bottom edge
+  'M17 66.5a16.5 16.5 0 1 0 33 0a16.5 16.5 0 1 0-33 0Z', // dot inside the hole
+].join('');
+
+export function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={cn('shrink-0 fill-current', className)} aria-hidden>
+      <path d={MARK_PATH} fillRule="evenodd" />
+    </svg>
+  );
+}
+
+function LogoLockup({ light, className }: { light?: boolean; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 2222 762"
+      className={cn('aspect-[2222/762] h-10 w-auto shrink-0 md:h-11', className)}
+      aria-hidden
+    >
+      <image href={`/brand/logo-lockup${light ? '-light' : ''}.png`} width="2222" height="762" />
+    </svg>
+  );
+}
+
+/**
+ * `tone="light"` is for use on top of dark imagery (the transparent header over the hero).
+ * Otherwise the lockup follows the site theme.
+ */
+export function Logo({
+  className,
+  compact,
+  tone = 'auto',
+}: {
+  className?: string;
+  compact?: boolean;
+  tone?: 'auto' | 'light';
+}) {
   return (
     <Link
       href="/"
@@ -24,22 +63,15 @@ export function Logo({ className, compact }: { className?: string; compact?: boo
       )}
       aria-label={`${site.name} — home`}
     >
-      <svg viewBox="0 0 32 32" className="size-8 shrink-0" aria-hidden>
-        <rect x="1" y="1" width="30" height="30" rx="6" className="fill-accent" />
-        <path
-          d="M8 24 16 8l8 16M11.5 18h9"
-          className="stroke-canvas"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
-      {!compact && (
-        <span className="font-display text-[1.25rem] leading-none tracking-tight text-ink">
-          {site.shortName}
-          <span className="font-normal text-ink-muted"> Design Studio</span>
-        </span>
+      {compact ? (
+        <LogoMark className={cn('size-9', tone === 'light' ? 'text-white' : 'text-ink')} />
+      ) : tone === 'light' ? (
+        <LogoLockup light />
+      ) : (
+        <>
+          <LogoLockup className="dark:hidden" />
+          <LogoLockup light className="hidden dark:block" />
+        </>
       )}
     </Link>
   );
